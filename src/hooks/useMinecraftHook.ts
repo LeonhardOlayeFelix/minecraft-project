@@ -1,4 +1,4 @@
-import { CanceledError } from "axios";
+import axios, { CanceledError } from "axios";
 import { useState, useEffect } from "react";
 import anishService, { AnishBlocksProps, AnishItemsProps } from "../services/anish-service";
 import minecraftDataService, { HarvestToolsProps, MinecraftItemsProps, MinecraftDataBlocksProps } from "../services/minecraft-data-service";
@@ -37,6 +37,7 @@ const useBlocksAndItems = () =>{
     const [blocks, setBlocks] = useState<BlocksProps[]>([]);
     const [items, setItems] = useState<ItemsProps[]>([]);
     const [recipes, setRecipes] = useState<RecipeProps[]>([]);
+    const [error, setError] = useState(false);
 
 const beacon =  {
   item: "Beacon",
@@ -95,6 +96,7 @@ const noRecipe =  {
         } catch (err) {
           if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
           console.error(err);
+          setError(true)
         } finally {
           setIsLoading(false);
         }
@@ -119,6 +121,7 @@ const noRecipe =  {
         } catch (err) {
           if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
           console.error(err);
+          setError(true)
         } finally {
           setIsLoading(false);
         }
@@ -145,6 +148,7 @@ const noRecipe =  {
         } catch (err) {
           if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
           console.error(err);
+          setError(true)
         } finally {
           setIsLoading(false);
         }
@@ -199,7 +203,7 @@ const noRecipe =  {
       setBlocks(mergedBlocks as BlocksProps[]);
     };
 
-    return {items, blocks, recipes, isLoading, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, recipes, isLoading, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

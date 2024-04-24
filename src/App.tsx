@@ -1,5 +1,6 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Container, Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
+import ItemList from "./components/MinecraftComponents/ItemList";
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
       <GridItem area={"nav"}>
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area={"main"}></GridItem>
+      <GridItem area={"main"}>
+        <Container>
+          <ItemList></ItemList>
+        </Container>
+      </GridItem>
       <GridItem area={"footer"}></GridItem>
     </Grid>
   );
