@@ -2,26 +2,41 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  LightMode,
-  Text,
+  Show,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { BiChat } from "react-icons/bi";
-import { FaMoon, FaSun } from "react-icons/fa";
 
 const ColorModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const hoverBg = useColorModeValue("gray.100", "gray.600");
   return (
     <Box onClick={toggleColorMode}>
-      <Button
-        flex="1"
-        variant="ghost"
-        leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
-      >
-        {(colorMode === "dark" ? "Dark" : "Light") + " Mode"}
-      </Button>
+      <Show above="md">
+        <Button
+          flex="1"
+          variant="ghost"
+          leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
+        >
+          {(colorMode === "dark" ? "Dark" : "Light") + " Mode"}
+        </Button>
+      </Show>
+      <Show below="md">
+        <Box
+          p="1"
+          transition="background-color 0.3s"
+          borderRadius="md"
+          _hover={{
+            backgroundColor: hoverBg, // Changes background color on hover
+          }}
+        >
+          {colorMode === "dark" ? (
+            <MoonIcon boxSize="1.3em" onClick={toggleColorMode} />
+          ) : (
+            <SunIcon boxSize="1.3em" onClick={toggleColorMode} />
+          )}
+        </Box>
+      </Show>
     </Box>
   );
 };

@@ -12,12 +12,8 @@ function App() {
       <GridItem area={"nav"}>
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area={"main"} bg={"red"}>
-        main
-      </GridItem>
-      <GridItem area={"footer"} bg={"dodgerblue"}>
-        footer
-      </GridItem>
+      <GridItem area={"main"}></GridItem>
+      <GridItem area={"footer"}></GridItem>
     </Grid>
   );
 }
