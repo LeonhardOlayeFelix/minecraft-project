@@ -41,10 +41,6 @@ const useBlocksAndItems = () =>{
     const [error, setError] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [blocksIsLoading, setBlocksIsLoading] = useState(false)
-    const [itemsIsLoading, setItemsIsLoading] = useState(false)
-    const [recipesIsLoading, setRecipesIsLoading] = useState(false)
-    const [toolsAndWeaponryIsLoading, setToolsAndWeaponryIsLoading] = useState(false)
 
 const beacon =  {
   item: "Beacon",
