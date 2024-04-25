@@ -107,8 +107,7 @@ useEffect(() => {
       }
 
       // Set tools and weaponry based on item names
-      setToolsAndWeaponry(items.filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel"].some(tool => item.name.includes(tool))));
-
+      
     } catch (err) {
       if (err instanceof CanceledError) return;
       console.error(err);
@@ -141,6 +140,8 @@ useEffect(() => {
         return anishItem;
       });
       setItems((mergedItems as ItemsProps[]));
+      setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel"].some(tool => item.name.includes(tool))));
+
     };
   
     const mergeBlockData = (

@@ -30,7 +30,6 @@ function App() {
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <SimpleGrid
-            className="border"
             padding={10}
             columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
             width={{ xl: "1300px", lg: "1000px", md: "700px", sm: "400px" }}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
 import {
   Avatar,
@@ -33,6 +33,13 @@ const MinecraftCardv2 = ({ item }: Props) => {
   const cardColor = useColorModeValue("white !important", "#111111");
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
+  const [dataIsReady, setDataIsReady] = useState(false);
+  useEffect(() => {
+    console.log("toolsAndWeaponry data:", toolsAndWeaponry);
+    if (!isLoading && toolsAndWeaponry) {
+      setDataIsReady(true);
+    }
+  }, [toolsAndWeaponry, isLoading]);
   const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
 
   if (!items || !item) {
@@ -60,6 +67,7 @@ const MinecraftCardv2 = ({ item }: Props) => {
     }
     return { sentenceToReturn, overflow };
   };
+
   return (
     <Card
       borderRadius="20px"
@@ -147,7 +155,8 @@ const MinecraftCardv2 = ({ item }: Props) => {
           </Text>
         </Flex>
         <Flex>
-          {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
+          {dataIsReady &&
+          toolsAndWeaponry?.find((tool) => tool.name === item.name) ? (
             <>
               <Tooltip label="Tools & weapons">
                 <div>
@@ -155,6 +164,8 @@ const MinecraftCardv2 = ({ item }: Props) => {
                 </div>
               </Tooltip>
             </>
+          ) : (
+            <Spinner />
           )}
         </Flex>
       </CardBody>
