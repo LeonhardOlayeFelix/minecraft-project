@@ -106,7 +106,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
             me="auto"
             className="grow-1"
             bg={cardBodybg}
-            borderRadius="5px"
+            borderRadius="12px"
             padding={1}
           >
             {item.image && (
