@@ -16,16 +16,18 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import SimilarSearchesString from "./SimilarSearchesString";
-import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+import { IoCubeOutline, IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { LuSwords } from "react-icons/lu";
+import { IoIosCube } from "react-icons/io";
 
 interface Props {
   item: ItemsProps;
+  className?: string;
 }
 
-const MinecraftCardv2 = ({ item }: Props) => {
-  const { items, toolsAndWeaponry, isLoading } = useBlocksAndItems();
+const MinecraftCardv2 = ({ item, className }: Props) => {
+  const { items, toolsAndWeaponry, isLoading, blocks } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
@@ -33,13 +35,13 @@ const MinecraftCardv2 = ({ item }: Props) => {
   const cardColor = useColorModeValue("white !important", "#111111");
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
-  const [dataIsReady, setDataIsReady] = useState(false);
-  useEffect(() => {
-    console.log("toolsAndWeaponry data:", toolsAndWeaponry);
-    if (!isLoading && toolsAndWeaponry) {
-      setDataIsReady(true);
-    }
-  }, [toolsAndWeaponry, isLoading]);
+  //const [dataIsReady, setDataIsReady] = useState(false);
+  // useEffect(() => {
+  //   console.log("toolsAndWeaponry data:", toolsAndWeaponry);
+  //   if (!isLoading && toolsAndWeaponry) {
+  //     setDataIsReady(true);
+  //   }
+  // }, [toolsAndWeaponry, isLoading]);
   const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
 
   if (!items || !item) {
@@ -70,6 +72,7 @@ const MinecraftCardv2 = ({ item }: Props) => {
 
   return (
     <Card
+      className={className}
       borderRadius="20px"
       bg={cardColor}
       boxShadow="lg"
@@ -138,35 +141,47 @@ const MinecraftCardv2 = ({ item }: Props) => {
         </Flex>
       </Box>
       <CardBody bg={cardBodybg}>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Text fontWeight="500" fontSize="md" color={textColor}>
-            {isExpanded
-              ? item.description
-              : shortenString(item.description, 114).sentenceToReturn}
-            {item.description.length > 114 && (
-              <Icon
-                cursor={"pointer"}
-                as={isExpanded ? MdExpandLess : MdExpandMore}
-                w="20px"
-                h="20px"
-                onClick={toggleDescription}
-              />
+        <Flex
+          direction={"column"}
+          justifyContent={"space-between"}
+          height={"100%"}
+        >
+          <Flex alignItems="center" justifyContent="space-between">
+            <Text fontWeight="500" fontSize="md" color={textColor}>
+              {isExpanded
+                ? item.description
+                : shortenString(item.description, 114).sentenceToReturn}
+              {item.description.length > 114 && (
+                <Icon
+                  cursor={"pointer"}
+                  as={isExpanded ? MdExpandLess : MdExpandMore}
+                  w="20px"
+                  h="20px"
+                  onClick={toggleDescription}
+                />
+              )}
+            </Text>
+          </Flex>
+          <Flex gap={"10px"}>
+            {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
+              <>
+                <Tooltip label="Tools & weapons">
+                  <div>
+                    <LuSwords className="grow-1" size={20} />
+                  </div>
+                </Tooltip>
+              </>
             )}
-          </Text>
-        </Flex>
-        <Flex>
-          {dataIsReady &&
-          toolsAndWeaponry?.find((tool) => tool.name === item.name) ? (
-            <>
-              <Tooltip label="Tools & weapons">
-                <div>
-                  <LuSwords className="grow-1" size={20} />
-                </div>
-              </Tooltip>
-            </>
-          ) : (
-            <Spinner />
-          )}
+            {blocks?.find((block) => block.name === item.name) && (
+              <>
+                <Tooltip label="Blocks">
+                  <div>
+                    <IoCubeOutline className="grow-1" size={20} />
+                  </div>
+                </Tooltip>
+              </>
+            )}
+          </Flex>
         </Flex>
       </CardBody>
     </Card>

@@ -39,22 +39,26 @@ function App() {
               ))} */}
             <Box display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
+                className="grow-1"
                 item={items.find((item) => item.name === "Diamond Sword")}
               />
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
+                className="grow-1"
                 item={items.find((item) => item.name === "Diamond Sword")}
               />
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
+                className="grow-1"
                 item={items.find((item) => item.name === "Diamond Sword")}
               />
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
-                item={items.find((item) => item.name === "Diamond Sword")}
+                className="grow-1"
+                item={items.find((item) => item.name === "Acacia Wood")}
               />
             </Box>
           </SimpleGrid>
