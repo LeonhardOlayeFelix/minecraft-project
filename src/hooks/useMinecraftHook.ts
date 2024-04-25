@@ -33,12 +33,18 @@ interface BlocksProps extends AnishBlocksProps {
     shapeless: boolean;
   }
 const useBlocksAndItems = () =>{
-    const [isLoading, setIsLoading] = useState(false);
+    
     const [blocks, setBlocks] = useState<BlocksProps[]>([]);
     const [items, setItems] = useState<ItemsProps[]>([]);
-    const [recipes, setRecipes] = useState<RecipeProps[]>([]);
-    const [error, setError] = useState(false);
+    const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
     const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
+    const [error, setError] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [blocksIsLoading, setBlocksIsLoading] = useState(false)
+    const [itemsIsLoading, setItemsIsLoading] = useState(false)
+    const [recipesIsLoading, setRecipesIsLoading] = useState(false)
+    const [toolsAndWeaponryIsLoading, setToolsAndWeaponryIsLoading] = useState(false)
 
 const beacon =  {
   item: "Beacon",
@@ -155,6 +161,7 @@ const noRecipe =  {
         }
       };
   
+      setToolsAndWeaponry(items.filter(item => (item.name.includes("Sword")) || (item.name.includes("Pickaxe") || item.name.includes("Shovel")|| item.name.includes("Axe")|| item.name.includes("Hoe")|| item.name.includes("Shears")|| item.name.includes("Flint and Steel"))));
       fetchData();
   
       return () => {
@@ -204,7 +211,7 @@ const noRecipe =  {
       setBlocks(mergedBlocks as BlocksProps[]);
     };
 
-    return {items, blocks, recipes, isLoading, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, recipes, isLoading, toolsAndWeaponry, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

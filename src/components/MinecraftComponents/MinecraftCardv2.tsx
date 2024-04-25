@@ -18,6 +18,8 @@ import {
 } from "@chakra-ui/react";
 import SimilarSearchesString from "./SimilarSearchesString";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+import { MdVideoLibrary } from "react-icons/md";
+import { LuSwords } from "react-icons/lu";
 
 interface Props {
   item: ItemsProps;
@@ -30,7 +32,7 @@ const MinecraftCardv2 = ({ item }: Props) => {
   let bodyText = useColorModeValue("gray.800", "white");
   let iconBox = useColorModeValue("gray.100", "whiteAlpha.200");
   let iconColor = useColorModeValue("brand.200", "white");
-  const { items } = useBlocksAndItems();
+  const { items, toolsAndWeaponry } = useBlocksAndItems();
 
   let matches: (ItemsProps | undefined)[] = [];
 
@@ -43,6 +45,9 @@ const MinecraftCardv2 = ({ item }: Props) => {
     );
     matches = matches.splice(0, Math.min(5, matches.length));
   }
+  useEffect(() => {
+    console.log(toolsAndWeaponry);
+  }, [toolsAndWeaponry]);
   return (
     items &&
     item && (
@@ -129,6 +134,17 @@ const MinecraftCardv2 = ({ item }: Props) => {
           >
             {item.description}
           </Text>
+          <Flex>
+            {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
+              <>
+                <Tooltip label="Tools & weapons">
+                  <div>
+                    <LuSwords className="grow-1" size={20} />
+                  </div>
+                </Tooltip>
+              </>
+            )}
+          </Flex>
         </CardBody>
       </Card>
     )
