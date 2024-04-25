@@ -79,95 +79,53 @@ const noRecipe =  {
   shapeless: false
 }
 
-    useEffect(() => {
-      const controller = new AbortController();
-      const fetchData = async () => {
-        setIsLoading(true);
-  
-        try {
-          // Get Anish Items
-          const anishItemsResponse = await anishService.getAllItems();
-  
-          // Get PrismarineJS Items
-          const minecraftDataItemsResponse =
-            await minecraftDataService.getAllItems();
-          if (minecraftDataItemsResponse.data && anishItemsResponse.data) {
-            
-            mergeItemData(
-              minecraftDataItemsResponse.data,
-              anishItemsResponse.data
-            );
-          } else {
-            controller.abort();
-          }
-        } catch (err) {
-          if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
-          console.error(err);
-          setError(true)
-        } finally {
-          setIsLoading(false);
-        }
-  
-        try {
-          // Get Anish Blocks
-          setIsLoading(true);
-          const anishBlocksResponse = await anishService.getAllBlocks();
-  
-          // Get PrismarineJS Blocks
-          const minecraftDataBlocksResponse =
-            await minecraftDataService.getAllBlocks();
-  
-          if (anishBlocksResponse.data && minecraftDataBlocksResponse.data) {
-            mergeBlockData(
-              anishBlocksResponse.data,
-              minecraftDataBlocksResponse.data
-            );
-          } else {
-            controller.abort();
-          }
-        } catch (err) {
-          if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
-          console.error(err);
-          setError(true)
-        } finally {
-          setIsLoading(false);
-        }
+useEffect(() => {
+  const controller = new AbortController();
+  const fetchData = async () => {
+    setIsLoading(true); // Start loading before any data fetching begins
 
-        try {
-          // Get Anish Recipes
-          setIsLoading(true);
-          const anishRecipeResponse = await anishService.getAllRecipes();
-          if (anishRecipeResponse.data){
-            //There is erroneous data in this json file, I found one and fix it here.
-            const correctedData = anishRecipeResponse.data.map((recipe) => {
-              if (recipe.item === "Beacon"){
-                return beacon
-              }
-              return recipe
-            })
-            //Also need to add the empty recipe to the data
-            correctedData.push(noRecipe)
-            setRecipes(correctedData)
-          }
-          else {
-            controller.abort();
-          }
-        } catch (err) {
-          if (err instanceof CanceledError) return; // If the operation was cancelled, no need to handle the error
-          console.error(err);
-          setError(true)
-        } finally {
-          setIsLoading(false);
-        }
-      };
-  
-      setToolsAndWeaponry(items.filter(item => (item.name.includes("Sword")) || (item.name.includes("Pickaxe") || item.name.includes("Shovel")|| item.name.includes("Axe")|| item.name.includes("Hoe")|| item.name.includes("Shears")|| item.name.includes("Flint and Steel"))));
-      fetchData();
-  
-      return () => {
-        controller.abort(); // Clean up by aborting any ongoing requests when the component unmounts
-      };
-    }, []);
+    try {
+      const [anishItemsResponse, minecraftDataItemsResponse, anishBlocksResponse, minecraftDataBlocksResponse, anishRecipeResponse] = await Promise.all([
+        anishService.getAllItems(),
+        minecraftDataService.getAllItems(),
+        anishService.getAllBlocks(),
+        minecraftDataService.getAllBlocks(),
+        anishService.getAllRecipes()
+      ]);
+
+      // Process items data
+      if (minecraftDataItemsResponse.data && anishItemsResponse.data) {
+        mergeItemData(minecraftDataItemsResponse.data, anishItemsResponse.data);
+      }
+
+      // Process blocks data
+      if (anishBlocksResponse.data && minecraftDataBlocksResponse.data) {
+        mergeBlockData(anishBlocksResponse.data, minecraftDataBlocksResponse.data);
+      }
+
+      // Process recipes data
+      if (anishRecipeResponse.data) {
+        const correctedData = anishRecipeResponse.data.map(recipe => recipe.item === "Beacon" ? beacon : recipe);
+        correctedData.push(noRecipe);
+        setRecipes(correctedData);
+      }
+
+      // Set tools and weaponry based on item names
+      setToolsAndWeaponry(items.filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel"].some(tool => item.name.includes(tool))));
+
+    } catch (err) {
+      if (err instanceof CanceledError) return;
+      console.error(err);
+      setError(true);
+    } finally {
+      setIsLoading(false); // End loading after all data fetching is complete or failed
+    }
+  };
+
+  fetchData();
+
+  return () => controller.abort(); // Clean up on component unmount
+}, []);
   
     const mergeItemData = (
       //merges matching objects from anishBlocks and Minecraft-data. Some data is lost
@@ -210,6 +168,8 @@ const noRecipe =  {
         .filter((block) => block !== null); // Ensure only matched blocks are included
       setBlocks(mergedBlocks as BlocksProps[]);
     };
+
+
 
     return {items, blocks, recipes, isLoading, toolsAndWeaponry, error, setItems, setBlocks, setRecipes, setIsLoading}
 }

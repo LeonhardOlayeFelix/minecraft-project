@@ -14,7 +14,8 @@ import useBlocksAndItems from "./hooks/useMinecraftHook";
 import MinecraftCardv2 from "./components/MinecraftComponents/MinecraftCardv2";
 import "./assets/fonts/custom-font.css";
 function App() {
-  const { items } = useBlocksAndItems();
+  const { items, isLoading, recipes } = useBlocksAndItems();
+  if (!isLoading) console.log(recipes);
   return (
     <Grid
       templateAreas={{
