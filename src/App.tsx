@@ -37,7 +37,7 @@ function App() {
             {/* {items.splice(0, 20).map((fff, index) => (
                 <MinecraftCardv2 key={index} item={fff} />
               ))} */}
-            <Box display={"flex"} justifyContent={"center"}>
+            {/* <Box display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
                 className="grow-1"
                 item={items.find((item) => item.name === "Diamond Sword")}
@@ -60,7 +60,19 @@ function App() {
                 className="grow-1"
                 item={items.find((item) => item.name === "Acacia Wood")}
               />
+            </Box> */}
+            <Box className="mb-3" display={"flex"} justifyContent={"center"}>
+              <MinecraftCardv2
+                item={items.find(
+                  (item) => item.name === "Potion of Regeneration"
+                )}
+              />
             </Box>
+            {items.splice(0, 20).map((fff, index) => (
+              <Box className="mb-3" display={"flex"} justifyContent={"center"}>
+                <MinecraftCardv2 key={index} item={fff} />
+              </Box>
+            ))}
           </SimpleGrid>
         </Flex>
       </GridItem>

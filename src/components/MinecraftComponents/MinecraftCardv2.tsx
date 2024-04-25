@@ -20,6 +20,7 @@ import { IoCubeOutline, IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { LuSwords } from "react-icons/lu";
 import { IoIosCube } from "react-icons/io";
+import { GiCauldron } from "react-icons/gi";
 
 interface Props {
   item: ItemsProps;
@@ -27,7 +28,8 @@ interface Props {
 }
 
 const MinecraftCardv2 = ({ item, className }: Props) => {
-  const { items, toolsAndWeaponry, isLoading, blocks } = useBlocksAndItems();
+  const { items, toolsAndWeaponry, isLoading, blocks, potions } =
+    useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
@@ -162,26 +164,39 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
             </Text>
           </Flex>
-          <Flex gap={"10px"}>
-            {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
-              <>
-                <Tooltip label="Tools & weapons">
-                  <div>
-                    <LuSwords className="grow-1" size={20} />
-                  </div>
-                </Tooltip>
-              </>
-            )}
-            {blocks?.find((block) => block.name === item.name) && (
-              <>
-                <Tooltip label="Blocks">
-                  <div>
-                    <IoCubeOutline className="grow-1" size={20} />
-                  </div>
-                </Tooltip>
-              </>
-            )}
-          </Flex>
+          {!isLoading ? (
+            <Flex gap={"10px"}>
+              {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
+                <>
+                  <Tooltip label="Tools & Weapons">
+                    <div>
+                      <LuSwords className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {blocks?.find((block) => block.name === item.name) && (
+                <>
+                  <Tooltip label="Blocks">
+                    <div>
+                      <IoCubeOutline className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {potions?.find((potion) => potion.name === item.name) && (
+                <>
+                  <Tooltip label="Potions & Effects">
+                    <div>
+                      <GiCauldron className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+            </Flex>
+          ) : (
+            <Spinner />
+          )}
         </Flex>
       </CardBody>
     </Card>

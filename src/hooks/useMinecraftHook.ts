@@ -38,6 +38,7 @@ const useBlocksAndItems = () =>{
     const [items, setItems] = useState<ItemsProps[]>([]);
     const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
     const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
+    const [potions, setPotions] = useState<ItemsProps[]>()
     const [error, setError] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -140,7 +141,8 @@ useEffect(() => {
         return anishItem;
       });
       setItems((mergedItems as ItemsProps[]));
-      setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel"].some(tool => item.name.includes(tool))));
+      setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel", "Bow", "Arrow", "Potion"].some(tool => item.name.includes(tool))));
+      setPotions((mergedItems as ItemsProps[]).filter(item => ["Potion", "Arrow of"].some(tool => item.name.includes(tool))));
 
     };
   
@@ -168,7 +170,7 @@ useEffect(() => {
 
 
 
-    return {items, blocks, recipes, isLoading, toolsAndWeaponry, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;
