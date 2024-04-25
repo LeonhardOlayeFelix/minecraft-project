@@ -43,112 +43,122 @@ const MinecraftCardv1 = ({ item }: Props) => {
     matches = similarSearches.map((result) =>
       items.find((itemfound) => itemfound.name === result)
     );
-    matches = matches.splice(0, Math.min(6, matches.length));
+    matches = matches.splice(0, Math.min(5, matches.length));
   }
 
   return (
-    <Flex
-      borderRadius="20px"
-      bg={boxBg}
-      minH="340px"
-      w={{ base: "250px", md: "345px" }}
-      direction="column"
-      transition="transform 0.2s"
-      _hover={{
-        transform: "scale(1.01)",
-      }}
-      boxShadow={"xl"}
-    >
-      <Box p="20px">
-        <Flex w="100%" mb="10px">
-          <Box me="auto" bg={secondaryBg} borderRadius={"5px"} padding={1}>
-            {item && <Image src={item.image} />}
-          </Box>
-          <Button
-            w="38px"
-            h="38px"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius="12px"
-            me="12px"
-            bg={iconBox}
-          >
-            <Icon
-              w="24px"
-              h="24px"
-              as={IoEllipsisHorizontalSharp}
-              color={iconColor}
-            />
-          </Button>
-        </Flex>
-        <Box>
-          <Text fontWeight="600" color={mainText} w="100%" fontSize="2xl">
-            {item && item.name}
-          </Text>
-          <Flex alignItems={"center"} gap={"3px"} justifyContent={"left"}>
-            <AvatarGroup size="sm" max={6} fontSize="9px" fontWeight="700">
-              {matches.map((match, index) => (
-                <Tooltip label={match?.name}>
-                  <Avatar
-                    boxSize={10}
-                    onClick={() => console.log(match?.name)}
-                    cursor={"pointer"}
-                    border={"white"}
-                    className="p-1"
-                    name={item.name}
-                    key={index}
-                    src={match?.image}
-                    _hover={{
-                      bg: secondaryBg + "70", // Example of a white background with 50% opacity, // Example of a change on hover to a less transparent background
-                    }}
-                  ></Avatar>
-                </Tooltip>
-              ))}
-            </AvatarGroup>
-          </Flex>
-        </Box>
-      </Box>
+    items &&
+    item && (
       <Flex
-        bg={secondaryBg}
-        w="100%"
-        p="20px"
-        borderBottomLeftRadius="inherit"
-        borderBottomRightRadius="inherit"
-        height="100%"
+        borderRadius="20px"
+        bg={boxBg}
+        minH="340px"
+        w={{ base: "240px", md: "310px" }}
         direction="column"
+        transition="transform 0.2s"
+        _hover={{
+          transform: "scale(1.01)",
+        }}
+        boxShadow={"xl"}
       >
-        <Text
-          fontSize="sm"
-          color={bodyText}
-          lineHeight="24px"
-          pe="40px"
-          fontWeight="500"
-          mb="auto"
-        >
-          {item && item.description.slice(0, 200)}
-        </Text>
-        <Flex>
-          <Flex me="25px">
-            <Icon as={MdTimer} w="20px" h="20px" me="6px" color="green.400" />
-            <Text color={mainText} fontSize="sm" my="auto" fontWeight="500">
-              Text2
-            </Text>
+        <Box p="20px">
+          <Flex w="100%" mb="10px">
+            <Box
+              me="auto"
+              className="grow-1"
+              bg={secondaryBg}
+              borderRadius={"5px"}
+              padding={1}
+            >
+              {item && <Image src={item.image} />}
+            </Box>
+            <Button
+              className="grow-1"
+              w="38px"
+              h="38px"
+              alignItems="center"
+              justifyContent="center"
+              borderRadius="12px"
+              me="12px"
+              bg={iconBox}
+            >
+              <Icon
+                w="24px"
+                h="24px"
+                as={IoEllipsisHorizontalSharp}
+                color={iconColor}
+              />
+            </Button>
           </Flex>
-          <Flex>
-            <Icon
-              as={MdVideoLibrary}
-              w="20px"
-              h="20px"
-              me="6px"
-              color="red.500"
-            />
-            <Text color={mainText} fontSize="sm" my="auto" fontWeight="500">
-              Text 1
+          <Box>
+            <Text fontWeight="600" color={mainText} w="100%" fontSize="2xl">
+              {item && item.name}
             </Text>
+            <Flex alignItems={"center"} gap={"3px"} justifyContent={"left"}>
+              <AvatarGroup size="sm" max={5} fontSize="9px" fontWeight="700">
+                {matches.map((match, index) => (
+                  <Tooltip label={match?.name}>
+                    <Avatar
+                      className="grow-1 p-1"
+                      boxSize={10}
+                      onClick={() => console.log(match?.name)}
+                      cursor={"pointer"}
+                      border={"white"}
+                      name={item.name}
+                      key={index}
+                      src={match?.image}
+                      _hover={{
+                        bg: secondaryBg + "70", // Example of a white background with 50% opacity, // Example of a change on hover to a less transparent background
+                      }}
+                    ></Avatar>
+                  </Tooltip>
+                ))}
+              </AvatarGroup>
+            </Flex>
+          </Box>
+        </Box>
+        <Flex
+          bg={secondaryBg}
+          w="100%"
+          p="20px"
+          borderBottomLeftRadius="inherit"
+          borderBottomRightRadius="inherit"
+          height="100%"
+          direction="column"
+        >
+          <Text
+            fontSize="sm"
+            color={bodyText}
+            lineHeight="24px"
+            pe="40px"
+            fontWeight="500"
+            mb="auto"
+          >
+            {item && item.description.slice(0, 200)}
+          </Text>
+          <Flex>
+            <Flex me="25px">
+              <Icon as={MdTimer} w="20px" h="20px" me="6px" color="green.400" />
+              <Text color={mainText} fontSize="sm" my="auto" fontWeight="500">
+                Text2
+              </Text>
+            </Flex>
+            <Flex>
+              <Icon
+                as={MdVideoLibrary}
+                w="20px"
+                h="20px"
+                me="6px"
+                color="red.500"
+              />
+              <Text color={mainText} fontSize="sm" my="auto" fontWeight="500">
+                Text 1
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    )
   );
 };
 

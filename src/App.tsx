@@ -36,6 +36,9 @@ function App() {
           <MinecraftCardv1
             item={items.find((foundItem) => foundItem.name === "Diamond Sword")}
           />
+          <MinecraftCardv1
+            item={items.find((foundItem) => foundItem.name === "Wooden Shovel")}
+          />
         </SimpleGrid>
       </GridItem>
       <GridItem area={"footer"}></GridItem>
