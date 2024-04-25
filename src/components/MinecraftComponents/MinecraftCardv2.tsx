@@ -24,7 +24,7 @@ interface Props {
 }
 
 const MinecraftCardv2 = ({ item }: Props) => {
-  let boxBg = useColorModeValue("white !important", "#151515");
+  let boxBg = useColorModeValue("white !important", "#111111");
   let secondaryBg = useColorModeValue("gray", "#202020");
   let mainText = useColorModeValue("gray.800", "white");
   let bodyText = useColorModeValue("gray.800", "white");
@@ -53,11 +53,11 @@ const MinecraftCardv2 = ({ item }: Props) => {
         overflow="hidden"
         transition="transform 0.2s"
         _hover={{ transform: "scale(1.02)" }}
-        w={{ base: "250px", md: "310px" }}
+        w={{ base: "230px", md: "280px" }}
         minH={{ base: "350px", md: "400px" }}
       >
-        <Box h={190} className="p-4">
-          <Flex w="100%" mb="10px">
+        <Box h={190} pt={"20px"} pl={"20px"}>
+          <Flex w="100%">
             <Box
               me="auto"
               className="grow-1"
@@ -74,7 +74,7 @@ const MinecraftCardv2 = ({ item }: Props) => {
               alignItems="center"
               justifyContent="center"
               borderRadius="12px"
-              me="12px"
+              me="13px"
               bg={iconBox}
             >
               <Icon
@@ -85,16 +85,22 @@ const MinecraftCardv2 = ({ item }: Props) => {
               />
             </Button>
           </Flex>
-          <Divider />
           <Box>
-            <Text fontWeight="600" color={mainText} w="100%" fontSize="2xl">
+            <Text
+              fontFamily={"Roboto Remix"}
+              fontWeight="500"
+              color={mainText}
+              w="100%"
+              fontSize="35px"
+            >
               {item && item.name}
             </Text>
-            <Flex alignItems={"center"} gap={"3px"} justifyContent={"left"}>
+            <Flex justifyContent={"left"}>
               <AvatarGroup size="sm" max={5} fontSize="9px" fontWeight="700">
                 {matches.map((match, index) => (
                   <Tooltip label={match?.name}>
                     <Avatar
+                      transition="transform 0.2s"
                       className="grow-1 p-1"
                       boxSize={10}
                       onClick={() => console.log(match?.name)}
@@ -104,7 +110,7 @@ const MinecraftCardv2 = ({ item }: Props) => {
                       key={index}
                       src={match?.image}
                       _hover={{
-                        bg: secondaryBg + "70", // Example of a white background with 50% opacity, // Example of a change on hover to a less transparent background
+                        bg: secondaryBg + "70",
                       }}
                     ></Avatar>
                   </Tooltip>
@@ -115,7 +121,14 @@ const MinecraftCardv2 = ({ item }: Props) => {
         </Box>
 
         <CardBody bg={secondaryBg}>
-          <Text color={bodyText}>{item.description}</Text>
+          <Text
+            /*fontFamily={"Roboto Remix"} fontSize={"20px"}*/ //use this to give the text a minecraft-y look
+            fontWeight={"500"}
+            fontSize={"md"}
+            color={bodyText}
+          >
+            {item.description}
+          </Text>
         </CardBody>
       </Card>
     )

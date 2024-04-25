@@ -12,6 +12,7 @@ import HeaderImage from "./assets/minecraft-banner-1.jpg";
 import MinecraftCardv1 from "./components/MinecraftComponents/MinecraftCardv1";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import MinecraftCardv2 from "./components/MinecraftComponents/MinecraftCardv2";
+import "./assets/fonts/custom-font.css";
 function App() {
   const { items } = useBlocksAndItems();
   return (
@@ -25,18 +26,16 @@ function App() {
         <NavBar></NavBar>
       </GridItem>
       <GridItem area={"main"}>
-        <SimpleGrid
-          columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-          spacing={10}
-          padding={"10px"}
-        >
+        <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} padding={"10px"}>
           <MinecraftCardv2
             item={items.find((foundItem) => foundItem.name === "Diamond Sword")}
           />
-          <MinecraftCardv1
-            item={items.find((foundItem) => foundItem.name === "Diamond Sword")}
+          <MinecraftCardv2
+            item={items.find(
+              (foundItem) => foundItem.name === "Acacia Fence Gate"
+            )}
           />
-          <MinecraftCardv1
+          <MinecraftCardv2
             item={items.find((foundItem) => foundItem.name === "Wooden Shovel")}
           />
         </SimpleGrid>

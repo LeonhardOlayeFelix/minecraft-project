@@ -1,16 +1,25 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig, useColorModeValue } from "@chakra-ui/react";
+import { Dict } from "@chakra-ui/utils";
+
+// Define the expected properties manually
+interface StyleFunctionProps extends Dict {
+  colorMode: "light" | "dark";
+}
 
 const config: ThemeConfig = {
-    initialColorMode: 'dark'
-}
-const breakpoints = {
-    base: '0em',
-    sm: '30em',
-    md: '48em',
-    lg: '62em',
-    xl: '80em',
-    '2xl': '96em',
-  }
-const theme = extendTheme({breakpoints, config});
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({
+  config,
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      body: {
+        bg: props.colorMode === 'dark' ? useColorModeValue("white !important", "#151515") : 'white',
+      },
+    }),
+  },
+});
 
 export default theme;

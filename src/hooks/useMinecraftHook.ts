@@ -38,6 +38,7 @@ const useBlocksAndItems = () =>{
     const [items, setItems] = useState<ItemsProps[]>([]);
     const [recipes, setRecipes] = useState<RecipeProps[]>([]);
     const [error, setError] = useState(false);
+    const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
 
 const beacon =  {
   item: "Beacon",
