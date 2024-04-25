@@ -11,9 +11,9 @@ interface Props {
 const MinecraftGrid = ({ items, className }: Props) => {
   const breakpointColumnsObj = {
     default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
+    1300: 3,
+    950: 2,
+    600: 1,
   };
   return (
     <Masonry
