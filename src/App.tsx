@@ -63,7 +63,7 @@ function App() {
             </Box> */}
             <Box className="mb-3" display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
-                item={items.find((item) => item.name === "Jukebox")}
+                item={items.find((item) => item.name === "Note Block")}
               />
             </Box>
             {items.slice(300, 350).map((fff, index) => (
