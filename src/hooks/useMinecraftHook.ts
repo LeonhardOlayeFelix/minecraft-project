@@ -63,6 +63,7 @@ const useBlocksAndItems = () =>{
     const [food, setFood] = useState<FoodProps[]>()
     const [plants, setPlants] = useState<ItemsProps[]>()
     const [valuables, setValuables] = useState<ItemsProps[]>()
+    const [musicDiscs, setMusicDiscs] = useState<ItemsProps[]>()
     const [error, setError] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -173,8 +174,9 @@ useEffect(() => {
       setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel", "Bow", "Arrow", "Potion"].some(tool => item.name.includes(tool))));
       setPotions((mergedItems as ItemsProps[]).filter(item => ["Potion", "Arrow of"].some(tool => item.name.includes(tool))));
       setPlants((mergedItems as ItemsProps[]).filter(item => ["Oak Leaves", "Spruce Leaves", "Birch Leaves", "Jungle Leaves", "Acacia Leaves", "Dark Oak Leaves", "Azalea Leaves", "Flowering Azalea Leaves", "Mangrove Leaves", "Oak Sapling", "Sapling", "Birch Sapling", "Jungle Sapling", "Acacia Sapling", "Dark Oak Sapling", "Azalea", "Flowering Azalea", "Mangrove Propagule", "Allium", "Azure Bluet", "Blue Orchid", "Cornflower", "Dandelion", "Lilac", "Lily of the Valley", "Orange Tulip", "Oxeye Daisy", "Peony", "Pink Tulip", "Poppy", "Red Tulip", "Rose Bush", "Sunflower", "White Tulip", "Wither Rose", "Brown Mushroom", "Brown Mushroom Block", "Mushroom Stem", "Red Mushroom", "Red Mushroom Block", "Bamboo", "Cactus", "Carved Pumpkin", "Hay Bale", "Melon", "Pumpkin", "Sugar Cane", "Big Dripleaf", "Glow Lichen", "Hanging Roots", "Moss Block", "Moss Carpet", "Small Dripleaf", "Spore Blossom", "Dead Bush", "Fern", "Grass", "Large Fern", "Lily Pad", "Tall Grass", "Vines"].some(tool => item.name.includes(tool))));
-      setValuables((mergedItems as ItemsProps[]).filter(item => ["Enchanted Golden Apple", "Dragon Egg", "Nether Star", "Diamond", "Emerald", "Totem of Undying", "Netherite Ingot", "Heart of the Sea", "Elytra", "Dragon's Breath", "Sea Lantern", "Head", "Nautilus Shell", "Netherite", "End Crystal", "Beacon", "Golden Apple"].some(tool => item.name.includes(tool))));
-      
+      setValuables((mergedItems as ItemsProps[]).filter(item => ["Enchanted Golden Apple", "Dragon Egg", "Nether Star", "Diamond", "Ender Pearl", "Eye of Ender", "Emerald", "Totem of Undying", "Netherite Ingot", "Heart of the Sea", "Elytra", "Dragon's Breath", "Sea Lantern", "Head", "Nautilus Shell", "Netherite", "End Crystal", "Beacon", "Golden Apple"].some(tool => item.name.includes(tool))));
+      setMusicDiscs((mergedItems as ItemsProps[]).filter(item => ["Music Disc", "Jukebox"].some(tool => item.name.includes(tool))));
+
     };
   
     const mergeBlockData = (
@@ -222,7 +224,7 @@ useEffect(() => {
     }
 
 
-    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, plants, valuables, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, plants, valuables, musicDiscs, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

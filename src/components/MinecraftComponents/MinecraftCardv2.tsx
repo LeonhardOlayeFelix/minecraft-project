@@ -16,12 +16,17 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import SimilarSearchesString from "./SimilarSearchesString";
-import { IoCubeOutline, IoEllipsisHorizontalSharp } from "react-icons/io5";
+import {
+  IoCubeOutline,
+  IoEllipsisHorizontalSharp,
+  IoMusicalNoteOutline,
+} from "react-icons/io5";
 import { MdExpandMore, MdExpandLess, MdAttachMoney } from "react-icons/md";
 import { LuBeef, LuSwords } from "react-icons/lu";
 import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
 import { PiPlant } from "react-icons/pi";
+import { FaCompactDisc } from "react-icons/fa";
 
 interface Props {
   item: ItemsProps;
@@ -38,6 +43,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
     food,
     plants,
     valuables,
+    musicDiscs,
   } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
@@ -236,6 +242,15 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
                   <Tooltip hasArrow label="Valuables">
                     <div>
                       <MdAttachMoney className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {musicDiscs?.find((disc) => disc.name === item.name) && (
+                <>
+                  <Tooltip hasArrow label="Music">
+                    <div>
+                      <IoMusicalNoteOutline className="grow-1" size={20} />
                     </div>
                   </Tooltip>
                 </>
