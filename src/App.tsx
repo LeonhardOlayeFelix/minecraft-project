@@ -63,12 +63,10 @@ function App() {
             </Box> */}
             <Box className="mb-3" display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
-                item={items.find(
-                  (item) => item.name === "Potion of Regeneration"
-                )}
+                item={items.find((item) => item.name === "Rotten Flesh")}
               />
             </Box>
-            {items.splice(0, 20).map((fff, index) => (
+            {items.slice(300, 360).map((fff, index) => (
               <Box className="mb-3" display={"flex"} justifyContent={"center"}>
                 <MinecraftCardv2 key={index} item={fff} />
               </Box>

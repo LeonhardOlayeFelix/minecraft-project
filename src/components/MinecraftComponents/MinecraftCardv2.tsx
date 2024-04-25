@@ -21,6 +21,7 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { LuBeef, LuSwords } from "react-icons/lu";
 import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
+import { PiPlant } from "react-icons/pi";
 
 interface Props {
   item: ItemsProps;
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const MinecraftCardv2 = ({ item, className }: Props) => {
-  const { items, toolsAndWeaponry, isLoading, blocks, potions, food } =
+  const { items, toolsAndWeaponry, isLoading, blocks, potions, food, plants } =
     useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
@@ -198,6 +199,15 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
                   <Tooltip label="Consumable">
                     <div>
                       <LuBeef className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {plants?.find((plant) => plant.name === item.name) && (
+                <>
+                  <Tooltip label="Plants">
+                    <div>
+                      <PiPlant className="grow-1" size={20} />
                     </div>
                   </Tooltip>
                 </>

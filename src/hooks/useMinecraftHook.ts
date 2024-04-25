@@ -61,6 +61,7 @@ const useBlocksAndItems = () =>{
     const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
     const [potions, setPotions] = useState<ItemsProps[]>()
     const [food, setFood] = useState<FoodProps[]>()
+    const [plants, setPlants] = useState<ItemsProps[]>()
     const [error, setError] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -171,8 +172,8 @@ useEffect(() => {
       setItems((mergedItems as ItemsProps[]));
       setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel", "Bow", "Arrow", "Potion"].some(tool => item.name.includes(tool))));
       setPotions((mergedItems as ItemsProps[]).filter(item => ["Potion", "Arrow of"].some(tool => item.name.includes(tool))));
-      //setFood((mergedItems as ItemsProps[]).filter(item => ["Apple", "Baked Potato", "Beetroot", "Beetroot Soup", "Bread", "Cake", "Carrot", "Chorus Fruit", "Cooked Chicken", "Cooked Cod", "Cooked Mutton", "Cooked Porkchop", "Cooked Rabbit", "Cooked Salmon", "Cookie", "Dried Kelp", "Enchanted Golden Apple", "Golden Apple", "Glow Berries", "Golden Carrot", "Honey Bottle", "Melon Slice", "Mushroom Stew", "Poisonous Potato", "Potato", "Pufferfish", "Pumpkin Pie", "Rabbit Stew", "Raw Beef", "Raw Chicken", "Raw Cod", "Raw Mutton", "Raw Porkchop", "Raw Rabbit", "Raw Salmon", "Rotten Flesh", "Spider Eye", "Steak", "Suspicous Stew", "Sweet Berries", "Tropical Fish" ].some(tool => item.name.includes(tool))));
-      //console.log((mergedItems as ItemsProps[]).filter(item => ["Apple", "Baked Potato", "Beetroot", "Beetroot Soup", "Bread", "Cake", "Carrot", "Chorus Fruit", "Cooked Chicken", "Cooked Cod", "Cooked Mutton", "Cooked Porkchop", "Cooked Rabbit", "Cooked Salmon", "Cookie", "Dried Kelp", "Enchanted Golden Apple", "Golden Apple", "Glow Berries", "Golden Carrot", "Honey Bottle", "Melon Slice", "Mushroom Stew", "Poisonous Potato", "Potato", "Pufferfish", "Pumpkin Pie", "Rabbit Stew", "Raw Beef", "Raw Chicken", "Raw Cod", "Raw Mutton", "Raw Porkchop", "Raw Rabbit", "Raw Salmon", "Rotten Flesh", "Spider Eye", "Steak", "Suspicous Stew", "Sweet Berries", "Tropical Fish" ].some(tool => item.name.includes(tool))))
+      setPlants((mergedItems as ItemsProps[]).filter(item => ["Oak Leaves", "Spruce Leaves", "Birch Leaves", "Jungle Leaves", "Acacia Leaves", "Dark Oak Leaves", "Azalea Leaves", "Flowering Azalea Leaves", "Mangrove Leaves", "Oak Sapling", "Sapling", "Birch Sapling", "Jungle Sapling", "Acacia Sapling", "Dark Oak Sapling", "Azalea", "Flowering Azalea", "Mangrove Propagule", "Allium", "Azure Bluet", "Blue Orchid", "Cornflower", "Dandelion", "Lilac", "Lily of the Valley", "Orange Tulip", "Oxeye Daisy", "Peony", "Pink Tulip", "Poppy", "Red Tulip", "Rose Bush", "Sunflower", "White Tulip", "Wither Rose", "Brown Mushroom", "Brown Mushroom Block", "Mushroom Stem", "Red Mushroom", "Red Mushroom Block", "Bamboo", "Cactus", "Carved Pumpkin", "Hay Bale", "Melon", "Pumpkin", "Sugar Cane", "Big Dripleaf", "Glow Lichen", "Hanging Roots", "Moss Block", "Moss Carpet", "Small Dripleaf", "Spore Blossom", "Dead Bush", "Fern", "Grass", "Large Fern", "Lily Pad", "Tall Grass", "Vines"].some(tool => item.name.includes(tool))));
+      
     };
   
     const mergeBlockData = (
@@ -221,7 +222,7 @@ useEffect(() => {
     }
 
 
-    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, plants, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

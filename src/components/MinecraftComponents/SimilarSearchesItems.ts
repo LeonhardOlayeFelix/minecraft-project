@@ -1,4 +1,3 @@
-import React from 'react'
 import { ItemsProps } from '../../hooks/useMinecraftHook'
 import SimilarSearchesString from './SimilarSearchesString'
 
