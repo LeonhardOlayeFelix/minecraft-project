@@ -46,6 +46,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
   const cardColor = useColorModeValue("white !important", "#111111");
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
+  const textHoverColor = useColorModeValue("#797979", "#797979");
   //const [dataIsReady, setDataIsReady] = useState(false);
   // useEffect(() => {
   //   console.log("toolsAndWeaponry data:", toolsAndWeaponry);
@@ -102,7 +103,13 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
             borderRadius="5px"
             padding={1}
           >
-            {item.image && <Image src={item.image} />}
+            {item.image && (
+              <Image
+                src={item.image}
+                transition={"transform 0.3s ease-in-out"}
+                _hover={{ transform: "scale(1.1)" }}
+              />
+            )}
           </Box>
           <Button
             className="grow-1"
@@ -125,16 +132,20 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
         <Text
           fontFamily="Roboto Remix"
           fontWeight="500"
+          transition="color 0.2s"
           color={textColor}
+          cursor={"pointer"}
+          _hover={{ color: textHoverColor }}
           w="100%"
           fontSize="35px"
+          onClick={() => console.log(item.name)}
         >
           {shortenString(item.name, 17).sentenceToReturn}
         </Text>
         <Flex justifyContent="left">
           <AvatarGroup size="sm" max={5} fontSize="9px" fontWeight="700">
             {matches.map((match, index) => (
-              <Tooltip label={match?.name} key={index}>
+              <Tooltip hasArrow label={match?.name} key={index}>
                 <Avatar
                   className="grow-1 p-1"
                   boxSize={10}
@@ -177,7 +188,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
             <Flex gap={"10px"}>
               {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
                 <>
-                  <Tooltip label="Tools & Weapons">
+                  <Tooltip hasArrow label="Tools & Weapons">
                     <div>
                       <LuSwords className="grow-1" size={20} />
                     </div>
@@ -186,7 +197,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
               {blocks?.find((block) => block.name === item.name) && (
                 <>
-                  <Tooltip label="Blocks">
+                  <Tooltip hasArrow label="Blocks">
                     <div>
                       <IoCubeOutline className="grow-1" size={20} />
                     </div>
@@ -195,7 +206,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
               {potions?.find((potion) => potion.name === item.name) && (
                 <>
-                  <Tooltip label="Potions & Effects">
+                  <Tooltip hasArrow label="Potions & Effects">
                     <div>
                       <GiCauldron className="grow-1" size={20} />
                     </div>
@@ -204,7 +215,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
               {food?.find((munch) => munch.name === item.name) && (
                 <>
-                  <Tooltip label="Consumable">
+                  <Tooltip hasArrow label="Consumable">
                     <div>
                       <LuBeef className="grow-1" size={20} />
                     </div>
@@ -213,7 +224,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
               {plants?.find((plant) => plant.name === item.name) && (
                 <>
-                  <Tooltip label="Plants">
+                  <Tooltip hasArrow label="Plants">
                     <div>
                       <PiPlant className="grow-1" size={20} />
                     </div>
@@ -222,7 +233,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
               )}
               {valuables?.find((valuable) => valuable.name === item.name) && (
                 <>
-                  <Tooltip label="Valuables">
+                  <Tooltip hasArrow label="Valuables">
                     <div>
                       <MdAttachMoney className="grow-1" size={20} />
                     </div>
