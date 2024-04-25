@@ -11,11 +11,10 @@ import {
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import ItemList from "./components/MinecraftComponents/ItemList";
 import HeaderImage from "./assets/minecraft-banner-1.jpg";
-import MinecraftCardv1 from "./components/MinecraftComponents/MinecraftCardv1";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import MinecraftCardv2 from "./components/MinecraftComponents/MinecraftCardv2";
 import "./assets/fonts/custom-font.css";
-import MinecraftSearchGrid from "./components/MinecraftComponents/MinecraftSearchGrid";
+import MinecraftGrid from "./components/MinecraftComponents/MinecraftGrid";
 function App() {
   const { items, isLoading, recipes } = useBlocksAndItems();
   return (
@@ -30,7 +29,7 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <MinecraftSearchGrid items={items.slice(300, 350)} />
+          <MinecraftGrid items={items.slice(300, 350)} />
         </Flex>
       </GridItem>
     </Grid>
