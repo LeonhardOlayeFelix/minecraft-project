@@ -18,7 +18,7 @@ import {
 import SimilarSearchesString from "./SimilarSearchesString";
 import { IoCubeOutline, IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
-import { LuSwords } from "react-icons/lu";
+import { LuBeef, LuSwords } from "react-icons/lu";
 import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
 
@@ -28,7 +28,7 @@ interface Props {
 }
 
 const MinecraftCardv2 = ({ item, className }: Props) => {
-  const { items, toolsAndWeaponry, isLoading, blocks, potions } =
+  const { items, toolsAndWeaponry, isLoading, blocks, potions, food } =
     useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
@@ -189,6 +189,15 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
                   <Tooltip label="Potions & Effects">
                     <div>
                       <GiCauldron className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {food?.find((munch) => munch.name === item.name) && (
+                <>
+                  <Tooltip label="Consumable">
+                    <div>
+                      <LuBeef className="grow-1" size={20} />
                     </div>
                   </Tooltip>
                 </>

@@ -21,7 +21,28 @@ interface BlocksProps extends AnishBlocksProps {
     drops: number[];
     boundingBox: string;
   }
+interface FoodProps extends ItemsProps{
+  id: number;
+    name: string;
+    stackSize: number;
+    displayName: string;
+    foodPoints: number;
+    saturation: number;
+    effectiveQuality: number;
+    saturationRatio: number;
+}
   
+export interface MinecraftDataFoodProps{
+    id: number;
+    name: string;
+    stackSize: number;
+    displayName: string;
+    foodPoints: number;
+    saturation: number;
+    effectiveQuality: number;
+    saturationRatio: number;
+}
+
   export interface ItemsProps extends AnishItemsProps {
     id: number;
   }
@@ -39,6 +60,7 @@ const useBlocksAndItems = () =>{
     const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
     const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
     const [potions, setPotions] = useState<ItemsProps[]>()
+    const [food, setFood] = useState<FoodProps[]>()
     const [error, setError] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -82,12 +104,13 @@ useEffect(() => {
     setIsLoading(true); // Start loading before any data fetching begins
 
     try {
-      const [anishItemsResponse, minecraftDataItemsResponse, anishBlocksResponse, minecraftDataBlocksResponse, anishRecipeResponse] = await Promise.all([
+      const [anishItemsResponse, minecraftDataItemsResponse, anishBlocksResponse, minecraftDataBlocksResponse, anishRecipeResponse, minecraftDataFoodResponse] = await Promise.all([
         anishService.getAllItems(),
         minecraftDataService.getAllItems(),
         anishService.getAllBlocks(),
         minecraftDataService.getAllBlocks(),
-        anishService.getAllRecipes()
+        anishService.getAllRecipes(),
+        minecraftDataService.getAllFoods()
       ]);
 
       // Process items data
@@ -107,6 +130,11 @@ useEffect(() => {
         setRecipes(correctedData);
       }
 
+      //Process food data
+      if (minecraftDataFoodResponse.data && anishItemsResponse.data){
+        console.log(minecraftDataFoodResponse.data)
+        mergeFoodData(minecraftDataFoodResponse.data, anishItemsResponse.data as ItemsProps[])
+      }
       // Set tools and weaponry based on item names
       
     } catch (err) {
@@ -143,7 +171,8 @@ useEffect(() => {
       setItems((mergedItems as ItemsProps[]));
       setToolsAndWeaponry((mergedItems as ItemsProps[]).filter(item => ["Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel", "Bow", "Arrow", "Potion"].some(tool => item.name.includes(tool))));
       setPotions((mergedItems as ItemsProps[]).filter(item => ["Potion", "Arrow of"].some(tool => item.name.includes(tool))));
-
+      //setFood((mergedItems as ItemsProps[]).filter(item => ["Apple", "Baked Potato", "Beetroot", "Beetroot Soup", "Bread", "Cake", "Carrot", "Chorus Fruit", "Cooked Chicken", "Cooked Cod", "Cooked Mutton", "Cooked Porkchop", "Cooked Rabbit", "Cooked Salmon", "Cookie", "Dried Kelp", "Enchanted Golden Apple", "Golden Apple", "Glow Berries", "Golden Carrot", "Honey Bottle", "Melon Slice", "Mushroom Stew", "Poisonous Potato", "Potato", "Pufferfish", "Pumpkin Pie", "Rabbit Stew", "Raw Beef", "Raw Chicken", "Raw Cod", "Raw Mutton", "Raw Porkchop", "Raw Rabbit", "Raw Salmon", "Rotten Flesh", "Spider Eye", "Steak", "Suspicous Stew", "Sweet Berries", "Tropical Fish" ].some(tool => item.name.includes(tool))));
+      //console.log((mergedItems as ItemsProps[]).filter(item => ["Apple", "Baked Potato", "Beetroot", "Beetroot Soup", "Bread", "Cake", "Carrot", "Chorus Fruit", "Cooked Chicken", "Cooked Cod", "Cooked Mutton", "Cooked Porkchop", "Cooked Rabbit", "Cooked Salmon", "Cookie", "Dried Kelp", "Enchanted Golden Apple", "Golden Apple", "Glow Berries", "Golden Carrot", "Honey Bottle", "Melon Slice", "Mushroom Stew", "Poisonous Potato", "Potato", "Pufferfish", "Pumpkin Pie", "Rabbit Stew", "Raw Beef", "Raw Chicken", "Raw Cod", "Raw Mutton", "Raw Porkchop", "Raw Rabbit", "Raw Salmon", "Rotten Flesh", "Spider Eye", "Steak", "Suspicous Stew", "Sweet Berries", "Tropical Fish" ].some(tool => item.name.includes(tool))))
     };
   
     const mergeBlockData = (
@@ -168,9 +197,31 @@ useEffect(() => {
       setBlocks(mergedBlocks as BlocksProps[]);
     };
 
+    const mergeFoodData = (
+      //merging matching food objects together
+      minecraftFood:MinecraftDataFoodProps[],
+      anishFoods: ItemsProps[]
+    ) => {
+      const mergedFood = anishFoods
+      .map((anishFood) => {
+        const matchingBlock = minecraftFood.find(
+          (mFood) => mFood.displayName === anishFood.name
+        );
+        if (matchingBlock) {
+          return {
+            ...matchingBlock,
+            ...anishFood,
+          };
+        }
+        return null;
+      })
+      .filter((block) => block !== null); // Ensure only matched blocks are included
+    setFood(mergedFood as FoodProps[]);
+    console.log(mergedFood)
+    }
 
 
-    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

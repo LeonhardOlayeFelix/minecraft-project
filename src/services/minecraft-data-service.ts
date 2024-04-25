@@ -1,3 +1,4 @@
+import { MinecraftDataFoodProps } from "../hooks/useMinecraftHook";
 import pjsApiClient from "./pjs-api-client";
 
 export interface MinecraftDataBlocksProps {
@@ -37,6 +38,9 @@ class MinecraftDataService{
     }
     getAllItems(){
         return pjsApiClient.get<MinecraftItemsProps[]>("/pc/1.20/items.json");
+    }
+    getAllFoods(){
+      return pjsApiClient.get<MinecraftDataFoodProps[]>("/pc/1.20/foods.json");
     }
 }
 
