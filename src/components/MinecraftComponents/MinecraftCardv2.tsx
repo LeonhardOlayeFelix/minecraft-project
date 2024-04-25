@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import SimilarSearchesString from "./SimilarSearchesString";
 import { IoCubeOutline, IoEllipsisHorizontalSharp } from "react-icons/io5";
-import { MdExpandMore, MdExpandLess } from "react-icons/md";
+import { MdExpandMore, MdExpandLess, MdAttachMoney } from "react-icons/md";
 import { LuBeef, LuSwords } from "react-icons/lu";
 import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
@@ -29,8 +29,16 @@ interface Props {
 }
 
 const MinecraftCardv2 = ({ item, className }: Props) => {
-  const { items, toolsAndWeaponry, isLoading, blocks, potions, food, plants } =
-    useBlocksAndItems();
+  const {
+    items,
+    toolsAndWeaponry,
+    isLoading,
+    blocks,
+    potions,
+    food,
+    plants,
+    valuables,
+  } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
@@ -208,6 +216,15 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
                   <Tooltip label="Plants">
                     <div>
                       <PiPlant className="grow-1" size={20} />
+                    </div>
+                  </Tooltip>
+                </>
+              )}
+              {valuables?.find((valuable) => valuable.name === item.name) && (
+                <>
+                  <Tooltip label="Valuables">
+                    <div>
+                      <MdAttachMoney className="grow-1" size={20} />
                     </div>
                   </Tooltip>
                 </>

@@ -63,10 +63,12 @@ function App() {
             </Box> */}
             <Box className="mb-3" display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
-                item={items.find((item) => item.name === "Rotten Flesh")}
+                item={items.find(
+                  (item) => item.name === "Netherite Chestplate"
+                )}
               />
             </Box>
-            {items.slice(300, 360).map((fff, index) => (
+            {items.slice(300, 350).map((fff, index) => (
               <Box className="mb-3" display={"flex"} justifyContent={"center"}>
                 <MinecraftCardv2 key={index} item={fff} />
               </Box>
