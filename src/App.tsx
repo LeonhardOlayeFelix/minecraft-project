@@ -1,5 +1,7 @@
 import {
+  Box,
   Container,
+  Flex,
   Grid,
   GridItem,
   Img,
@@ -15,7 +17,6 @@ import MinecraftCardv2 from "./components/MinecraftComponents/MinecraftCardv2";
 import "./assets/fonts/custom-font.css";
 function App() {
   const { items, isLoading, recipes } = useBlocksAndItems();
-  if (!isLoading) console.log(recipes);
   return (
     <Grid
       templateAreas={{
@@ -27,22 +28,40 @@ function App() {
         <NavBar></NavBar>
       </GridItem>
       <GridItem area={"main"}>
-        <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} padding={"10px"}>
-          <MinecraftCardv2
-            item={items.find(
-              (foundItem) => foundItem.name === "Diamond Chestplate"
-            )}
-          />
-          <MinecraftCardv2
-            item={items.find(
-              (foundItem) => foundItem.name === "Acacia Fence Gate"
-            )}
-          />
-          <MinecraftCardv2
-            item={items.find((foundItem) => foundItem.name === "Wooden Shovel")}
-          />
-        </SimpleGrid>
+        <Flex display={"flex"} justifyContent={"center"}>
+          <SimpleGrid
+            className="border"
+            padding={10}
+            columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+            width={{ xl: "1300px", lg: "1000px", md: "700px", sm: "400px" }}
+          >
+            {/* {items.splice(0, 20).map((fff, index) => (
+                <MinecraftCardv2 key={index} item={fff} />
+              ))} */}
+            <Box display={"flex"} justifyContent={"center"}>
+              <MinecraftCardv2
+                item={items.find((item) => item.name === "Diamond Sword")}
+              />
+            </Box>
+            <Box display={"flex"} justifyContent={"center"}>
+              <MinecraftCardv2
+                item={items.find((item) => item.name === "Diamond Sword")}
+              />
+            </Box>
+            <Box display={"flex"} justifyContent={"center"}>
+              <MinecraftCardv2
+                item={items.find((item) => item.name === "Diamond Sword")}
+              />
+            </Box>
+            <Box display={"flex"} justifyContent={"center"}>
+              <MinecraftCardv2
+                item={items.find((item) => item.name === "Diamond Sword")}
+              />
+            </Box>
+          </SimpleGrid>
+        </Flex>
       </GridItem>
+
       <GridItem area={"footer"}></GridItem>
     </Grid>
   );

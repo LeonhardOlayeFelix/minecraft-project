@@ -27,7 +27,12 @@ interface Props {
 const MinecraftCardv2 = ({ item }: Props) => {
   const { items, toolsAndWeaponry, isLoading } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
-
+  const avatarHover = useColorModeValue("gray", "#202020") + "70";
+  const cardBodybg = useColorModeValue("gray", "#202020");
+  const textColor = useColorModeValue("gray.800", "white");
+  const cardColor = useColorModeValue("white !important", "#111111");
+  const iconColor = useColorModeValue("brand.200", "white");
+  const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
 
   if (!items || !item) {
@@ -56,108 +61,104 @@ const MinecraftCardv2 = ({ item }: Props) => {
     return { sentenceToReturn, overflow };
   };
   return (
-    <div>
-      <Card
-        borderRadius="20px"
-        bg={useColorModeValue("white !important", "#111111")}
-        boxShadow="lg"
-        overflow="hidden"
-        transition="transform 0.2s"
-        _hover={{ transform: "scale(1.02)" }}
-        w={{ base: "230px", md: "280px" }}
-        minH={{ base: "350px", md: "400px" }}
-      >
-        <Box h={190} pt="20px" pl="20px">
-          <Flex w="100%">
-            <Box
-              me="auto"
-              className="grow-1"
-              bg={useColorModeValue("gray", "#202020")}
-              borderRadius="5px"
-              padding={1}
-            >
-              {item.image && <Image src={item.image} />}
-            </Box>
-            <Button
-              className="grow-1"
-              w="38px"
-              h="38px"
-              alignItems="center"
-              justifyContent="center"
-              borderRadius="12px"
-              me="13px"
-              bg={useColorModeValue("gray.100", "whiteAlpha.200")}
-            >
-              <Icon
-                as={IoEllipsisHorizontalSharp}
-                color={useColorModeValue("brand.200", "white")}
-                w="24px"
-                h="24px"
-              />
-            </Button>
-          </Flex>
-          <Text
-            fontFamily="Roboto Remix"
-            fontWeight="500"
-            color={useColorModeValue("gray.800", "white")}
-            w="100%"
-            fontSize="35px"
+    <Card
+      borderRadius="20px"
+      bg={cardColor}
+      boxShadow="lg"
+      overflow="hidden"
+      transition="transform 0.2s"
+      _hover={{ transform: "scale(1.02)" }}
+      w={{ base: "230px", md: "280px" }}
+      minH="auto"
+    >
+      <Box h={190} pt="20px" pl="20px">
+        <Flex w="100%">
+          <Box
+            me="auto"
+            className="grow-1"
+            bg={cardBodybg}
+            borderRadius="5px"
+            padding={1}
           >
-            {item.name}
-          </Text>
-          <Flex justifyContent="left">
-            <AvatarGroup size="sm" max={5} fontSize="9px" fontWeight="700">
-              {matches.map((match, index) => (
-                <Tooltip label={match?.name} key={index}>
-                  <Avatar
-                    className="grow-1 p-1"
-                    boxSize={10}
-                    onClick={() => console.log(match?.name)}
-                    cursor="pointer"
-                    border="white"
-                    src={match?.image}
-                    _hover={{ bg: useColorModeValue("gray", "#202020") + "70" }}
-                  />
-                </Tooltip>
-              ))}
-            </AvatarGroup>
-          </Flex>
-        </Box>
-        <CardBody bg={useColorModeValue("gray", "#202020")}>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Text
-              fontWeight="500"
-              fontSize="md"
-              color={useColorModeValue("gray.800", "white")}
-            >
-              {isExpanded
-                ? item.description
-                : shortenString(item.description, 114).sentenceToReturn}
-              {item.description.length > 114 && (
-                <Icon
-                  cursor={"pointer"}
-                  as={isExpanded ? MdExpandLess : MdExpandMore}
-                  w="20px"
-                  h="20px"
-                  onClick={toggleDescription}
+            {item.image && <Image src={item.image} />}
+          </Box>
+          <Button
+            className="grow-1"
+            w="38px"
+            h="38px"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="12px"
+            me="13px"
+            bg={buttonColor}
+          >
+            <Icon
+              as={IoEllipsisHorizontalSharp}
+              color={iconColor}
+              w="24px"
+              h="24px"
+            />
+          </Button>
+        </Flex>
+        <Text
+          fontFamily="Roboto Remix"
+          fontWeight="500"
+          color={textColor}
+          w="100%"
+          fontSize="35px"
+        >
+          {shortenString(item.name, 17).sentenceToReturn}
+        </Text>
+        <Flex justifyContent="left">
+          <AvatarGroup size="sm" max={5} fontSize="9px" fontWeight="700">
+            {matches.map((match, index) => (
+              <Tooltip label={match?.name} key={index}>
+                <Avatar
+                  className="grow-1 p-1"
+                  boxSize={10}
+                  onClick={() => console.log(match?.name)}
+                  cursor="pointer"
+                  border="white"
+                  src={match?.image}
+                  _hover={{
+                    bg: avatarHover,
+                  }}
                 />
-              )}
-            </Text>
-          </Flex>
-          <Flex>
-            {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
-              <>
-                <Tooltip label="Tools & weapons">
-                  <div>
-                    <LuSwords className="grow-1" size={20} />
-                  </div>
-                </Tooltip>
-              </>
+              </Tooltip>
+            ))}
+          </AvatarGroup>
+        </Flex>
+      </Box>
+      <CardBody bg={cardBodybg}>
+        <Flex alignItems="center" justifyContent="space-between">
+          <Text fontWeight="500" fontSize="md" color={textColor}>
+            {isExpanded
+              ? item.description
+              : shortenString(item.description, 114).sentenceToReturn}
+            {item.description.length > 114 && (
+              <Icon
+                cursor={"pointer"}
+                as={isExpanded ? MdExpandLess : MdExpandMore}
+                w="20px"
+                h="20px"
+                onClick={toggleDescription}
+              />
             )}
-          </Flex>
-        </CardBody>
-      </Card>
-    </div>
+          </Text>
+        </Flex>
+        <Flex>
+          {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
+            <>
+              <Tooltip label="Tools & weapons">
+                <div>
+                  <LuSwords className="grow-1" size={20} />
+                </div>
+              </Tooltip>
+            </>
+          )}
+        </Flex>
+      </CardBody>
+    </Card>
   );
 };
 

@@ -1,4 +1,4 @@
-import { extendTheme, ThemeConfig, useColorModeValue } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { Dict } from "@chakra-ui/utils";
 
 // Define the expected properties manually
@@ -16,7 +16,7 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bg: props.colorMode === 'dark' ? useColorModeValue("white !important", "#151515") : 'white',
+        bg: props.colorMode === 'dark' ? "#151515" : 'white',
       },
     }),
   },
