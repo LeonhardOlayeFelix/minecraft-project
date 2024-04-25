@@ -28,7 +28,9 @@ function App() {
       <GridItem area={"main"}>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} padding={"10px"}>
           <MinecraftCardv2
-            item={items.find((foundItem) => foundItem.name === "Diamond Sword")}
+            item={items.find(
+              (foundItem) => foundItem.name === "Diamond Chestplate"
+            )}
           />
           <MinecraftCardv2
             item={items.find(
