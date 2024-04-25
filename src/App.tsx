@@ -21,7 +21,7 @@ function App() {
     <Grid
       templateAreas={{
         base: `"nav" "main" "footer"`,
-        lg: ` "Banner" "nav" "main" "footer"`,
+        lg: ` "nav" "main" "footer"`,
       }}
     >
       <GridItem area={"nav"}>
@@ -63,7 +63,7 @@ function App() {
             </Box> */}
             <Box className="mb-3" display={"flex"} justifyContent={"center"}>
               <MinecraftCardv2
-                item={items.find((item) => item.name === "Note Block")}
+                item={items.find((item) => item.name === "Nether Star")}
               />
             </Box>
             {items.slice(300, 350).map((fff, index) => (
@@ -74,8 +74,6 @@ function App() {
           </SimpleGrid>
         </Flex>
       </GridItem>
-
-      <GridItem area={"footer"}></GridItem>
     </Grid>
   );
 }

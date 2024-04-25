@@ -97,7 +97,7 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
       overflow="hidden"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.02)" }}
-      w={{ base: "230px", md: "280px" }}
+      w={{ base: "260px", md: "280px" }}
       minH="auto"
     >
       <Box h={190} pt="20px" pl="20px">
