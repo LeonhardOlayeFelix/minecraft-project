@@ -1,4 +1,4 @@
-import useBlocksAndItems, { BlocksProps, ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
+import { BlocksProps, ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
 
 export interface UseBlocksAndItemsResult {
     items: ItemsProps[];

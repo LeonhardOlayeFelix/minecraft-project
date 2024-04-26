@@ -3,9 +3,8 @@ import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import MinecraftCardGrid from "./components/MinecraftComponents/MinecraftCardGrid";
-import MinecraftSkeletonCard from "./components/MinecraftComponents/MinecraftSkeletonCard";
 function App() {
-  const { items, isLoading, recipes } = useBlocksAndItems();
+  const { items } = useBlocksAndItems();
   return (
     <Grid
       templateAreas={{
@@ -19,7 +18,6 @@ function App() {
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <MinecraftCardGrid className="m-3" items={items.slice(330, 340)} />
-          <MinecraftSkeletonCard />
         </Flex>
       </GridItem>
     </Grid>

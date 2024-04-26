@@ -13,16 +13,12 @@ import {
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 
 const MinecraftSkeletonCard = () => {
-  const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
-  const textColor = useColorModeValue("gray.800", "white");
   const cardColor = useColorModeValue("white !important", "#111111");
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
-  const textHoverColor = useColorModeValue("#797979", "#797979");
   const textStartColor = useColorModeValue("black", "white");
   const textEndColor = useColorModeValue("white", "black");
-  const iconStartColor = useColorModeValue("gray", "#202020");
   const iconEndColor = useColorModeValue("white", "black");
 
   return (

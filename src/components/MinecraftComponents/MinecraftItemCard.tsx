@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
-import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
-import usedInImage from "../../assets/usedin.png";
+import React, { useMemo, useState } from "react";
+import { ItemsProps } from "../../hooks/useMinecraftHook";
+import usedInImage from "../../assets/usedin2.png";
 import {
   Avatar,
   AvatarGroup,
@@ -12,7 +12,6 @@ import {
   Flex,
   Icon,
   Image,
-  Spinner,
   Text,
   Tooltip,
   useColorModeValue,
@@ -65,7 +64,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     inIngredients,
     inIngredientsOrRecipes,
     inCategoryExcludingRecipesAndIngredients,
-    inCategory,
   } = categoriseItems(item, data);
 
   // Calculate matches using SimilarSearchesString
@@ -407,13 +405,13 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       hasArrow
                       label="Used in"
                     >
-                      <div>
+                      <Box borderRadius={3} overflow={"hidden"}>
                         <Image
                           boxSize={5}
                           cursor={"pointer"}
                           src={usedInImage}
                         ></Image>
-                      </div>
+                      </Box>
                     </Tooltip>
                   </>
                 )}
