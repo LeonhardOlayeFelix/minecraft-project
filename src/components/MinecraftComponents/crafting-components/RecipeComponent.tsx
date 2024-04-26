@@ -122,6 +122,7 @@ const RecipeComponent = ({
                       title={recipe.item || "click for more!"}
                       style={{ cursor: "pointer" }}
                       key={recipe.item}
+                      paddingBottom={2}
                     />
                   </Tooltip>
                   <p
