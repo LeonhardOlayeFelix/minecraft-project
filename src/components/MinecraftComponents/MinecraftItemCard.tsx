@@ -48,6 +48,8 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
+  const tooltipForeground = useColorModeValue("white", "white");
+  const tooltipBackground = useColorModeValue("black", "#292D2E70");
   const items = data.items;
   const isLoading = data.isLoading;
   //boolean data determining whether this item is in the following categories
@@ -179,7 +181,13 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
         <Flex justifyContent="left">
           <AvatarGroup size="sm" max={4} fontSize="9px" fontWeight="700">
             {matches.map((match, index) => (
-              <Tooltip hasArrow label={match?.name} key={index}>
+              <Tooltip
+                bg={tooltipBackground}
+                color={tooltipForeground}
+                hasArrow
+                label={match?.name}
+                key={index}
+              >
                 <Avatar
                   className="grow-1 p-1"
                   boxSize={8}
@@ -224,7 +232,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               {inCategoryExcludingRecipesAndIngredients && (
                 <Flex alignItems={"center"}>
                   <Box marginRight={2}>
-                    <Tooltip hasArrow label="Categories">
+                    <Tooltip
+                      bg={tooltipBackground}
+                      color={tooltipForeground}
+                      hasArrow
+                      label="Categories"
+                    >
                       <div>
                         <HiOutlineInformationCircle
                           cursor={"pointer"}
@@ -241,7 +254,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                   >
                     {inWeaponsTools && (
                       <>
-                        <Tooltip hasArrow label="Tools & Weapons">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Tools & Weapons"
+                        >
                           <div>
                             <LuSwords
                               id="Tools & Weapons"
@@ -256,7 +274,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inBlocks && (
                       <>
-                        <Tooltip hasArrow label="Blocks">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Blocks"
+                        >
                           <div>
                             <IoCubeOutline
                               id="Blocks"
@@ -271,7 +294,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inPotions && (
                       <>
-                        <Tooltip hasArrow label="Potions & Effects">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Potions & Effects"
+                        >
                           <div>
                             <GiCauldron
                               id="Potions & Effects"
@@ -286,7 +314,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inConsumable && (
                       <>
-                        <Tooltip hasArrow label="Consumable">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Consumable"
+                        >
                           <div>
                             <LuBeef
                               id="Consumable"
@@ -301,7 +334,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inPlants && (
                       <>
-                        <Tooltip hasArrow label="Plants">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Plants"
+                        >
                           <div>
                             <PiPlant
                               id="Plants"
@@ -316,7 +354,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inValuables && (
                       <>
-                        <Tooltip hasArrow label="Valuables">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Valuables"
+                        >
                           <div>
                             <MdAttachMoney
                               id="Valuables"
@@ -331,7 +374,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                     )}
                     {inMusical && (
                       <>
-                        <Tooltip hasArrow label="Musical">
+                        <Tooltip
+                          bg={tooltipBackground}
+                          color={tooltipForeground}
+                          hasArrow
+                          label="Musical"
+                        >
                           <div>
                             <IoMusicalNoteOutline
                               id="Musical"
@@ -353,7 +401,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 <Divider orientation="vertical" />
                 {inIngredients && (
                   <>
-                    <Tooltip hasArrow label="Used in">
+                    <Tooltip
+                      bg={tooltipBackground}
+                      color={tooltipForeground}
+                      hasArrow
+                      label="Used in"
+                    >
                       <div>
                         <Image
                           boxSize={5}
@@ -366,7 +419,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 )}
                 {inRecipes && (
                   <>
-                    <Tooltip hasArrow label="Show recipe">
+                    <Tooltip
+                      bg={tooltipBackground}
+                      color={tooltipForeground}
+                      hasArrow
+                      label="Show recipe"
+                    >
                       <div>
                         <Image
                           boxSize={6}
