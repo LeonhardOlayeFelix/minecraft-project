@@ -210,7 +210,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           height={"100%"}
         >
           <Flex alignItems="center" justifyContent="space-between">
-            <Text fontWeight="500" fontSize="md" color={textColor}>
+            <Text
+              fontSize="2xl"
+              color={textColor}
+              lineHeight={"15px"}
+              fontFamily="Roboto Remix"
+            >
               {isExpanded
                 ? item.description
                 : shortenString(item.description, 114).sentenceToReturn}
