@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import theme from "./components/theme/theme.ts";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
