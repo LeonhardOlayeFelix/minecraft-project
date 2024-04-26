@@ -25,13 +25,11 @@ import {
 } from "react-icons/io5";
 import { MdExpandMore, MdExpandLess, MdAttachMoney } from "react-icons/md";
 import { LuBeef, LuSwords } from "react-icons/lu";
-import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
 import { PiPlant } from "react-icons/pi";
-import { FaCompactDisc } from "react-icons/fa";
-import { GoGear } from "react-icons/go";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "./CategoriseItem";
+import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 
 interface Props {
   item: ItemsProps;
@@ -40,7 +38,6 @@ interface Props {
 
 const MinecraftItemCard = ({ item, className }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
-  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [showCategories, setShowCategories] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
@@ -51,6 +48,8 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   const textHoverColor = useColorModeValue("#797979", "#797979");
   const data = useBlocksAndItems();
   const items = data.items;
+  const isLoading = data.isLoading;
+  //boolean data determining whether this item is in the following categories
   const {
     inWeaponsTools,
     inBlocks,
@@ -66,12 +65,6 @@ const MinecraftItemCard = ({ item, className }: Props) => {
     inCategory,
   } = categoriseItems(item, data);
 
-  //Determines whether the following item is in any of the following categories, storing the item if it is. WILL NEED FOR LATER
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-
   // Calculate matches using SimilarSearchesString
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
   const similarSearches = useMemo(
@@ -85,22 +78,29 @@ const MinecraftItemCard = ({ item, className }: Props) => {
         .slice(0, 4),
     [similarSearches, items]
   );
+
   const shortenString = (value: string, length: number) => {
-    let sentence = value.split(" ");
-    let sentenceToReturn = "";
+    if (value.length <= length)
+      return { sentenceToReturn: value, overflow: false };
+
+    const words = value.split(" ");
+    let truncatedString = "";
     let overflow = false;
-    for (let i = 0; i < sentence.length; i++) {
-      if (sentenceToReturn.length > length) {
-        sentenceToReturn = sentenceToReturn + "...";
+
+    for (let word of words) {
+      const potentialString = truncatedString + word;
+      if (potentialString.length > length) {
+        truncatedString += "...";
         overflow = true;
         break;
-      } else {
-        sentenceToReturn = sentenceToReturn + sentence[i] + " ";
       }
+      truncatedString += `${word} `;
     }
-    return { sentenceToReturn, overflow };
+
+    return { sentenceToReturn: truncatedString.trim(), overflow };
   };
-  const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
+
+  const toggleDescription = () => setIsExpanded(!isExpanded);
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
   };
@@ -109,9 +109,10 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   ) => {
     console.log((event.target as HTMLElement).id);
   };
-  // if (!items || !item ||isLoading) { //this will do functionality based on whether the cards are loading
-  //   return <p>Loading...</p>;
-  // }
+  if (!items || !item || isLoading) {
+    //this will do functionality based on whether the cards are loading
+    return <MinecraftSkeletonCard />;
+  }
   return (
     <Card
       className={className}
