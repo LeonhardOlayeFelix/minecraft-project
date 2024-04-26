@@ -18,7 +18,7 @@ const MinecraftCardGrid = ({ items, className }: Props) => {
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid"
+      className={"my-masonry-grid " + className}
       columnClassName="my-masonry-grid_column"
     >
       {items.map((item) => (

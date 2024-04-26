@@ -1,13 +1,16 @@
 import {
   Box,
+  Button,
   Card,
   CardBody,
   Flex,
+  Icon,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 
 const MinecraftSkeletonCard = () => {
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
@@ -17,6 +20,11 @@ const MinecraftSkeletonCard = () => {
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
+  const textStartColor = useColorModeValue("black", "white");
+  const textEndColor = useColorModeValue("white", "black");
+  const iconStartColor = useColorModeValue("gray", "#202020");
+  const iconEndColor = useColorModeValue("white", "black");
+
   return (
     <Card
       borderRadius="20px"
@@ -28,7 +36,7 @@ const MinecraftSkeletonCard = () => {
       _hover={{ transform: "scale(1.02)" }}
       height={"320px"}
     >
-      <Box h={"155"} mb={1} pt="20px" pl="20px">
+      <Box h={"155"} mb={4} pt="20px" pl="20px">
         <Flex
           w="100%"
           justifyContent={"space-between"}
@@ -36,17 +44,42 @@ const MinecraftSkeletonCard = () => {
           marginBottom={2}
           marginTop={1}
         >
-          <SkeletonCircle />
-          <SkeletonCircle />
+          <SkeletonCircle startColor={cardBodybg} endColor={iconEndColor} />
+          <Button
+            className="grow-1"
+            w="38px"
+            h="38px"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="12px"
+            bg={buttonColor}
+          >
+            <Icon
+              as={IoEllipsisHorizontalSharp}
+              color={iconColor}
+              w="24px"
+              h="24px"
+            />
+          </Button>
         </Flex>
-        <SkeletonText noOfLines={1} marginTop={8} paddingRight={4} />
+        <SkeletonText
+          noOfLines={1}
+          marginTop={8}
+          paddingRight={4}
+          startColor={textStartColor}
+          endColor={textEndColor}
+        />
         <Box
           borderRadius={"10px"}
           overflow={"hidden"}
           marginTop={8}
           width={"120px"}
         >
-          <Skeleton height={"20px"} />
+          <Skeleton
+            height={"20px"}
+            startColor={cardBodybg}
+            endColor={iconEndColor}
+          />
         </Box>
       </Box>
       <CardBody bg={cardBodybg}>
@@ -55,7 +88,13 @@ const MinecraftSkeletonCard = () => {
           justifyContent={"space-between"}
           height={"100%"}
         >
-          <SkeletonText noOfLines={3} lineHeight={"2"} />
+          <SkeletonText
+            marginTop={5}
+            startColor={textStartColor}
+            endColor={textEndColor}
+            noOfLines={3}
+            spacing="4"
+          />
           {/* <Flex alignItems="center" justifyContent="space-between">
             HI
           </Flex> */}
