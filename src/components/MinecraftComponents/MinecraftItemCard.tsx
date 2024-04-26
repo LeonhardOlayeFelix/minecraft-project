@@ -93,6 +93,15 @@ const MinecraftItemCard = ({ item, className }: Props) => {
 
   const inMusical = musicDiscs?.find((disc) => disc.name === item.name);
 
+  const inCategory =
+    inWeaponsTools ||
+    inBlocks ||
+    inPotions ||
+    inConsumable ||
+    inPlants ||
+    inValuables ||
+    inMusical;
+
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
   // Calculate matches using SimilarSearchesString
@@ -238,130 +247,132 @@ const MinecraftItemCard = ({ item, className }: Props) => {
 
           <Flex justifyContent="space-between">
             <Flex gap={"1px"} alignItems={"center"}>
-              <Flex alignItems={"center"}>
-                <Box marginRight={2}>
-                  <Tooltip hasArrow label="Categories">
-                    <div>
-                      <HiOutlineInformationCircle
-                        cursor={"pointer"}
-                        onClick={() => toggleShowCategories()}
-                      ></HiOutlineInformationCircle>
-                    </div>
-                  </Tooltip>
-                </Box>
-                <Flex
-                  visibility={showCategories ? "visible" : "hidden"}
-                  bg={cardColor + "50"}
-                  padding={"6px"}
-                  borderRadius={"6px"}
-                >
-                  {inWeaponsTools && (
-                    <>
-                      <Tooltip hasArrow label="Tools & Weapons">
-                        <div>
-                          <LuSwords
-                            id="Tools & Weapons"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inBlocks && (
-                    <>
-                      <Tooltip hasArrow label="Blocks">
-                        <div>
-                          <IoCubeOutline
-                            id="Blocks"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inPotions && (
-                    <>
-                      <Tooltip hasArrow label="Potions & Effects">
-                        <div>
-                          <GiCauldron
-                            id="Potions & Effects"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inConsumable && (
-                    <>
-                      <Tooltip hasArrow label="Consumable">
-                        <div>
-                          <LuBeef
-                            id="Consumable"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inPlants && (
-                    <>
-                      <Tooltip hasArrow label="Plants">
-                        <div>
-                          <PiPlant
-                            id="Plants"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inValuables && (
-                    <>
-                      <Tooltip hasArrow label="Valuables">
-                        <div>
-                          <MdAttachMoney
-                            id="Valuables"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
-                  {inMusical && (
-                    <>
-                      <Tooltip hasArrow label="Musical">
-                        <div>
-                          <IoMusicalNoteOutline
-                            id="Musical"
-                            cursor={"pointer"}
-                            onClick={handleTooltipClicked}
-                            className="grow-1"
-                            size={20}
-                          />
-                        </div>
-                      </Tooltip>
-                    </>
-                  )}
+              {inCategory && (
+                <Flex alignItems={"center"}>
+                  <Box marginRight={2}>
+                    <Tooltip hasArrow label="Categories">
+                      <div>
+                        <HiOutlineInformationCircle
+                          cursor={"pointer"}
+                          onClick={() => toggleShowCategories()}
+                        ></HiOutlineInformationCircle>
+                      </div>
+                    </Tooltip>
+                  </Box>
+                  <Flex
+                    visibility={showCategories ? "visible" : "hidden"}
+                    bg={cardColor + "50"}
+                    padding={"6px"}
+                    borderRadius={"6px"}
+                  >
+                    {inWeaponsTools && (
+                      <>
+                        <Tooltip hasArrow label="Tools & Weapons">
+                          <div>
+                            <LuSwords
+                              id="Tools & Weapons"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inBlocks && (
+                      <>
+                        <Tooltip hasArrow label="Blocks">
+                          <div>
+                            <IoCubeOutline
+                              id="Blocks"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inPotions && (
+                      <>
+                        <Tooltip hasArrow label="Potions & Effects">
+                          <div>
+                            <GiCauldron
+                              id="Potions & Effects"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inConsumable && (
+                      <>
+                        <Tooltip hasArrow label="Consumable">
+                          <div>
+                            <LuBeef
+                              id="Consumable"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inPlants && (
+                      <>
+                        <Tooltip hasArrow label="Plants">
+                          <div>
+                            <PiPlant
+                              id="Plants"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inValuables && (
+                      <>
+                        <Tooltip hasArrow label="Valuables">
+                          <div>
+                            <MdAttachMoney
+                              id="Valuables"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                    {inMusical && (
+                      <>
+                        <Tooltip hasArrow label="Musical">
+                          <div>
+                            <IoMusicalNoteOutline
+                              id="Musical"
+                              cursor={"pointer"}
+                              onClick={handleTooltipClicked}
+                              className="grow-1"
+                              size={20}
+                            />
+                          </div>
+                        </Tooltip>
+                      </>
+                    )}
+                  </Flex>
                 </Flex>
-              </Flex>
+              )}
             </Flex>
             <Flex gap={"10px"} alignItems={"center"}>
               <Divider orientation="vertical" />
