@@ -2,7 +2,14 @@ import { useState } from "react";
 import { ItemsProps, RecipeProps } from "../../../hooks/useMinecraftHook";
 import CraftingTableComponent from "./CraftingTableComponent";
 import "./RecipeComponent.css";
-import { Box, Text, Image, Tooltip, Center } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Image,
+  Tooltip,
+  Center,
+  useColorModeValue,
+} from "@chakra-ui/react";
 interface Props {
   recipe: RecipeProps;
   display?: string;
@@ -23,6 +30,7 @@ const RecipeComponent = ({
   display,
 }: Props) => {
   const [recipeIsLoading, setRecipeIsLoading] = useState(true);
+  const nameColor = useColorModeValue("white", "black");
   const handleOnLoad = () => {
     setRecipeIsLoading(false);
   };
@@ -47,6 +55,7 @@ const RecipeComponent = ({
                 fontSize={"1.7em"}
                 fontFamily={"Roboto Remix"}
                 lineHeight={3}
+                color={nameColor}
               >
                 {display ? display : recipe.item}
               </Text>
