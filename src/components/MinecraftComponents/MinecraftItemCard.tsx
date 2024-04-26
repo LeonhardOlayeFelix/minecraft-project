@@ -109,7 +109,11 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
   };
-
+  const handleTooltipClicked = (
+    event: React.MouseEvent<SVGElement, MouseEvent>
+  ) => {
+    console.log((event.target as HTMLElement).id);
+  };
   return (
     <Card
       className={className}
@@ -241,7 +245,13 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Tools & Weapons">
                         <div>
-                          <LuSwords className="grow-1" size={20} />
+                          <LuSwords
+                            id="Tools & Weapons"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
@@ -250,7 +260,13 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Blocks">
                         <div>
-                          <IoCubeOutline className="grow-1" size={20} />
+                          <IoCubeOutline
+                            id="Blocks"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
@@ -259,7 +275,13 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Potions & Effects">
                         <div>
-                          <GiCauldron className="grow-1" size={20} />
+                          <GiCauldron
+                            id="Potions & Effects"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
@@ -268,7 +290,13 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Consumable">
                         <div>
-                          <LuBeef className="grow-1" size={20} />
+                          <LuBeef
+                            id="Consumable"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
@@ -277,7 +305,13 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Plants">
                         <div>
-                          <PiPlant className="grow-1" size={20} />
+                          <PiPlant
+                            id="Plants"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
@@ -288,16 +322,28 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                     <>
                       <Tooltip hasArrow label="Valuables">
                         <div>
-                          <MdAttachMoney className="grow-1" size={20} />
+                          <MdAttachMoney
+                            id="Valuables"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
                   )}
                   {musicDiscs?.find((disc) => disc.name === item.name) && (
                     <>
-                      <Tooltip hasArrow label="Music">
+                      <Tooltip hasArrow label="Musical">
                         <div>
-                          <IoMusicalNoteOutline className="grow-1" size={20} />
+                          <IoMusicalNoteOutline
+                            id="Musical"
+                            cursor={"pointer"}
+                            onClick={handleTooltipClicked}
+                            className="grow-1"
+                            size={20}
+                          />
                         </div>
                       </Tooltip>
                     </>
