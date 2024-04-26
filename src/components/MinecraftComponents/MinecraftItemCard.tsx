@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { ItemsProps } from "../../hooks/useMinecraftHook";
-import usedInImage from "../../assets/usedin2.png";
+import usedInImage from "../../assets/usedin3.webp";
 import cardBodyBg from "../../assets/mcthewildupdate.webp";
 import {
   Avatar,
@@ -42,7 +42,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
   const [glowColor, setGlowColor] = useState("");
-
+  const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -85,8 +85,15 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   useEffect(() => {
     const fetchMiddlePixelColor = async () => {
       if (item.image) {
-        const color = await getMiddlePixelColor(item.image);
-        setGlowColor(color);
+        try {
+          setIsGlowColorLoading(true);
+          const color = await getMiddlePixelColor(item.image);
+          setGlowColor(color);
+        } catch (error) {
+          console.error("Error fetching middle pixel color:", error);
+        } finally {
+          setIsGlowColorLoading(false);
+        }
       }
     };
     fetchMiddlePixelColor();
@@ -171,7 +178,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   ) => {
     console.log((event.target as HTMLElement).id);
   };
-  if (!items || !item || isLoading) {
+  if (!items || !item || isLoading || isGlowColorLoading) {
     //this will do functionality based on whether the cards are loading
     return <MinecraftSkeletonCard />;
   }

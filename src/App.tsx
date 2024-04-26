@@ -42,14 +42,14 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <CraftingRecipeComponent
+          {/* <CraftingRecipeComponent
             recipes={recipe1}
             gridElementAnimation="grow-1"
             gridResultAnimation="grow-1"
             items={items}
             craftingTableCellWidthHeight={"2.2em"}
-          />
-          <MinecraftCardGrid className="m-3" items={items.slice(330, 360)} />
+          /> */}
+          <MinecraftCardGrid className="m-3" items={items.slice(330, 340)} />
         </Flex>
       </GridItem>
     </Grid>
