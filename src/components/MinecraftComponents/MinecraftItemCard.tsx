@@ -112,6 +112,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     return { sentenceToReturn: truncatedString.trim(), overflow };
   };
 
+  //average colour of the image
   const getMiddlePixelColor = (imageUrl: string): Promise<string> => {
     return new Promise((resolve, reject) => {
       const img = new window.Image();
@@ -149,7 +150,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           const avgAlpha = Math.round(totalAlpha / pixelCount);
 
           const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
-            avgAlpha / 255
+            100 / 255
           })`;
           resolve(colorValue);
         } else {
@@ -179,7 +180,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       className={className}
       borderRadius="20px"
       bg={cardColor}
-      boxShadow={`0 0 20px 5px ${glowColor}`}
+      boxShadow={`0 0 10px 5px ${glowColor}`}
       overflow="hidden"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.02)" }}

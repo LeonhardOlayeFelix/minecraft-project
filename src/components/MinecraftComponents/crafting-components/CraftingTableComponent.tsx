@@ -64,11 +64,13 @@ const CraftingTableComponent = ({
         {!recipe &&
           //Need to show an empty grid if recipe does not exist
           Array.from({ length: 9 }, (_, index) => (
-            <CraftingTableGridElementComponent
-              gridElementAnimation={gridElementAnimation}
-              item={items.find((item) => item.name === "Air") as ItemsProps}
-              craftingTableCellWidthHeight={craftingTableCellWidthHeight}
-            />
+            <div key={index}>
+              <CraftingTableGridElementComponent
+                gridElementAnimation={gridElementAnimation}
+                item={items.find((item) => item.name === "Air") as ItemsProps}
+                craftingTableCellWidthHeight={craftingTableCellWidthHeight}
+              />
+            </div>
           ))}
       </div>
     </div>
