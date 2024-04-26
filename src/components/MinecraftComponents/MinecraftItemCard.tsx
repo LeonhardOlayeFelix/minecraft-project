@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { ItemsProps } from "../../hooks/useMinecraftHook";
 import usedInImage from "../../assets/usedin2.png";
 import cardBodyBg from "../../assets/mcthewildupdate.webp";
@@ -41,6 +41,8 @@ interface Props {
 const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
+  const [glowColor, setGlowColor] = useState("");
+
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -80,7 +82,15 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
         .slice(0, 4),
     [similarSearches, items]
   );
-
+  useEffect(() => {
+    const fetchMiddlePixelColor = async () => {
+      if (item.image) {
+        const color = await getMiddlePixelColor(item.image);
+        setGlowColor(color);
+      }
+    };
+    fetchMiddlePixelColor();
+  }, [item.image]);
   const shortenString = (value: string, length: number) => {
     if (value.length <= length)
       return { sentenceToReturn: value, overflow: false };
@@ -102,6 +112,55 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     return { sentenceToReturn: truncatedString.trim(), overflow };
   };
 
+  const getMiddlePixelColor = (imageUrl: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const img = new window.Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+          const middleX = Math.floor(img.width / 2);
+          const middleY = Math.floor(img.height / 2);
+          const radius = 5;
+          let totalRed = 0;
+          let totalGreen = 0;
+          let totalBlue = 0;
+          let totalAlpha = 0;
+          let pixelCount = 0;
+
+          for (let x = middleX - radius; x <= middleX + radius; x++) {
+            for (let y = middleY - radius; y <= middleY + radius; y++) {
+              const pixelData = ctx.getImageData(x, y, 1, 1).data;
+              totalRed += pixelData[0];
+              totalGreen += pixelData[1];
+              totalBlue += pixelData[2];
+              totalAlpha += pixelData[3];
+              pixelCount++;
+            }
+          }
+
+          const avgRed = Math.round(totalRed / pixelCount);
+          const avgGreen = Math.round(totalGreen / pixelCount);
+          const avgBlue = Math.round(totalBlue / pixelCount);
+          const avgAlpha = Math.round(totalAlpha / pixelCount);
+
+          const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
+            avgAlpha / 255
+          })`;
+          resolve(colorValue);
+        } else {
+          reject("Failed to get canvas context");
+        }
+      };
+      img.onerror = reject;
+      img.src = imageUrl;
+    });
+  };
+
   const toggleDescription = () => setIsExpanded(!isExpanded);
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
@@ -120,7 +179,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       className={className}
       borderRadius="20px"
       bg={cardColor}
-      boxShadow="lg"
+      boxShadow={`0 0 20px 5px ${glowColor}`}
       overflow="hidden"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.02)" }}
