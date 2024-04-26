@@ -30,7 +30,7 @@ const RecipeComponent = ({
   display,
 }: Props) => {
   const [recipeIsLoading, setRecipeIsLoading] = useState(true);
-  const nameColor = useColorModeValue("white", "black");
+  const nameColor = useColorModeValue("#545454", "#545454");
   const handleOnLoad = () => {
     setRecipeIsLoading(false);
   };
