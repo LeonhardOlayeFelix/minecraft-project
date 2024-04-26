@@ -154,8 +154,10 @@ const MinecraftItemCard = ({ item, className }: Props) => {
           w="100%"
           fontSize="35px"
           onClick={() => console.log(item.name)}
+          lineHeight={"1"}
+          mt={3}
         >
-          {shortenString(item.name, 17).sentenceToReturn}
+          {item.name}
         </Text>
         <Flex justifyContent="left">
           <AvatarGroup size="sm" max={4} fontSize="9px" fontWeight="700">
