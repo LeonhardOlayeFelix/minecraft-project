@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
+import usedInImage from "../../assets/usedin.png";
 import {
   Avatar,
   AvatarGroup,
@@ -203,7 +204,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
           </Flex>
 
           <Flex justifyContent="space-between">
-            <Flex gap={"10px"} alignItems={"center"}>
+            <Flex gap={"1px"} alignItems={"center"}>
               {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
                 <>
                   <Tooltip hasArrow label="Tools & Weapons">
@@ -270,10 +271,24 @@ const MinecraftItemCard = ({ item, className }: Props) => {
             </Flex>
             <Flex gap={"10px"} alignItems={"center"}>
               <Divider orientation="vertical" />
-
+              {recipes?.find((recipe) =>
+                recipe.recipe.find((ingredient) => ingredient === item.name)
+              ) && (
+                <>
+                  <Tooltip hasArrow label="Used in">
+                    <div>
+                      <Image
+                        boxSize={5}
+                        cursor={"pointer"}
+                        src={usedInImage}
+                      ></Image>
+                    </div>
+                  </Tooltip>
+                </>
+              )}
               {recipes?.find((recipe) => recipe.item === item.name) && (
                 <>
-                  <Tooltip hasArrow label="Click to show recipe">
+                  <Tooltip hasArrow label="Show recipe">
                     <div>
                       <Image
                         boxSize={6}
