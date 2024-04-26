@@ -1,6 +1,6 @@
 import { Box, Container, Flex, Show, SimpleGrid } from "@chakra-ui/react";
 import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
-import MinecraftCardv2 from "./MinecraftCardv2";
+import MinecraftItemCard from "./MinecraftItemCard";
 import Masonry from "react-masonry-css";
 import "./MinecraftGrid.css";
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   className?: string;
 }
 //width={{ xl: "1300px", lg: "1000px", md: "700px", sm: "400px" }}
-const MinecraftGrid = ({ items, className }: Props) => {
+const MinecraftCardGrid = ({ items, className }: Props) => {
   const breakpointColumnsObj = {
     default: 4,
     1300: 3,
@@ -23,11 +23,11 @@ const MinecraftGrid = ({ items, className }: Props) => {
     >
       {items.map((item) => (
         <div>
-          <MinecraftCardv2 item={item} />
+          <MinecraftItemCard item={item} />
         </div>
       ))}
     </Masonry>
   );
 };
 
-export default MinecraftGrid;
+export default MinecraftCardGrid;

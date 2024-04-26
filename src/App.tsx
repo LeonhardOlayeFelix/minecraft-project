@@ -1,20 +1,8 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Grid,
-  GridItem,
-  Img,
-  Show,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
-import ItemList from "./components/MinecraftComponents/ItemList";
-import HeaderImage from "./assets/minecraft-banner-1.jpg";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
-import MinecraftCardv2 from "./components/MinecraftComponents/MinecraftCardv2";
 import "./assets/fonts/custom-font.css";
-import MinecraftGrid from "./components/MinecraftComponents/MinecraftGrid";
+import MinecraftCardGrid from "./components/MinecraftComponents/MinecraftCardGrid";
 function App() {
   const { items, isLoading, recipes } = useBlocksAndItems();
   return (
@@ -29,7 +17,7 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <MinecraftGrid items={items.slice(300, 330)} />
+          <MinecraftCardGrid items={items.slice(330, 360)} />
         </Flex>
       </GridItem>
     </Grid>

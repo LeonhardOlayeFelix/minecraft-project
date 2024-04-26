@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
 import {
   Avatar,
@@ -33,7 +33,7 @@ interface Props {
   className?: string;
 }
 
-const MinecraftCardv2 = ({ item, className }: Props) => {
+const MinecraftItemCard = ({ item, className }: Props) => {
   const {
     items,
     toolsAndWeaponry,
@@ -66,12 +66,18 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
     return <p>Loading...</p>;
   }
   // Calculate matches using SimilarSearchesString
-  const itemsAsString = items.map((item) => item.name);
-  const itemAsString = item.name;
-  const similarSearches = SimilarSearchesString(itemsAsString, itemAsString);
-  let matches = similarSearches
-    .map((result) => items.find((itemFound) => itemFound.name === result))
-    .slice(0, 5);
+  const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
+  const similarSearches = useMemo(
+    () => SimilarSearchesString(itemsAsString, item.name),
+    [itemsAsString, item.name]
+  );
+  const matches = useMemo(
+    () =>
+      similarSearches
+        .map((result) => items.find((itemFound) => itemFound.name === result))
+        .slice(0, 5),
+    [similarSearches, items]
+  );
   const shortenString = (value: string, length: number) => {
     let sentence = value.split(" ");
     let sentenceToReturn = "";
@@ -262,4 +268,4 @@ const MinecraftCardv2 = ({ item, className }: Props) => {
   );
 };
 
-export default MinecraftCardv2;
+export default MinecraftItemCard;
