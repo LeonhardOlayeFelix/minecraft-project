@@ -23,7 +23,7 @@ const MinecraftCardGrid = ({ items, className }: Props) => {
     >
       {items.map((item) => (
         <div>
-          <MinecraftItemCard item={item} />
+          <MinecraftItemCard data={useBlocksAndItems()} item={item} />
         </div>
       ))}
     </Masonry>

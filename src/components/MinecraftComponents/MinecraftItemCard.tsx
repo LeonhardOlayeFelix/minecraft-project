@@ -30,13 +30,15 @@ import { PiPlant } from "react-icons/pi";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "./CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
+import { UseBlocksAndItemsResult } from "./CategoriseItem";
 
 interface Props {
   item: ItemsProps;
   className?: string;
+  data: UseBlocksAndItemsResult;
 }
 
-const MinecraftItemCard = ({ item, className }: Props) => {
+const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
@@ -46,7 +48,6 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
-  const data = useBlocksAndItems();
   const items = data.items;
   const isLoading = data.isLoading;
   //boolean data determining whether this item is in the following categories

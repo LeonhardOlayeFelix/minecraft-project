@@ -1,6 +1,8 @@
 import useBlocksAndItems, { BlocksProps, ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
 
-interface UseBlocksAndItemsResult {
+export interface UseBlocksAndItemsResult {
+    items: ItemsProps[];
+    isLoading: boolean
     toolsAndWeaponry: ItemsProps[] | undefined;
     blocks: BlocksProps[];
     potions: ItemsProps[] | undefined;
