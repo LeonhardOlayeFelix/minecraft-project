@@ -29,13 +29,11 @@
       top: calc(11%);
   } */
   .carousel-right-arrow{
-    color: black;
     font-family: 'Roboto Remix', sans-serif;
     font-size: 3.5em;
     line-height: 0.5;
   }
   .carousel-left-arrow{
-    color: black;
     font-family: 'Roboto Remix', sans-serif;
     font-size: 3.5em;
     line-height: 0.5;

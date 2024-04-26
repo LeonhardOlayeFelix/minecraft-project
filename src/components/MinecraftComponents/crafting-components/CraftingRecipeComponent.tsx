@@ -1,8 +1,8 @@
-import React, { useId, useState } from "react";
+import { useId } from "react";
 import { RecipeProps, ItemsProps } from "../../../hooks/useMinecraftHook";
 import "./CraftingRecipeComponent.css";
 import RecipeComponent from "./RecipeComponent";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 
 interface Props {
   recipes: RecipeProps[]; //there might be multiple recipes, for example swords have 2 recipes: sword + sword or stick + diamond + diamond
@@ -22,6 +22,7 @@ const CraftingRecipeComponent = ({
   craftingTableCellWidthHeight,
 }: Props) => {
   const carouselId = useId();
+  const carouselArrowBg = useColorModeValue("black", "white");
   return (
     <Flex flexDirection={"row"} alignItems={"center"} className={className}>
       <Box>
@@ -31,9 +32,14 @@ const CraftingRecipeComponent = ({
             data-bs-target={`#${carouselId}`}
             data-bs-slide="prev"
           >
-            <span aria-hidden="true" className="carousel-left-arrow">
-              &lt;
-            </span>
+            <Box
+              transition="transform 0.2s"
+              _hover={{ transform: "scale(1.2)" }}
+            >
+              <span aria-hidden="true" className="carousel-left-arrow">
+                &lt;
+              </span>
+            </Box>
             <span className="visually-hidden">Next</span>
           </button>
         )}
@@ -93,9 +99,18 @@ const CraftingRecipeComponent = ({
               data-bs-target={`#${carouselId}`}
               data-bs-slide="next"
             >
-              <span aria-hidden="true" className="carousel-right-arrow">
-                &gt;
-              </span>
+              <Box
+                transition="transform 0.2s"
+                _hover={{ transform: "scale(1.2)" }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="carousel-right-arrow"
+                  style={{ color: carouselArrowBg }}
+                >
+                  &gt;
+                </span>
+              </Box>
               <span className="visually-hidden">Next</span>
             </button>
           )}
