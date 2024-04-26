@@ -21,9 +21,12 @@ const MinecraftSkeletonCard = () => {
     <Card
       borderRadius="20px"
       boxShadow="lg"
+      bg={cardColor}
       overflow="hidden"
       w={{ base: "260px", md: "280px" }}
-      minH="auto"
+      transition="transform 0.2s"
+      _hover={{ transform: "scale(1.02)" }}
+      height={"320px"}
     >
       <Box h={"155"} mb={1} pt="20px" pl="20px">
         <Flex
@@ -38,7 +41,7 @@ const MinecraftSkeletonCard = () => {
         </Flex>
         <SkeletonText noOfLines={1} marginTop={8} paddingRight={4} />
         <Flex justifyContent="left">
-          <SkeletonText noOfLines={1} skeletonHeight={"6"} />
+          <SkeletonText noOfLines={2} skeletonHeight={"2"} />
         </Flex>
       </Box>
       <CardBody bg={cardBodybg}>
@@ -47,16 +50,12 @@ const MinecraftSkeletonCard = () => {
           justifyContent={"space-between"}
           height={"100%"}
         >
-          <Flex alignItems="center" justifyContent="space-between">
-            <SkeletonText skeletonHeight={"5"} />
-          </Flex>
+          <SkeletonText noOfLines={3} lineHeight={"2"} />
+          {/* <Flex alignItems="center" justifyContent="space-between">
+            HI
+          </Flex> */}
 
-          <Flex justifyContent="space-between">
-            <Flex gap={"1px"} alignItems={"center"}>
-              <SkeletonCircle />
-            </Flex>
-            <SkeletonCircle />
-          </Flex>
+          <Flex justifyContent="space-between"></Flex>
         </Flex>
       </CardBody>
     </Card>

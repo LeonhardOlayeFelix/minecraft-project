@@ -17,7 +17,7 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <MinecraftCardGrid items={items.slice(330, 360)} />
+          <MinecraftCardGrid items={items.slice(330, 340)} />
         </Flex>
       </GridItem>
     </Grid>
