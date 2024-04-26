@@ -40,9 +40,14 @@ const MinecraftSkeletonCard = () => {
           <SkeletonCircle />
         </Flex>
         <SkeletonText noOfLines={1} marginTop={8} paddingRight={4} />
-        <Flex justifyContent="left">
-          <SkeletonText noOfLines={2} skeletonHeight={"2"} />
-        </Flex>
+        <Box
+          borderRadius={"10px"}
+          overflow={"hidden"}
+          marginTop={8}
+          width={"120px"}
+        >
+          <Skeleton height={"20px"} />
+        </Box>
       </Box>
       <CardBody bg={cardBodybg}>
         <Flex
