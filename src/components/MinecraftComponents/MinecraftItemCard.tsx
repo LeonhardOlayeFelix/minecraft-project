@@ -93,7 +93,15 @@ const MinecraftItemCard = ({ item, className }: Props) => {
 
   const inMusical = musicDiscs?.find((disc) => disc.name === item.name);
 
-  const inCategory =
+  const inRecipes = recipes?.find((recipe) => recipe.item === item.name);
+
+  const inIngredients = recipes?.find((recipe) =>
+    recipe.recipe.find((ingredient) => ingredient === item.name)
+  );
+
+  const inIngredientsOrRecipes = inRecipes || inIngredients;
+
+  const inCategoryExcludingRecipesAndIngredients =
     inWeaponsTools ||
     inBlocks ||
     inPotions ||
@@ -101,6 +109,9 @@ const MinecraftItemCard = ({ item, className }: Props) => {
     inPlants ||
     inValuables ||
     inMusical;
+
+  const inCategory =
+    inCategoryExcludingRecipesAndIngredients || inRecipes || inIngredients;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -247,7 +258,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
 
           <Flex justifyContent="space-between">
             <Flex gap={"1px"} alignItems={"center"}>
-              {inCategory && (
+              {inCategoryExcludingRecipesAndIngredients && (
                 <Flex alignItems={"center"}>
                   <Box marginRight={2}>
                     <Tooltip hasArrow label="Categories">
@@ -374,37 +385,37 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                 </Flex>
               )}
             </Flex>
-            <Flex gap={"10px"} alignItems={"center"}>
-              <Divider orientation="vertical" />
-              {recipes?.find((recipe) =>
-                recipe.recipe.find((ingredient) => ingredient === item.name)
-              ) && (
-                <>
-                  <Tooltip hasArrow label="Used in">
-                    <div>
-                      <Image
-                        boxSize={5}
-                        cursor={"pointer"}
-                        src={usedInImage}
-                      ></Image>
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {recipes?.find((recipe) => recipe.item === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Show recipe">
-                    <div>
-                      <Image
-                        boxSize={6}
-                        cursor={"pointer"}
-                        src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
-                      ></Image>
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-            </Flex>
+            {inIngredientsOrRecipes && (
+              <Flex gap={"10px"} alignItems={"center"}>
+                <Divider orientation="vertical" />
+                {inIngredients && (
+                  <>
+                    <Tooltip hasArrow label="Used in">
+                      <div>
+                        <Image
+                          boxSize={5}
+                          cursor={"pointer"}
+                          src={usedInImage}
+                        ></Image>
+                      </div>
+                    </Tooltip>
+                  </>
+                )}
+                {inRecipes && (
+                  <>
+                    <Tooltip hasArrow label="Show recipe">
+                      <div>
+                        <Image
+                          boxSize={6}
+                          cursor={"pointer"}
+                          src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
+                        ></Image>
+                      </div>
+                    </Tooltip>
+                  </>
+                )}
+              </Flex>
+            )}
           </Flex>
         </Flex>
       </CardBody>
