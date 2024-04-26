@@ -78,9 +78,6 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   );
   const inBlocks = blocks?.find((block) => block.name === item.name);
 
-  if (!items || !item) {
-    return <p>Loading...</p>;
-  }
   const inPotions = potions?.find((potion) => potion.name === item.name);
 
   const inConsumable = consumable?.find((munch) => munch.name === item.name);
@@ -151,6 +148,9 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   ) => {
     console.log((event.target as HTMLElement).id);
   };
+  // if (!items || !item ||isLoading) { //this will do functionality based on whether the cards are loading
+  //   return <p>Loading...</p>;
+  // }
   return (
     <Card
       className={className}
