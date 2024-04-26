@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import anishService, { AnishBlocksProps, AnishItemsProps } from "../services/anish-service";
 import minecraftDataService, { HarvestToolsProps, MinecraftItemsProps, MinecraftDataBlocksProps } from "../services/minecraft-data-service";
 
-interface BlocksProps extends AnishBlocksProps {
+export interface BlocksProps extends AnishBlocksProps {
     id: number;
     hardness: number;
     resistance: number;

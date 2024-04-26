@@ -31,6 +31,7 @@ import { PiPlant } from "react-icons/pi";
 import { FaCompactDisc } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import categoriseItems from "./CategoriseItem";
 
 interface Props {
   item: ItemsProps;
@@ -38,18 +39,6 @@ interface Props {
 }
 
 const MinecraftItemCard = ({ item, className }: Props) => {
-  const {
-    items,
-    toolsAndWeaponry,
-    isLoading,
-    blocks,
-    potions,
-    consumable,
-    plants,
-    valuables,
-    musicDiscs,
-    recipes,
-  } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -60,55 +49,26 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
-  //const [dataIsReady, setDataIsReady] = useState(false);
-  // useEffect(() => {
-  //   console.log("toolsAndWeaponry data:", toolsAndWeaponry);
-  //   if (!isLoading && toolsAndWeaponry) {
-  //     setDataIsReady(true);
-  //   }
-  // }, [toolsAndWeaponry, isLoading]);
-  const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
+  const data = useBlocksAndItems();
+  const items = data.items;
+  const {
+    inWeaponsTools,
+    inBlocks,
+    inPotions,
+    inConsumable,
+    inPlants,
+    inValuables,
+    inMusical,
+    inRecipes,
+    inIngredients,
+    inIngredientsOrRecipes,
+    inCategoryExcludingRecipesAndIngredients,
+    inCategory,
+  } = categoriseItems(item, data);
 
   //Determines whether the following item is in any of the following categories, storing the item if it is. WILL NEED FOR LATER
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-  const inWeaponsTools = toolsAndWeaponry?.find(
-    (tool) => tool.name === item.name
-  );
-  const inBlocks = blocks?.find((block) => block.name === item.name);
-
-  const inPotions = potions?.find((potion) => potion.name === item.name);
-
-  const inConsumable = consumable?.find((munch) => munch.name === item.name);
-
-  const inPlants = plants?.find((plant) => plant.name === item.name);
-
-  const inValuables = valuables?.find(
-    (valuable) => valuable.name === item.name
-  );
-
-  const inMusical = musicDiscs?.find((disc) => disc.name === item.name);
-
-  const inRecipes = recipes?.find((recipe) => recipe.item === item.name);
-
-  const inIngredients = recipes?.find((recipe) =>
-    recipe.recipe.find((ingredient) => ingredient === item.name)
-  );
-
-  const inIngredientsOrRecipes = inRecipes || inIngredients;
-
-  const inCategoryExcludingRecipesAndIngredients =
-    inWeaponsTools ||
-    inBlocks ||
-    inPotions ||
-    inConsumable ||
-    inPlants ||
-    inValuables ||
-    inMusical;
-
-  const inCategory =
-    inCategoryExcludingRecipesAndIngredients || inRecipes || inIngredients;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,6 +100,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
     }
     return { sentenceToReturn, overflow };
   };
+  const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
   };
