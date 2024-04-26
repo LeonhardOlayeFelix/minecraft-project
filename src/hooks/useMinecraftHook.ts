@@ -60,7 +60,7 @@ const useBlocksAndItems = () =>{
     const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
     const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
     const [potions, setPotions] = useState<ItemsProps[]>()
-    const [food, setFood] = useState<FoodProps[]>()
+    const [consumable, setConsumable] = useState<FoodProps[]>()
     const [plants, setPlants] = useState<ItemsProps[]>()
     const [valuables, setValuables] = useState<ItemsProps[]>()
     const [musicDiscs, setMusicDiscs] = useState<ItemsProps[]>()
@@ -220,11 +220,11 @@ useEffect(() => {
         return null;
       })
       .filter((block) => block !== null); // Ensure only matched blocks are included
-    setFood(mergedFood as FoodProps[]);
+    setConsumable(mergedFood as FoodProps[]);
     }
 
 
-    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, food, plants, valuables, musicDiscs, error, setItems, setBlocks, setRecipes, setIsLoading}
+    return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, consumable, plants, valuables, musicDiscs, error, setItems, setBlocks, setRecipes, setIsLoading}
 }
 
 export default useBlocksAndItems;

@@ -44,7 +44,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
     isLoading,
     blocks,
     potions,
-    food,
+    consumable,
     plants,
     valuables,
     musicDiscs,
@@ -69,9 +69,32 @@ const MinecraftItemCard = ({ item, className }: Props) => {
   // }, [toolsAndWeaponry, isLoading]);
   const toggleDescription = () => setIsExpanded(!isExpanded); // Toggle function
 
+  //Determines whether the following item is in any of the following categories, storing the item if it is. WILL NEED FOR LATER
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const inWeaponsTools = toolsAndWeaponry?.find(
+    (tool) => tool.name === item.name
+  );
+  const inBlocks = blocks?.find((block) => block.name === item.name);
+
   if (!items || !item) {
     return <p>Loading...</p>;
   }
+  const inPotions = potions?.find((potion) => potion.name === item.name);
+
+  const inConsumable = consumable?.find((munch) => munch.name === item.name);
+
+  const inPlants = plants?.find((plant) => plant.name === item.name);
+
+  const inValuables = valuables?.find(
+    (valuable) => valuable.name === item.name
+  );
+
+  const inMusical = musicDiscs?.find((disc) => disc.name === item.name);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
   // Calculate matches using SimilarSearchesString
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
   const similarSearches = useMemo(
@@ -99,12 +122,6 @@ const MinecraftItemCard = ({ item, className }: Props) => {
       }
     }
     return { sentenceToReturn, overflow };
-  };
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
   };
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
@@ -237,11 +254,8 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                   bg={cardColor + "50"}
                   padding={"6px"}
                   borderRadius={"6px"}
-                  onMouseEnter={() => handleMouseEnter}
                 >
-                  {toolsAndWeaponry?.find(
-                    (tool) => tool.name === item.name
-                  ) && (
+                  {inWeaponsTools && (
                     <>
                       <Tooltip hasArrow label="Tools & Weapons">
                         <div>
@@ -256,7 +270,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {blocks?.find((block) => block.name === item.name) && (
+                  {inBlocks && (
                     <>
                       <Tooltip hasArrow label="Blocks">
                         <div>
@@ -271,7 +285,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {potions?.find((potion) => potion.name === item.name) && (
+                  {inPotions && (
                     <>
                       <Tooltip hasArrow label="Potions & Effects">
                         <div>
@@ -286,7 +300,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {food?.find((munch) => munch.name === item.name) && (
+                  {inConsumable && (
                     <>
                       <Tooltip hasArrow label="Consumable">
                         <div>
@@ -301,7 +315,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {plants?.find((plant) => plant.name === item.name) && (
+                  {inPlants && (
                     <>
                       <Tooltip hasArrow label="Plants">
                         <div>
@@ -316,9 +330,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {valuables?.find(
-                    (valuable) => valuable.name === item.name
-                  ) && (
+                  {inValuables && (
                     <>
                       <Tooltip hasArrow label="Valuables">
                         <div>
@@ -333,7 +345,7 @@ const MinecraftItemCard = ({ item, className }: Props) => {
                       </Tooltip>
                     </>
                   )}
-                  {musicDiscs?.find((disc) => disc.name === item.name) && (
+                  {inMusical && (
                     <>
                       <Tooltip hasArrow label="Musical">
                         <div>
