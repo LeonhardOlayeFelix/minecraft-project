@@ -172,8 +172,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           w="100%"
           fontSize="35px"
           onClick={() => console.log(item.name)}
-          lineHeight={"1"}
+          lineHeight={"25px"}
           mt={3}
+          paddingRight={3}
         >
           {item.name}
         </Text>
