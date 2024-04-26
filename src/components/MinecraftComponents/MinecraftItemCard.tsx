@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { ItemsProps } from "../../hooks/useMinecraftHook";
 import usedInImage from "../../assets/usedin2.png";
+import cardBodyBg from "../../assets/mcthewildupdate.webp";
 import {
   Avatar,
   AvatarGroup,
