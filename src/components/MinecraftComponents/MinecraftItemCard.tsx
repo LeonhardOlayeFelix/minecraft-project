@@ -29,6 +29,8 @@ import { IoIosCube } from "react-icons/io";
 import { GiCauldron } from "react-icons/gi";
 import { PiPlant } from "react-icons/pi";
 import { FaCompactDisc } from "react-icons/fa";
+import { GoGear } from "react-icons/go";
+import { HiOutlineInformationCircle } from "react-icons/hi";
 
 interface Props {
   item: ItemsProps;
@@ -49,7 +51,8 @@ const MinecraftItemCard = ({ item, className }: Props) => {
     recipes,
   } = useBlocksAndItems();
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [showCategories, setShowCategories] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -96,6 +99,15 @@ const MinecraftItemCard = ({ item, className }: Props) => {
       }
     }
     return { sentenceToReturn, overflow };
+  };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+  const toggleShowCategories = () => {
+    setShowCategories(!showCategories);
   };
 
   return (
@@ -205,69 +217,93 @@ const MinecraftItemCard = ({ item, className }: Props) => {
 
           <Flex justifyContent="space-between">
             <Flex gap={"1px"} alignItems={"center"}>
-              {toolsAndWeaponry?.find((tool) => tool.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Tools & Weapons">
+              <Flex alignItems={"center"}>
+                <Box marginRight={2}>
+                  <Tooltip hasArrow label="Categories">
                     <div>
-                      <LuSwords className="grow-1" size={20} />
+                      <HiOutlineInformationCircle
+                        cursor={"pointer"}
+                        onClick={() => toggleShowCategories()}
+                      ></HiOutlineInformationCircle>
                     </div>
                   </Tooltip>
-                </>
-              )}
-              {blocks?.find((block) => block.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Blocks">
-                    <div>
-                      <IoCubeOutline className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {potions?.find((potion) => potion.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Potions & Effects">
-                    <div>
-                      <GiCauldron className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {food?.find((munch) => munch.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Consumable">
-                    <div>
-                      <LuBeef className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {plants?.find((plant) => plant.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Plants">
-                    <div>
-                      <PiPlant className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {valuables?.find((valuable) => valuable.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Valuables">
-                    <div>
-                      <MdAttachMoney className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
-              {musicDiscs?.find((disc) => disc.name === item.name) && (
-                <>
-                  <Tooltip hasArrow label="Music">
-                    <div>
-                      <IoMusicalNoteOutline className="grow-1" size={20} />
-                    </div>
-                  </Tooltip>
-                </>
-              )}
+                </Box>
+                <Flex
+                  visibility={showCategories ? "visible" : "hidden"}
+                  bg={cardColor + "50"}
+                  padding={"6px"}
+                  borderRadius={"6px"}
+                  onMouseEnter={() => handleMouseEnter}
+                >
+                  {toolsAndWeaponry?.find(
+                    (tool) => tool.name === item.name
+                  ) && (
+                    <>
+                      <Tooltip hasArrow label="Tools & Weapons">
+                        <div>
+                          <LuSwords className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {blocks?.find((block) => block.name === item.name) && (
+                    <>
+                      <Tooltip hasArrow label="Blocks">
+                        <div>
+                          <IoCubeOutline className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {potions?.find((potion) => potion.name === item.name) && (
+                    <>
+                      <Tooltip hasArrow label="Potions & Effects">
+                        <div>
+                          <GiCauldron className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {food?.find((munch) => munch.name === item.name) && (
+                    <>
+                      <Tooltip hasArrow label="Consumable">
+                        <div>
+                          <LuBeef className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {plants?.find((plant) => plant.name === item.name) && (
+                    <>
+                      <Tooltip hasArrow label="Plants">
+                        <div>
+                          <PiPlant className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {valuables?.find(
+                    (valuable) => valuable.name === item.name
+                  ) && (
+                    <>
+                      <Tooltip hasArrow label="Valuables">
+                        <div>
+                          <MdAttachMoney className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                  {musicDiscs?.find((disc) => disc.name === item.name) && (
+                    <>
+                      <Tooltip hasArrow label="Music">
+                        <div>
+                          <IoMusicalNoteOutline className="grow-1" size={20} />
+                        </div>
+                      </Tooltip>
+                    </>
+                  )}
+                </Flex>
+              </Flex>
             </Flex>
             <Flex gap={"10px"} alignItems={"center"}>
               <Divider orientation="vertical" />
