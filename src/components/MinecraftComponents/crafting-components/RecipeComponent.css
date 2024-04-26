@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Roboto Remix';
+    src: url('../assets/fonts/roboto-remix-font/Minecraftchmc-dBlX.ttf') format('truetype');
+  }
+  .screen {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    padding: 0em 0.3em 0.6em 0.6em;
+    border-radius: 0.2em;
+    border-style: solid;
+    border-top: thick double #FDFFFF;
+    border-left: thick double #FDFFFF;
+    border-right: thick double #535655;
+    border-bottom: thick double #535655;
+    background-color: #C7C7C7;
+  }
+  .show-border {
+    border-style: solid;
+    border-width: 2px; 
+    border-color: black; 
+    border-radius: 6px;
+  } /*Helps with showing where borders are*/
+  .arrow {
+    font-size: 3em;
+  }
+  #result {
+    box-sizing: border-box;
+    background-color: #8b8b8b;
+    border-top: thick double #373737;
+    border-left: thick double #373737;
+    border-right: double #FFFFFF;
+    border-bottom: double #FFFFFF;
+    width: var(--crafting-table-result-width-height);
+    height: var(--crafting-table-result-width-height);
+  }
+  .crafting-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  #crafting-div{
+    width: 100%;
+    height: 2.1em;
+    display: flex;
+    justify-content: start;
+    gap: 0.5em;
+  }
+  
+  .result-displayed {
+    display: block;
+    margin: auto;
+    padding: 0.2em 0em 0em 0em;
+    height: auto;
+  }
+  .result-displayed-1 {
+    display: block;
+    margin: auto;
+    padding: 0.3em 0em 0em 0em;
+    height: auto;
+  }
+  .quantity{
+    margin-top: 0px;
+    text-align: center;
+    font-family: 'Roboto Remix', sans-serif;
+    font-size: 2em;
+    color: white;
+    padding: 0.4em 0 0em 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  }
+  
+  
+  
+  .crafting-spinner{
+    width: 1em;
+    height: 1em;
+  }
+  
+  #outer{
+    width: "auto";
+  }
+  
+  
+  

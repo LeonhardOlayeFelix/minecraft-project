@@ -1,0 +1,19 @@
+.displayed {
+    display: block;
+    margin: auto;
+    padding: 0.1em 0.2em 0.2em 0.2em;
+    height: auto;
+  }
+  .grid-element {
+    background-color: #8b8b8b;
+    border-top: thick double #373737;
+    border-left: thick double #373737;
+    border-right: double #FFFFFF;
+    border-bottom: double #FFFFFF;
+    width: var(--crafting-table-cell-width-height);
+    height: var(--crafting-table-cell-width-height);
+    float: left;
+    display: flex;  /* Use flexbox */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+  }

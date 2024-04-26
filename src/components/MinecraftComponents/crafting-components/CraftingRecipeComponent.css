@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Roboto Remix';
+    src: url('../assets/fonts/roboto-remix-font/Minecraftchmc-dBlX.ttf') format('truetype');
+  }
+  #crafting-outer-div{
+  /* width: var(--crafting-table-width); */
+  
+  }
+  .carousel-item {
+      overflow: hidden;
+    }
+  
+  
+  /* #crafting-outer-div .carousel-control-prev,
+  #crafting-outer-div .carousel-control-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+  } */
+  
+  /* #crafting-outer-div .carousel-control-prev {
+      left: calc(-100% + 16em);
+      top: calc(11%);
+  }
+  
+  #crafting-outer-div .carousel-control-next {
+      right: calc(-100% + 15.8em);
+      top: calc(11%);
+  } */
+  .carousel-right-arrow{
+    color: black;
+    font-family: 'Roboto Remix', sans-serif;
+    font-size: 3.5em;
+    line-height: 0.5;
+  }
+  .carousel-left-arrow{
+    color: black;
+    font-family: 'Roboto Remix', sans-serif;
+    font-size: 3.5em;
+    line-height: 0.5;
+  }
+  /* #carousel-container{
+    padding: 0em 1.3em 0em 1.3em;
+  } */
+  #carousel-container{
+    display: flex;
+    flex-direction: column;
+  }
+  #arrows-flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  

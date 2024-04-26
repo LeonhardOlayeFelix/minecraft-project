@@ -1,5 +1,7 @@
 :root {
-  --crafting-table-width: 18em;
+  --crafting-table-width: 17.5em;
+  --crafting-table-cell-width-height: 2.5em;
+  --crafting-table-result-width-height: 3.2em;
 }
 
 
