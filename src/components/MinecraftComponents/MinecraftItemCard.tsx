@@ -187,7 +187,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       className={className}
       borderRadius="20px"
       bg={cardColor}
-      boxShadow={`0 0 15px 1px ${glowColor}`}
+      boxShadow={`0 0 20px 3px ${glowColor}`}
       overflow="hidden"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.02)" }}
