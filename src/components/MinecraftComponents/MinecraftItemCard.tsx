@@ -13,6 +13,7 @@ import {
   Flex,
   Icon,
   Image,
+  Show,
   Text,
   Tooltip,
   useColorModeValue,
@@ -194,6 +195,13 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     setShowRecipe(false);
     setShowUsedIn(!showUsedIn);
   };
+  const matchingRecipes = recipes.filter(
+    (recipe) => recipe.item === item.name
+  ) as RecipeProps[];
+  const matchingIngredients = recipes?.filter((recipe) =>
+    recipe.recipe.find((ingredient) => ingredient === item.name)
+  );
+
   return (
     <Card
       className={className}
@@ -301,6 +309,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 color={textColor}
                 lineHeight={"15px"}
                 fontFamily="Roboto Remix"
+                marginBottom={8}
               >
                 {isExpanded
                   ? item.description
@@ -317,30 +326,64 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Text>
             }
             {showRecipe && inRecipes && !showUsedIn && (
-              <Box>
-                <CraftingRecipeComponent
-                  className="grow-1"
-                  items={items}
-                  recipes={
-                    recipes.filter(
-                      (recipe) => recipe.item === item.name
-                    ) as RecipeProps[]
-                  }
-                  craftingTableCellWidthHeight={"2.1em"}
-                />
-              </Box>
+              <Flex direction={"column"} className="grow-1">
+                <Text
+                  paddingLeft={matchingRecipes.length > 1 ? 5 : 0}
+                  fontFamily={"Roboto Remix"}
+                  lineHeight={0.1}
+                  fontSize={30}
+                >
+                  Crafting Recipe:
+                </Text>
+                <Show above="lg">
+                  <Box>
+                    <CraftingRecipeComponent
+                      items={items}
+                      recipes={matchingRecipes}
+                      craftingTableCellWidthHeight={"2em"}
+                    />
+                  </Box>
+                </Show>
+                <Show below="lg">
+                  <Box>
+                    <CraftingRecipeComponent
+                      items={items}
+                      recipes={matchingRecipes}
+                      craftingTableCellWidthHeight={"1.8em"}
+                    />
+                  </Box>
+                </Show>
+              </Flex>
             )}
             {showUsedIn && inIngredients && !showRecipe && (
-              <Box>
-                <CraftingRecipeComponent
-                  className="grow-1"
-                  items={items}
-                  recipes={recipes?.filter((recipe) =>
-                    recipe.recipe.find((ingredient) => ingredient === item.name)
-                  )}
-                  craftingTableCellWidthHeight={"2.1em"}
-                />
-              </Box>
+              <Flex direction={"column"} className="grow-1">
+                <Text
+                  paddingLeft={matchingIngredients.length > 1 ? 5 : 0}
+                  fontFamily={"Roboto Remix"}
+                  lineHeight={0.1}
+                  fontSize={30}
+                >
+                  Material for:
+                </Text>
+                <Show above="lg">
+                  <Box>
+                    <CraftingRecipeComponent
+                      items={items}
+                      recipes={matchingIngredients}
+                      craftingTableCellWidthHeight={"2em"}
+                    />
+                  </Box>
+                </Show>
+                <Show below="lg">
+                  <Box>
+                    <CraftingRecipeComponent
+                      items={items}
+                      recipes={matchingIngredients}
+                      craftingTableCellWidthHeight={"1.8em"}
+                    />
+                  </Box>
+                </Show>
+              </Flex>
             )}
           </Flex>
 
