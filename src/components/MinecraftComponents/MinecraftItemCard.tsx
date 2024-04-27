@@ -311,15 +311,17 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Text>
             }
             {showRecipe && inRecipes && (
-              <CraftingRecipeComponent
-                className="grow-1"
-                items={items}
-                recipes={
-                  recipes.filter(
-                    (recipe) => recipe.item === item.name
-                  ) as RecipeProps[]
-                }
-              />
+              <Box>
+                <CraftingRecipeComponent
+                  className="grow-1"
+                  items={items}
+                  recipes={
+                    recipes.filter(
+                      (recipe) => recipe.item === item.name
+                    ) as RecipeProps[]
+                  }
+                />
+              </Box>
             )}
           </Flex>
 
