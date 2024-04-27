@@ -45,6 +45,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [glowColor, setGlowColor] = useState("");
   const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
   const [showRecipe, setShowRecipe] = useState(false);
+  const [showUsedIn, setShowUsedIn] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -188,6 +189,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const toggleShowRecipes = () => {
     setShowRecipe(!showRecipe);
   };
+  const toggleShowUsedIn = () => {
+    setShowRecipe(!showRecipe);
+  };
   return (
     <Card
       className={className}
@@ -311,6 +315,20 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Text>
             }
             {showRecipe && inRecipes && (
+              <Box>
+                <CraftingRecipeComponent
+                  className="grow-1"
+                  items={items}
+                  recipes={
+                    recipes.filter(
+                      (recipe) => recipe.item === item.name
+                    ) as RecipeProps[]
+                  }
+                  craftingTableCellWidthHeight={"2.1em"}
+                />
+              </Box>
+            )}
+            {showUsedIn && inIngredients && (
               <Box>
                 <CraftingRecipeComponent
                   className="grow-1"
@@ -511,6 +529,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                           boxSize={5}
                           cursor={"pointer"}
                           src={usedInImage}
+                          onClick={() => toggleShowUsedIn()}
                         ></Image>
                       </Box>
                     </Tooltip>
