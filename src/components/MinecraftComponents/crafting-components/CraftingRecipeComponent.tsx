@@ -102,6 +102,7 @@ const CraftingRecipeComponent = ({
               <Box
                 transition="transform 0.2s"
                 _hover={{ transform: "scale(1.2)" }}
+                marginLeft={1}
               >
                 <span
                   aria-hidden="true"

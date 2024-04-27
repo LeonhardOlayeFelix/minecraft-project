@@ -320,6 +320,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       (recipe) => recipe.item === item.name
                     ) as RecipeProps[]
                   }
+                  craftingTableCellWidthHeight={"2.1em"}
                 />
               </Box>
             )}

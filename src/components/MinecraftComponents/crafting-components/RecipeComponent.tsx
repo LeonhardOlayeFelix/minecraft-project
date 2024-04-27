@@ -9,6 +9,7 @@ import {
   Tooltip,
   Center,
   useColorModeValue,
+  Flex,
 } from "@chakra-ui/react";
 interface Props {
   recipe: RecipeProps;
@@ -41,11 +42,11 @@ const RecipeComponent = ({
 
   return (
     <div id="outer" className={className}>
-      <div className={"screen"}>
+      <Flex className={"screen"}>
         <Box
           width={"100%"}
+          height={9}
           marginTop={1}
-          height={"1.1em"}
           display={"flex"}
           justifyContent={"start"}
         >
@@ -54,7 +55,7 @@ const RecipeComponent = ({
               <Text
                 fontSize={"1.7em"}
                 fontFamily={"Roboto Remix"}
-                lineHeight={3}
+                lineHeight={4}
                 color={nameColor}
               >
                 {display ? display : recipe.item}
@@ -150,7 +151,7 @@ const RecipeComponent = ({
             )}
           </div>
         </div>
-      </div>
+      </Flex>
     </div>
   );
 };
