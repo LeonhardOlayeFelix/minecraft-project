@@ -34,6 +34,7 @@ import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import { UseBlocksAndItemsResult } from "./CategoriseItem";
 import CraftingRecipeComponent from "./crafting-components/CraftingRecipeComponent";
 import CraftingTableWithTitleComponent from "./CraftingTableWithTitleComponent";
+import MinecraftItemCardHead from "./MinecraftItemCardHead";
 
 interface Props {
   item: ItemsProps;
@@ -76,18 +77,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   } = categoriseItems(item, data);
 
   // Calculate matches using SimilarSearchesString
-  const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
-  const similarSearches = useMemo(
-    () => SimilarSearchesString(itemsAsString, item.name),
-    [itemsAsString, item.name]
-  );
-  const matches = useMemo(
-    () =>
-      similarSearches
-        .map((result) => items.find((itemFound) => itemFound.name === result))
-        .slice(0, 4),
-    [similarSearches, items]
-  );
+
   useEffect(() => {
     const fetchMiddlePixelColor = async () => {
       if (item.image) {
@@ -215,7 +205,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       w={{ base: "260px", md: "280px" }}
       minH="auto"
     >
-      <Box h={"auto"} mb={1} pt="20px" pl="20px">
+      {/* <Box h={"auto"} mb={1} pt="20px" pl="20px">
         <Flex w="100%">
           <Box
             me="auto"
@@ -291,7 +281,19 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
             ))}
           </AvatarGroup>
         </Flex>
-      </Box>
+      </Box> */}
+      <MinecraftItemCardHead
+        headBg={cardBodyBg}
+        buttonBg={buttonColor}
+        iconColor={iconColor}
+        textColor={textColor}
+        textHoverColor={textHoverColor}
+        avatarHoverBg={avatarHover}
+        tooltipBg={tooltipBackground}
+        tooltipFg={tooltipForeground}
+        item={item}
+        items={items}
+      />
       <CardBody bg={cardBodybg}>
         <Flex
           direction={"column"}

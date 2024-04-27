@@ -24,10 +24,8 @@ const CraftingTableWithTitleComponent = ({
       paddingRight={2}
       borderRadius={"15px"}
       direction={"column"}
-      className="grow-1"
     >
       <Text
-        paddingLeft={recipes.length > 1 ? 5 : 0}
         fontFamily={"Roboto Remix"}
         lineHeight={0.1}
         fontSize={30}
