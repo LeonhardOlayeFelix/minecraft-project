@@ -187,10 +187,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     return <MinecraftSkeletonCard />;
   }
   const toggleShowRecipes = () => {
+    setShowUsedIn(false);
     setShowRecipe(!showRecipe);
   };
   const toggleShowUsedIn = () => {
-    setShowRecipe(!showRecipe);
+    setShowRecipe(false);
+    setShowUsedIn(!showUsedIn);
   };
   return (
     <Card
@@ -199,8 +201,8 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       bg={cardColor}
       boxShadow={`0 0 20px 3px ${glowColor}`}
       overflow="hidden"
-      transition="transform 0.2s"
-      _hover={{ transform: "scale(1.02)" }}
+      // transition="transform 0.2s"
+      // _hover={{ transform: "scale(1.02)" }}
       w={{ base: "260px", md: "280px" }}
       minH="auto"
     >
@@ -314,7 +316,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 )}
               </Text>
             }
-            {showRecipe && inRecipes && (
+            {showRecipe && inRecipes && !showUsedIn && (
               <Box>
                 <CraftingRecipeComponent
                   className="grow-1"
@@ -328,16 +330,14 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 />
               </Box>
             )}
-            {showUsedIn && inIngredients && (
+            {showUsedIn && inIngredients && !showRecipe && (
               <Box>
                 <CraftingRecipeComponent
                   className="grow-1"
                   items={items}
-                  recipes={
-                    recipes.filter(
-                      (recipe) => recipe.item === item.name
-                    ) as RecipeProps[]
-                  }
+                  recipes={recipes?.filter((recipe) =>
+                    recipe.recipe.find((ingredient) => ingredient === item.name)
+                  )}
                   craftingTableCellWidthHeight={"2.1em"}
                 />
               </Box>
