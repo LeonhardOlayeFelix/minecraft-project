@@ -326,12 +326,23 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Text>
             }
             {showRecipe && inRecipes && !showUsedIn && (
-              <Flex direction={"column"} className="grow-1">
+              <Flex
+                bg={cardColor + "50"}
+                paddingTop={4}
+                paddingBottom={2}
+                paddingLeft={2}
+                paddingRight={2}
+                borderRadius={"15px"}
+                direction={"column"}
+                className="grow-1"
+              >
                 <Text
                   paddingLeft={matchingRecipes.length > 1 ? 5 : 0}
                   fontFamily={"Roboto Remix"}
                   lineHeight={0.1}
                   fontSize={30}
+                  width={"100%"}
+                  align={"center"}
                 >
                   Crafting Recipe:
                 </Text>
@@ -356,12 +367,23 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Flex>
             )}
             {showUsedIn && inIngredients && !showRecipe && (
-              <Flex direction={"column"} className="grow-1">
+              <Flex
+                bg={cardColor + "50"}
+                paddingTop={4}
+                paddingBottom={2}
+                paddingLeft={2}
+                paddingRight={2}
+                borderRadius={"15px"}
+                direction={"column"}
+                className="grow-1"
+              >
                 <Text
                   paddingLeft={matchingIngredients.length > 1 ? 5 : 0}
                   fontFamily={"Roboto Remix"}
                   lineHeight={0.1}
                   fontSize={30}
+                  width={"100%"}
+                  align={"center"}
                 >
                   Material for:
                 </Text>
