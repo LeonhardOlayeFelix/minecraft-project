@@ -32,6 +32,8 @@ const RecipeComponent = ({
 }: Props) => {
   const [recipeIsLoading, setRecipeIsLoading] = useState(true);
   const nameColor = useColorModeValue("#545454", "#545454");
+  const tooltipForeground = useColorModeValue("white", "white");
+  const tooltipBackground = useColorModeValue("black", "#292D2E");
   const handleOnLoad = () => {
     setRecipeIsLoading(false);
   };
@@ -118,7 +120,12 @@ const RecipeComponent = ({
                   width={"100%"}
                   position={"relative"}
                 >
-                  <Tooltip hasArrow label={recipe.item}>
+                  <Tooltip
+                    bg={tooltipBackground}
+                    color={tooltipForeground}
+                    hasArrow
+                    label={recipe.item}
+                  >
                     <Image
                       className={
                         "result-displayed" +
@@ -129,7 +136,6 @@ const RecipeComponent = ({
                       alt={foundItem?.namespacedId || "Image"}
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
-                      title={recipe.item || "click for more!"}
                       style={{ cursor: "pointer" }}
                       key={recipe.item}
                       paddingBottom={2}
@@ -142,6 +148,7 @@ const RecipeComponent = ({
                       bottom: `calc(var(--crafting-table-cell-width-height) * -0.25)`,
                       right: `calc(var(--crafting-table-cell-width-height) * -0.07)`,
                       margin: "0.5rem", // Add some spacing from the edge
+                      pointerEvents: "none",
                     }}
                   >
                     {recipe.quantity == 1 ? "" : recipe.quantity}

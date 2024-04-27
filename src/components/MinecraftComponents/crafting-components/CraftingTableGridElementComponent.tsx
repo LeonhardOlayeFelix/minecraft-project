@@ -1,6 +1,6 @@
 import "./CraftingTableGridElementComponent.css";
 import { ItemsProps } from "../../../hooks/useMinecraftHook";
-import { Image, Tooltip } from "@chakra-ui/react";
+import { Image, Tooltip, useColorModeValue } from "@chakra-ui/react";
 interface Props {
   item: ItemsProps;
   className?: string;
@@ -14,6 +14,8 @@ const CraftingTableGridElementComponent = ({
   gridElementAnimation,
   craftingTableCellWidthHeight,
 }: Props) => {
+  const tooltipForeground = useColorModeValue("white", "white");
+  const tooltipBackground = useColorModeValue("black", "#292D2E");
   return (
     <div
       style={{
@@ -27,14 +29,17 @@ const CraftingTableGridElementComponent = ({
       className={"grid-element " + className}
     >
       {item && (
-        <Tooltip label={item.name}>
+        <Tooltip
+          label={item.name}
+          bg={tooltipBackground}
+          color={tooltipForeground}
+        >
           <Image
             className={"displayed " + gridElementAnimation}
             src={item.image}
             alt={item.namespacedId || "..."}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title={item.name || "..."}
             data-bs-delay={100}
             style={{ cursor: "pointer" }}
           />

@@ -53,7 +53,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
   const tooltipForeground = useColorModeValue("white", "white");
-  const tooltipBackground = useColorModeValue("black", "#292D2E70");
+  const tooltipBackground = useColorModeValue("black", "#292D2E");
   const items = data.items;
   const recipes = data.recipes;
   const isLoading = data.isLoading;
@@ -337,12 +337,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       hasArrow
                       label="Categories"
                     >
-                      <div>
+                      <Box>
                         <HiOutlineInformationCircle
                           cursor={"pointer"}
                           onClick={() => toggleShowCategories()}
                         ></HiOutlineInformationCircle>
-                      </div>
+                      </Box>
                     </Tooltip>
                   </Box>
                   <Flex
