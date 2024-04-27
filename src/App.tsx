@@ -49,7 +49,7 @@ function App() {
             items={items}
             craftingTableCellWidthHeight={"2.2em"}
           /> */}
-          <MinecraftCardGrid className="m-3" items={items.slice(400, 430)} />
+          <MinecraftCardGrid className="m-3" items={items.slice(400, 420)} />
         </Flex>
       </GridItem>
     </Grid>
