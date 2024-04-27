@@ -7,7 +7,6 @@ import {
   Text,
   Image,
   Tooltip,
-  Center,
   useColorModeValue,
   Flex,
 } from "@chakra-ui/react";

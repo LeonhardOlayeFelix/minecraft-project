@@ -8,9 +8,8 @@ import {
   Box,
   Image,
   Text,
-  CardBody,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { ItemsProps } from "../../hooks/useMinecraftHook";
 import SimilarSearchesString from "./SimilarSearchesString";

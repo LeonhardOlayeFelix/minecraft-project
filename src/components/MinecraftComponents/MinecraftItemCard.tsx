@@ -1,28 +1,19 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
 import usedInImage from "../../assets/usedin3.webp";
 import {
-  Avatar,
-  AvatarGroup,
   Box,
-  Button,
   Card,
   CardBody,
   Divider,
   Flex,
   Icon,
   Image,
-  Show,
   Text,
   Tooltip,
   useColorModeValue,
 } from "@chakra-ui/react";
-import SimilarSearchesString from "./SimilarSearchesString";
-import {
-  IoCubeOutline,
-  IoEllipsisHorizontalSharp,
-  IoMusicalNoteOutline,
-} from "react-icons/io5";
+import { IoCubeOutline, IoMusicalNoteOutline } from "react-icons/io5";
 import { MdExpandMore, MdExpandLess, MdAttachMoney } from "react-icons/md";
 import { LuBeef, LuSwords } from "react-icons/lu";
 import { GiCauldron } from "react-icons/gi";
@@ -31,7 +22,6 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "./CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import { UseBlocksAndItemsResult } from "./CategoriseItem";
-import CraftingRecipeComponent from "./crafting-components/CraftingRecipeComponent";
 import CraftingTableWithTitleComponent from "./CraftingTableWithTitleComponent";
 import MinecraftItemCardHead from "./MinecraftItemCardHead";
 

@@ -42,7 +42,7 @@ const CraftingTableWithTitleComponent = ({
           <CraftingRecipeComponent
             items={items}
             recipes={recipes}
-            craftingTableCellWidthHeight={"2em"}
+            craftingTableCellWidthHeight={"2.1em"}
           />
         </Box>
       </Show>
@@ -51,7 +51,7 @@ const CraftingTableWithTitleComponent = ({
           <CraftingRecipeComponent
             items={items}
             recipes={recipes}
-            craftingTableCellWidthHeight={"1.8em"}
+            craftingTableCellWidthHeight={"1.9em"}
           />
         </Box>
       </Show>
