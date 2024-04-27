@@ -15,6 +15,21 @@
     opacity: 1;
   }
 }
+@keyframes shrinkAnimation {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.shrink-1 {
+  animation: shrinkAnimation 0.1s ease-out forwards; /* Adjust time and easing as needed */
+}
+
 .grow-1 {
   animation: growAnimation 0.1s ease-out forwards; /* Adjust time and easing as needed */
 }

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { ItemsProps } from "../../hooks/useMinecraftHook";
+import { ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
 import usedInImage from "../../assets/usedin3.webp";
 import cardBodyBg from "../../assets/mcthewildupdate.webp";
 import {
@@ -31,6 +31,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "./CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import { UseBlocksAndItemsResult } from "./CategoriseItem";
+import CraftingRecipeComponent from "./crafting-components/CraftingRecipeComponent";
 
 interface Props {
   item: ItemsProps;
@@ -43,6 +44,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [showCategories, setShowCategories] = useState(false);
   const [glowColor, setGlowColor] = useState("");
   const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
+  const [showRecipe, setShowRecipe] = useState(false);
   const avatarHover = useColorModeValue("gray", "#202020") + "70";
   const cardBodybg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -53,6 +55,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const tooltipForeground = useColorModeValue("white", "white");
   const tooltipBackground = useColorModeValue("black", "#292D2E70");
   const items = data.items;
+  const recipes = data.recipes;
   const isLoading = data.isLoading;
   //boolean data determining whether this item is in the following categories
   const {
@@ -182,6 +185,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     //this will do functionality based on whether the cards are loading
     return <MinecraftSkeletonCard />;
   }
+  const toggleShowRecipes = () => {
+    setShowRecipe(!showRecipe);
+  };
   return (
     <Card
       className={className}
@@ -277,26 +283,44 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           justifyContent={"space-between"}
           height={"100%"}
         >
-          <Flex alignItems="center" justifyContent="space-between">
-            <Text
-              fontSize="2xl"
-              color={textColor}
-              lineHeight={"15px"}
-              fontFamily="Roboto Remix"
-            >
-              {isExpanded
-                ? item.description
-                : shortenString(item.description, 114).sentenceToReturn}
-              {item.description.length > 114 && (
-                <Icon
-                  cursor={"pointer"}
-                  as={isExpanded ? MdExpandLess : MdExpandMore}
-                  w="20px"
-                  h="20px"
-                  onClick={toggleDescription}
-                />
-              )}
-            </Text>
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            direction={"column"}
+            marginBottom={2}
+          >
+            {
+              <Text
+                fontSize="2xl"
+                color={textColor}
+                lineHeight={"15px"}
+                fontFamily="Roboto Remix"
+              >
+                {isExpanded
+                  ? item.description
+                  : shortenString(item.description, 114).sentenceToReturn}
+                {item.description.length > 114 && (
+                  <Icon
+                    cursor={"pointer"}
+                    as={isExpanded ? MdExpandLess : MdExpandMore}
+                    w="20px"
+                    h="20px"
+                    onClick={toggleDescription}
+                  />
+                )}
+              </Text>
+            }
+            {showRecipe && inRecipes && (
+              <CraftingRecipeComponent
+                className="grow-1"
+                items={items}
+                recipes={
+                  recipes.filter(
+                    (recipe) => recipe.item === item.name
+                  ) as RecipeProps[]
+                }
+              />
+            )}
           </Flex>
 
           <Flex justifyContent="space-between">
@@ -502,6 +526,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                           boxSize={6}
                           cursor={"pointer"}
                           src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
+                          onClick={() => toggleShowRecipes()}
                         ></Image>
                       </div>
                     </Tooltip>
