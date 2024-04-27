@@ -8,6 +8,7 @@ import {
   Box,
   Image,
   Text,
+  CardBody,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
@@ -15,7 +16,7 @@ import { ItemsProps } from "../../hooks/useMinecraftHook";
 import SimilarSearchesString from "./SimilarSearchesString";
 
 interface Props {
-  headBg: string;
+  bodyBg: string;
   buttonBg: string;
   iconColor: string;
   textColor: string;
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const MinecraftItemCardHead = ({
-  headBg,
+  bodyBg,
   buttonBg,
   iconColor,
   textColor,
@@ -57,7 +58,7 @@ const MinecraftItemCardHead = ({
         <Box
           me="auto"
           className="grow-1"
-          bg={headBg}
+          bg={bodyBg}
           borderRadius="12px"
           padding={1}
         >

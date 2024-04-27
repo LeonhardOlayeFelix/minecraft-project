@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
 import usedInImage from "../../assets/usedin3.webp";
-import cardBodyBg from "../../assets/mcthewildupdate.webp";
 import {
   Avatar,
   AvatarGroup,
@@ -49,8 +48,8 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
   const [showRecipe, setShowRecipe] = useState(false);
   const [showUsedIn, setShowUsedIn] = useState(false);
-  const avatarHover = useColorModeValue("gray", "#202020") + "70";
-  const cardBodybg = useColorModeValue("gray", "#202020");
+  const avatarHover = useColorModeValue("gray", "#202020");
+  const cardBodyBg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
   const cardColor = useColorModeValue("white !important", "#111111");
   const iconColor = useColorModeValue("brand.200", "white");
@@ -58,6 +57,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const textHoverColor = useColorModeValue("#797979", "#797979");
   const tooltipForeground = useColorModeValue("white", "white");
   const tooltipBackground = useColorModeValue("black", "#292D2E");
+
   const items = data.items;
   const recipes = data.recipes;
   const isLoading = data.isLoading;
@@ -283,7 +283,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
         </Flex>
       </Box> */}
       <MinecraftItemCardHead
-        headBg={cardBodyBg}
+        bodyBg={cardBodyBg}
         buttonBg={buttonColor}
         iconColor={iconColor}
         textColor={textColor}
@@ -294,7 +294,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
         item={item}
         items={items}
       />
-      <CardBody bg={cardBodybg}>
+      <CardBody bg={cardBodyBg}>
         <Flex
           direction={"column"}
           justifyContent={"space-between"}
@@ -334,6 +334,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 items={items}
                 title="Recipe:"
                 bg={cardColor + "50"}
+                className="grow-1"
               />
             )}
             {showUsedIn && inIngredients && !showRecipe && (
@@ -342,6 +343,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 items={items}
                 title="Material for:"
                 bg={cardColor + "50"}
+                className="grow-1"
               />
             )}
           </Flex>

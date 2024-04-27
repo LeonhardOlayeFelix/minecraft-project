@@ -7,6 +7,7 @@ interface Props {
   recipes: RecipeProps[];
   title: string;
   bg: string;
+  className?: string;
 }
 
 const CraftingTableWithTitleComponent = ({
@@ -14,6 +15,7 @@ const CraftingTableWithTitleComponent = ({
   recipes,
   bg,
   title,
+  className,
 }: Props) => {
   return (
     <Flex
@@ -24,6 +26,7 @@ const CraftingTableWithTitleComponent = ({
       paddingRight={2}
       borderRadius={"15px"}
       direction={"column"}
+      className={className}
     >
       <Text
         fontFamily={"Roboto Remix"}
