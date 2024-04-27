@@ -1,6 +1,6 @@
 import { Box, Flex, Show, Text } from "@chakra-ui/react";
-import CraftingRecipeComponent from "./crafting-components/CraftingRecipeComponent";
-import { ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
+import CraftingRecipeComponent from "./CraftingRecipeComponent";
+import { ItemsProps, RecipeProps } from "../../../hooks/useMinecraftHook";
 
 interface Props {
   items: ItemsProps[];

@@ -1,7 +1,7 @@
-import useBlocksAndItems, { ItemsProps } from "../../hooks/useMinecraftHook";
+import useBlocksAndItems, { ItemsProps } from "../../../hooks/useMinecraftHook";
 import MinecraftItemCard from "./MinecraftItemCard";
 import Masonry from "react-masonry-css";
-import "./MinecraftGrid.css";
+import "./MinecraftCardGrid.css";
 interface Props {
   items: ItemsProps[];
   className?: string;

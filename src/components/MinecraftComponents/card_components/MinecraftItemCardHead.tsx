@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
-import { ItemsProps } from "../../hooks/useMinecraftHook";
-import SimilarSearchesString from "./SimilarSearchesString";
+import { ItemsProps } from "../../../hooks/useMinecraftHook";
+import SimilarSearchesString from "../SimilarSearchesString";
 
 interface Props {
   bodyBg: string;

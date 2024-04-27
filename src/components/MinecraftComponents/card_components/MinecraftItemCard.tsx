@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ItemsProps, RecipeProps } from "../../hooks/useMinecraftHook";
-import usedInImage from "../../assets/usedin3.webp";
+import { ItemsProps, RecipeProps } from "../../../hooks/useMinecraftHook";
+import usedInImage from "../../../assets/usedin3.webp";
 import {
   Box,
   Card,
@@ -19,10 +19,10 @@ import { LuBeef, LuSwords } from "react-icons/lu";
 import { GiCauldron } from "react-icons/gi";
 import { PiPlant } from "react-icons/pi";
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import categoriseItems from "./CategoriseItem";
+import categoriseItems from "../CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
-import { UseBlocksAndItemsResult } from "./CategoriseItem";
-import CraftingTableWithTitleComponent from "./CraftingTableWithTitleComponent";
+import { UseBlocksAndItemsResult } from "../CategoriseItem";
+import CraftingTableWithTitleComponent from "../crafting-components/CraftingTableWithTitleComponent";
 import MinecraftItemCardHead from "./MinecraftItemCardHead";
 
 interface Props {
@@ -165,7 +165,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     console.log((event.target as HTMLElement).id);
   };
   if (!items || !item || isLoading || isGlowColorLoading) {
-    //this will do functionality based on whether the cards are loading
     return <MinecraftSkeletonCard />;
   }
   const toggleShowRecipes = () => {

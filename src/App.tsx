@@ -2,7 +2,7 @@ import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { RecipeProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
-import MinecraftCardGrid from "./components/MinecraftComponents/MinecraftCardGrid";
+import MinecraftCardGrid from "./components/MinecraftComponents/card_components/MinecraftCardGrid";
 import CraftingRecipeComponent from "./components/MinecraftComponents/crafting-components/CraftingRecipeComponent";
 function App() {
   const {
