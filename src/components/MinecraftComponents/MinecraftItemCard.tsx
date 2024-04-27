@@ -33,6 +33,7 @@ import categoriseItems from "./CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import { UseBlocksAndItemsResult } from "./CategoriseItem";
 import CraftingRecipeComponent from "./crafting-components/CraftingRecipeComponent";
+import CraftingTableWithTitleComponent from "./CraftingTableWithTitleComponent";
 
 interface Props {
   item: ItemsProps;
@@ -326,86 +327,20 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               </Text>
             }
             {showRecipe && inRecipes && !showUsedIn && (
-              <Flex
+              <CraftingTableWithTitleComponent
+                recipes={matchingRecipes}
+                items={items}
+                title="Recipe:"
                 bg={cardColor + "50"}
-                paddingTop={4}
-                paddingBottom={2}
-                paddingLeft={2}
-                paddingRight={2}
-                borderRadius={"15px"}
-                direction={"column"}
-                className="grow-1"
-              >
-                <Text
-                  paddingLeft={matchingRecipes.length > 1 ? 5 : 0}
-                  fontFamily={"Roboto Remix"}
-                  lineHeight={0.1}
-                  fontSize={30}
-                  width={"100%"}
-                  align={"center"}
-                >
-                  Crafting Recipe:
-                </Text>
-                <Show above="lg">
-                  <Box>
-                    <CraftingRecipeComponent
-                      items={items}
-                      recipes={matchingRecipes}
-                      craftingTableCellWidthHeight={"2em"}
-                    />
-                  </Box>
-                </Show>
-                <Show below="lg">
-                  <Box>
-                    <CraftingRecipeComponent
-                      items={items}
-                      recipes={matchingRecipes}
-                      craftingTableCellWidthHeight={"1.8em"}
-                    />
-                  </Box>
-                </Show>
-              </Flex>
+              />
             )}
             {showUsedIn && inIngredients && !showRecipe && (
-              <Flex
+              <CraftingTableWithTitleComponent
+                recipes={matchingIngredients}
+                items={items}
+                title="Material for:"
                 bg={cardColor + "50"}
-                paddingTop={4}
-                paddingBottom={2}
-                paddingLeft={2}
-                paddingRight={2}
-                borderRadius={"15px"}
-                direction={"column"}
-                className="grow-1"
-              >
-                <Text
-                  paddingLeft={matchingIngredients.length > 1 ? 5 : 0}
-                  fontFamily={"Roboto Remix"}
-                  lineHeight={0.1}
-                  fontSize={30}
-                  width={"100%"}
-                  align={"center"}
-                >
-                  Material for:
-                </Text>
-                <Show above="lg">
-                  <Box>
-                    <CraftingRecipeComponent
-                      items={items}
-                      recipes={matchingIngredients}
-                      craftingTableCellWidthHeight={"2em"}
-                    />
-                  </Box>
-                </Show>
-                <Show below="lg">
-                  <Box>
-                    <CraftingRecipeComponent
-                      items={items}
-                      recipes={matchingIngredients}
-                      craftingTableCellWidthHeight={"1.8em"}
-                    />
-                  </Box>
-                </Show>
-              </Flex>
+              />
             )}
           </Flex>
 
@@ -587,7 +522,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       bg={tooltipBackground}
                       color={tooltipForeground}
                       hasArrow
-                      label="Used in"
+                      label="Material for..."
                     >
                       <Box borderRadius={3} overflow={"hidden"}>
                         <Image
