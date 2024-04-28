@@ -164,9 +164,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   ) => {
     console.log((event.target as HTMLElement).id);
   };
-  if (!items || !item || isLoading || isGlowColorLoading) {
-    return <MinecraftSkeletonCard />;
-  }
+
   const toggleShowRecipes = () => {
     setShowUsedIn(false);
     setShowRecipe(!showRecipe);
@@ -181,7 +179,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const matchingIngredients = recipes?.filter((recipe) =>
     recipe.recipe.find((ingredient) => ingredient === item.name)
   );
-
+  if (!items || !item || isLoading || isGlowColorLoading) {
+    return <MinecraftSkeletonCard />;
+  }
   return (
     <Card
       className={className}
