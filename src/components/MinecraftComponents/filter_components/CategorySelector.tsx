@@ -12,12 +12,12 @@ const CategorySelector = ({ title, options }: Props) => {
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {title}
-        <MenuList>
-          {options.map((option) => (
-            <MenuItem>{option}</MenuItem>
-          ))}
-        </MenuList>
       </MenuButton>
+      <MenuList zIndex={10}>
+        {options.map((option) => (
+          <MenuItem>{option}</MenuItem>
+        ))}
+      </MenuList>
     </Menu>
   );
 };
