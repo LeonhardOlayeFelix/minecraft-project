@@ -13,6 +13,9 @@ export interface UseBlocksAndItemsResult {
     recipes: RecipeProps[];
   }
 
+export const categories =  ["Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
+
+
 
 
 const categoriseItems = (item:ItemsProps, data: UseBlocksAndItemsResult) => {
@@ -56,5 +59,7 @@ const categoriseItems = (item:ItemsProps, data: UseBlocksAndItemsResult) => {
 
     return {inWeaponsTools, inBlocks, inPotions, inConsumable, inPlants, inValuables, inMusical, inRecipes, inIngredients, inIngredientsOrRecipes, inCategoryExcludingRecipesAndIngredients, inCategory}
 }
+
+
 
 export default categoriseItems;

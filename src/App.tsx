@@ -4,6 +4,8 @@ import useBlocksAndItems, { RecipeProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import MinecraftCardGrid from "./components/MinecraftComponents/card_components/MinecraftCardGrid";
 import CraftingRecipeComponent from "./components/MinecraftComponents/crafting-components/CraftingRecipeComponent";
+import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
+import { categories } from "./components/MinecraftComponents/CategoriseItem";
 function App() {
   const {
     items,
@@ -42,7 +44,12 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          {/* <MinecraftCardGrid className="m-3" items={items.slice(400, 420)} /> */}
+          <Flex flexDirection={"column"} gap={"20px"}>
+            <Flex>
+              <CategorySelector title="Categories" options={categories} />
+            </Flex>
+            <MinecraftCardGrid items={items.slice(400, 420)} />
+          </Flex>
         </Flex>
       </GridItem>
     </Grid>
