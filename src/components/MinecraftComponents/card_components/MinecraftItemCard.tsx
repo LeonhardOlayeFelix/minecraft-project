@@ -196,7 +196,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     >
       <MinecraftItemCardHead
         bodyBg={cardBodyBg}
-        buttonBg={buttonColor}
         iconColor={iconColor}
         textColor={textColor}
         textHoverColor={textHoverColor}

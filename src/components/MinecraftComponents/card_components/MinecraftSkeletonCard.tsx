@@ -44,15 +44,17 @@ const MinecraftSkeletonCard = () => {
         >
           <SkeletonCircle startColor={cardBodybg} endColor={iconEndColor} />
         </Flex>
-        <SkeletonText
-          noOfLines={1}
-          marginTop={8}
-          paddingRight={4}
-          startColor={textStartColor}
-          endColor={textEndColor}
-        />
+        <Flex mt={"20px"}>
+          <Skeleton
+            width={"50%"}
+            height={"20px"}
+            startColor={textStartColor}
+            endColor={textEndColor}
+            borderRadius={"6px"}
+          />
+        </Flex>
         <Box
-          borderRadius={"10px"}
+          borderRadius={"6px"}
           overflow={"hidden"}
           marginTop={8}
           width={"120px"}

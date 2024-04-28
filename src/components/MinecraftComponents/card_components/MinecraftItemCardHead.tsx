@@ -17,7 +17,6 @@ import { TiPin, TiPinOutline } from "react-icons/ti";
 
 interface Props {
   bodyBg: string;
-  buttonBg: string;
   iconColor: string;
   textColor: string;
   textHoverColor: string;
@@ -30,7 +29,6 @@ interface Props {
 
 const MinecraftItemCardHead = ({
   bodyBg,
-  buttonBg,
   iconColor,
   textColor,
   textHoverColor,
@@ -42,6 +40,7 @@ const MinecraftItemCardHead = ({
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
+
   const similarSearches = useMemo(
     () => SimilarSearchesString(itemsAsString, item.name),
     [itemsAsString, item.name]
