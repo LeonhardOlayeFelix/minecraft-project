@@ -53,11 +53,7 @@ const CraftingRecipeComponent = ({
         id="carousel-container"
       >
         <div id="crafting-outer-div">
-          <div
-            id={carouselId}
-            className={"carousel carousel-dark slide"}
-            data-bs-ride="carousel"
-          >
+          <div id={carouselId} className={"carousel carousel-dark slide"}>
             <div className="carousel-inner">
               {recipes.map((recipe, index) => (
                 <div
@@ -73,7 +69,7 @@ const CraftingRecipeComponent = ({
                     craftingTableCellWidthHeight={craftingTableCellWidthHeight}
                     display={
                       recipe.item +
-                      (recipes.length > 1 ? ": (" + index + ")" : "")
+                      (recipes.length > 1 ? ": (" + (index + 1) + ")" : "")
                     }
                   />
                 </div>

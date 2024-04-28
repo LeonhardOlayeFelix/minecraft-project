@@ -9,10 +9,11 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { ItemsProps } from "../../../hooks/useMinecraftHook";
 import SimilarSearchesString from "../SimilarSearchesString";
+import { TiPin, TiPinOutline } from "react-icons/ti";
 
 interface Props {
   bodyBg: string;
@@ -39,6 +40,7 @@ const MinecraftItemCardHead = ({
   item,
   items,
 }: Props) => {
+  const [isPinned, setIsPinned] = useState(false);
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
   const similarSearches = useMemo(
     () => SimilarSearchesString(itemsAsString, item.name),
@@ -51,58 +53,61 @@ const MinecraftItemCardHead = ({
         .slice(0, 4),
     [similarSearches, items]
   );
+  const toggleIsPinned = () => {
+    setIsPinned(!isPinned);
+  };
   return (
-    <Box h={"auto"} mb={1} pt="20px" pl="20px">
-      <Flex w="100%">
-        <Box
-          me="auto"
-          className="grow-1"
-          bg={bodyBg}
-          borderRadius="12px"
-          padding={1}
-        >
-          {item.image && (
-            <Image
-              src={item.image}
-              transition={"transform 0.3s ease-in-out"}
-              _hover={{ transform: "scale(1.1)" }}
-            />
-          )}
+    <Box h={"auto"} mb={1} mt="20px" ml="20px" mr={"20px"} marginBottom={"5px"}>
+      <Flex w="100%" alignItems={"center"}>
+        <Box me="auto" bg={bodyBg} borderRadius="12px" padding={1}>
+          {item.image && <Image src={item.image} />}
         </Box>
-        <Button
-          className="grow-1"
-          w="38px"
-          h="38px"
-          alignItems="center"
-          justifyContent="center"
-          borderRadius="12px"
-          me="13px"
-          bg={buttonBg}
-        >
-          <Icon
-            as={IoEllipsisHorizontalSharp}
-            color={iconColor}
-            w="24px"
-            h="24px"
-          />
-        </Button>
+        {isPinned && (
+          <Tooltip
+            label="Remove from pins"
+            background={tooltipBg}
+            color={tooltipFg}
+          >
+            <Box>
+              <TiPin
+                cursor={"pointer"}
+                onClick={toggleIsPinned}
+                color={iconColor}
+                size={20}
+              />
+            </Box>
+          </Tooltip>
+        )}
+        {!isPinned && (
+          <Tooltip label="Add to pins" background={tooltipBg} color={tooltipFg}>
+            <Box>
+              <TiPinOutline
+                cursor={"pointer"}
+                onClick={toggleIsPinned}
+                color={iconColor}
+                size={20}
+              />
+            </Box>
+          </Tooltip>
+        )}
       </Flex>
-      <Text
-        fontFamily="Roboto Remix"
-        fontWeight="500"
-        transition="color 0.2s"
-        color={textColor}
-        cursor={"pointer"}
-        _hover={{ color: textHoverColor }}
-        w="100%"
-        fontSize="35px"
-        onClick={() => console.log(item.name)}
-        lineHeight={"25px"}
-        mt={3}
-        paddingRight={3}
-      >
-        {item.name}
-      </Text>
+      <Flex>
+        <Text
+          fontFamily="Roboto Remix"
+          fontWeight="500"
+          transition="color 0.2s"
+          color={textColor}
+          cursor={"pointer"}
+          _hover={{ color: textHoverColor }}
+          fontSize="35px"
+          onClick={() => console.log(item.name)}
+          lineHeight={"25px"}
+          mt={3}
+          paddingRight={3}
+        >
+          {item.name}
+        </Text>
+      </Flex>
       <Flex justifyContent="left">
         <AvatarGroup size="sm" max={4} fontSize="9px" fontWeight="700">
           {matches.map((match, index) => (
@@ -118,7 +123,7 @@ const MinecraftItemCardHead = ({
                 boxSize={8}
                 onClick={() => console.log(match?.name)}
                 cursor="pointer"
-                border="white"
+                transition="background-color 0.2s"
                 src={match?.image}
                 _hover={{
                   bg: avatarHoverBg,

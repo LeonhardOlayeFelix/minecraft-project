@@ -187,10 +187,10 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
       className={className}
       borderRadius="20px"
       bg={cardColor}
-      boxShadow={`0 0 20px 3px ${glowColor}`}
+      boxShadow={!isGlowColorLoading ? `0 0 0.5em 0.001em ${glowColor}` : ""}
       overflow="hidden"
-      // transition="transform 0.2s"
-      // _hover={{ transform: "scale(1.02)" }}
+      transition="transform 0.2s"
+      _hover={{ transform: "scale(1.02)" }}
       w={{ base: "260px", md: "280px" }}
       minH="auto"
     >
@@ -244,7 +244,11 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               <CraftingTableWithTitleComponent
                 recipes={matchingRecipes}
                 items={items}
-                title="Recipe:"
+                title={
+                  matchingRecipes.length === 1
+                    ? "Recipe:"
+                    : "Recipes (" + matchingRecipes.length + "):"
+                }
                 bg={cardColor + "50"}
                 className="grow-1"
               />
@@ -298,7 +302,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Tools & Weapons"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -318,7 +321,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Blocks"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -338,7 +340,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Potions & Effects"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -358,7 +359,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Consumable"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -378,7 +378,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Plants"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -398,7 +397,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Valuables"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -418,7 +416,6 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                               id="Musical"
                               cursor={"pointer"}
                               onClick={handleTooltipClicked}
-                              className="grow-1"
                               size={20}
                             />
                           </div>
@@ -459,14 +456,14 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       hasArrow
                       label="Show recipe"
                     >
-                      <div>
+                      <Box>
                         <Image
                           boxSize={6}
                           cursor={"pointer"}
                           src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
                           onClick={() => toggleShowRecipes()}
                         ></Image>
-                      </div>
+                      </Box>
                     </Tooltip>
                   </>
                 )}

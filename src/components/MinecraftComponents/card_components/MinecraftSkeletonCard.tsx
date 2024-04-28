@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
+import { TiPinOutline } from "react-icons/ti";
 
 const MinecraftSkeletonCard = () => {
   const cardBodybg = useColorModeValue("gray", "#202020");
@@ -36,27 +37,12 @@ const MinecraftSkeletonCard = () => {
         <Flex
           w="100%"
           justifyContent={"space-between"}
+          alignItems={"center"}
           paddingRight={3}
           marginBottom={2}
           marginTop={1}
         >
           <SkeletonCircle startColor={cardBodybg} endColor={iconEndColor} />
-          <Button
-            className="grow-1"
-            w="38px"
-            h="38px"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius="12px"
-            bg={buttonColor}
-          >
-            <Icon
-              as={IoEllipsisHorizontalSharp}
-              color={iconColor}
-              w="24px"
-              h="24px"
-            />
-          </Button>
         </Flex>
         <SkeletonText
           noOfLines={1}
