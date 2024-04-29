@@ -9,7 +9,7 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { ItemsProps } from "../../../hooks/useMinecraftHook";
 import SimilarSearchesString from "../SimilarSearchesString";
@@ -39,6 +39,7 @@ const MinecraftItemCardHead = ({
   items,
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
+
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
 
   const similarSearches = useMemo(
@@ -54,7 +55,15 @@ const MinecraftItemCardHead = ({
   );
   const toggleIsPinned = () => {
     setIsPinned(!isPinned);
+    window.localStorage.setItem(
+      item.name + "pinned",
+      JSON.stringify(!isPinned)
+    );
   };
+  useEffect(() => {
+    const localStoragePin = window.localStorage.getItem(item.name + "pinned");
+    if (localStoragePin) setIsPinned(JSON.parse(localStoragePin));
+  }, []);
   return (
     <Box h={"auto"} mb={1} mt="20px" ml="20px" mr={"20px"} marginBottom={"5px"}>
       <Flex w="100%" alignItems={"center"}>

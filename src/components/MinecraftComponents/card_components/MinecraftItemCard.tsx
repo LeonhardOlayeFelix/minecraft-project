@@ -84,6 +84,20 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     };
     fetchMiddlePixelColor();
   }, [item.image]);
+
+  useEffect(() => {
+    const localStorageUsedInShowing = window.localStorage.getItem(
+      item.name + "usedInShowing"
+    );
+    const localStorageRecipeShowing = window.localStorage.getItem(
+      item.name + "recipeShowing"
+    );
+    if (localStorageUsedInShowing)
+      setShowUsedIn(JSON.parse(localStorageUsedInShowing));
+    if (localStorageRecipeShowing)
+      setShowRecipe(JSON.parse(localStorageRecipeShowing));
+  }, []);
+
   const shortenString = (value: string, length: number) => {
     if (value.length <= length)
       return { sentenceToReturn: value, overflow: false };
@@ -168,10 +182,26 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const toggleShowRecipes = () => {
     setShowUsedIn(false);
     setShowRecipe(!showRecipe);
+    window.localStorage.setItem(
+      item.name + "recipeShowing",
+      JSON.stringify(!showRecipe)
+    );
+    window.localStorage.setItem(
+      item.name + "usedInShowing",
+      JSON.stringify(false)
+    );
   };
   const toggleShowUsedIn = () => {
     setShowRecipe(false);
     setShowUsedIn(!showUsedIn);
+    window.localStorage.setItem(
+      item.name + "usedInShowing",
+      JSON.stringify(!showUsedIn)
+    );
+    window.localStorage.setItem(
+      item.name + "recipeShowing",
+      JSON.stringify(false)
+    );
   };
   const matchingRecipes = recipes.filter(
     (recipe) => recipe.item === item.name

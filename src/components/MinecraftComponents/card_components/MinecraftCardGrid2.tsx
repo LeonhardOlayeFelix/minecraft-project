@@ -11,7 +11,7 @@ interface Props {
 const MinecraftCardGrid2 = ({ items, className }: Props) => {
   const data = useMinecraftHook();
   return (
-    <SimpleGrid columns={4} spacing={10}>
+    <SimpleGrid columns={{ lg: 4, md: 3, sm: 1 }} spacing={5}>
       {items.map((item) => (
         <MinecraftItemCard item={item} data={data}></MinecraftItemCard>
       ))}

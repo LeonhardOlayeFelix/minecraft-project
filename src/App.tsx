@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { RecipeProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
@@ -46,13 +46,13 @@ function App() {
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"20px"}>
-            <Flex>
+            <Box>
               <CategorySelector title="Categories" options={categories} />
-            </Flex>
+            </Box>
             {/* <MinecraftCardGrid items={items.slice(400, 420)} /> */}
-            <MinecraftCardGrid2
-              items={items.slice(400, 420)}
-            ></MinecraftCardGrid2>
+            <MinecraftCardGrid
+              items={items.slice(400, 412)}
+            ></MinecraftCardGrid>
           </Flex>
         </Flex>
       </GridItem>
