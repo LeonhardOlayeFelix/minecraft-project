@@ -51,7 +51,7 @@ function App() {
             </Box>
             {/* <MinecraftCardGrid items={items.slice(400, 420)} /> */}
             <MinecraftCardGrid
-              items={items.slice(400, 412)}
+              items={items.slice(400, 430)}
             ></MinecraftCardGrid>
           </Flex>
         </Flex>

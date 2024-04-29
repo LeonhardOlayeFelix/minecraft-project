@@ -92,10 +92,15 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     const localStorageRecipeShowing = window.localStorage.getItem(
       item.name + "recipeShowing"
     );
+    const localStorageCategoryShowing = window.localStorage.getItem(
+      item.name + "categoryShowing"
+    );
     if (localStorageUsedInShowing)
       setShowUsedIn(JSON.parse(localStorageUsedInShowing));
     if (localStorageRecipeShowing)
       setShowRecipe(JSON.parse(localStorageRecipeShowing));
+    if (localStorageCategoryShowing)
+      setShowCategories(JSON.parse(localStorageCategoryShowing));
   }, []);
 
   const shortenString = (value: string, length: number) => {
@@ -172,6 +177,10 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const toggleDescription = () => setIsExpanded(!isExpanded);
   const toggleShowCategories = () => {
     setShowCategories(!showCategories);
+    window.localStorage.setItem(
+      item.name + "categoryShowing",
+      JSON.stringify(!showCategories)
+    );
   };
   const handleTooltipClicked = (
     event: React.MouseEvent<SVGElement, MouseEvent>
