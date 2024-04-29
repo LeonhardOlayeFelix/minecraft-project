@@ -7,6 +7,7 @@ import CraftingRecipeComponent from "./components/MinecraftComponents/crafting-c
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
 import { categories } from "./components/MinecraftComponents/CategoriseItem";
 import MinecraftCardGrid2 from "./components/MinecraftComponents/card_components/MinecraftCardGrid2";
+import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 function App() {
   const {
     items,
@@ -50,9 +51,12 @@ function App() {
               <CategorySelector title="Categories" options={categories} />
             </Box>
             {/* <MinecraftCardGrid items={items.slice(400, 420)} /> */}
-            <MinecraftCardGrid
-              items={items.slice(400, 430)}
-            ></MinecraftCardGrid>
+            {/* <MinecraftCardGrid
+              items={items.slice(400, 460)}
+            ></MinecraftCardGrid> */}
+            <MinecraftCardGrid3
+              items={items.slice(400, 420)}
+            ></MinecraftCardGrid3>
           </Flex>
         </Flex>
       </GridItem>

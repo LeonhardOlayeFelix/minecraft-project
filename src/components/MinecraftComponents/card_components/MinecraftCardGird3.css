@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 1200px;
+}
+.container .box{
+    width: 100%;
+    margin-bottom: 15px;
+}
+@media (min-width: 1500px) {
+    .container {
+        column-count: 4;
+    }
+}
+
+/* Medium screens */
+@media (max-width: 1499px) and (min-width: 768px) {
+    .container {
+        column-count: 3;
+    }
+}
+
+/* Small screens */
+@media (max-width: 1200px) and (min-width: 480px) {
+    .container {
+        column-count: 2;
+    }
+}
+
+/* Smallest screens */
+@media (max-width: 770px) {
+    .container {
+        column-count: 1;
+    }
+}
+
+/* const breakpointColumnsObj = {
+    default: 4,
+    1300: 3,
+    950: 2,
+    600: 1,
+  }; */
