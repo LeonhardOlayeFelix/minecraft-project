@@ -5,7 +5,7 @@
 }
 
 .container{
-    width: 1200px;
+    min-height: calc(100% + 300px);
 }
 .container .box{
     width: 100%;
@@ -38,9 +38,3 @@
     }
 }
 
-/* const breakpointColumnsObj = {
-    default: 4,
-    1300: 3,
-    950: 2,
-    600: 1,
-  }; */

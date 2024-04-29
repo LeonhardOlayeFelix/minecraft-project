@@ -36,8 +36,8 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const [showCategories, setShowCategories] = useState(false);
   const [glowColor, setGlowColor] = useState("");
   const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
-  const [showRecipe, setShowRecipe] = useState(false);
-  const [showUsedIn, setShowUsedIn] = useState(false);
+  // const [showRecipe, setShowRecipe] = useState(false);
+  // const [showUsedIn, setShowUsedIn] = useState(false);
   const avatarHover = useColorModeValue("gray", "#20202050");
   const cardBodyBg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -95,10 +95,10 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     const localStorageCategoryShowing = window.localStorage.getItem(
       item.name + "categoryShowing"
     );
-    if (localStorageUsedInShowing)
-      setShowUsedIn(JSON.parse(localStorageUsedInShowing));
-    if (localStorageRecipeShowing)
-      setShowRecipe(JSON.parse(localStorageRecipeShowing));
+    // if (localStorageUsedInShowing)
+    //   setShowUsedIn(JSON.parse(localStorageUsedInShowing));
+    // if (localStorageRecipeShowing)
+    //   setShowRecipe(JSON.parse(localStorageRecipeShowing));
     if (localStorageCategoryShowing)
       setShowCategories(JSON.parse(localStorageCategoryShowing));
   }, []);
@@ -188,30 +188,30 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
     console.log((event.target as HTMLElement).id);
   };
 
-  const toggleShowRecipes = () => {
-    setShowUsedIn(false);
-    setShowRecipe(!showRecipe);
-    window.localStorage.setItem(
-      item.name + "recipeShowing",
-      JSON.stringify(!showRecipe)
-    );
-    window.localStorage.setItem(
-      item.name + "usedInShowing",
-      JSON.stringify(false)
-    );
-  };
-  const toggleShowUsedIn = () => {
-    setShowRecipe(false);
-    setShowUsedIn(!showUsedIn);
-    window.localStorage.setItem(
-      item.name + "usedInShowing",
-      JSON.stringify(!showUsedIn)
-    );
-    window.localStorage.setItem(
-      item.name + "recipeShowing",
-      JSON.stringify(false)
-    );
-  };
+  // const toggleShowRecipes = () => {
+  //   setShowUsedIn(false);
+  //   setShowRecipe(!showRecipe);
+  //   window.localStorage.setItem(
+  //     item.name + "recipeShowing",
+  //     JSON.stringify(!showRecipe)
+  //   );
+  //   window.localStorage.setItem(
+  //     item.name + "usedInShowing",
+  //     JSON.stringify(false)
+  //   );
+  // };
+  // const toggleShowUsedIn = () => {
+  //   setShowRecipe(false);
+  //   setShowUsedIn(!showUsedIn);
+  //   window.localStorage.setItem(
+  //     item.name + "usedInShowing",
+  //     JSON.stringify(!showUsedIn)
+  //   );
+  //   window.localStorage.setItem(
+  //     item.name + "recipeShowing",
+  //     JSON.stringify(false)
+  //   );
+  // };
   const matchingRecipes = recipes.filter(
     (recipe) => recipe.item === item.name
   ) as RecipeProps[];
@@ -278,7 +278,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 )}
               </Text>
             }
-            {showRecipe && inRecipes && !showUsedIn && (
+            {/* {showRecipe && inRecipes && !showUsedIn && (
               <CraftingTableWithTitleComponent
                 recipes={matchingRecipes}
                 items={items}
@@ -299,7 +299,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                 bg={cardColor + "50"}
                 className="grow-1"
               />
-            )}
+            )} */}
           </Flex>
 
           <Flex justifyContent="space-between">
@@ -480,7 +480,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                           boxSize={5}
                           cursor={"pointer"}
                           src={usedInImage}
-                          onClick={() => toggleShowUsedIn()}
+                          onClick={(event) =>
+                            console.log("show ingredients for " + item.name)
+                          }
                         ></Image>
                       </Box>
                     </Tooltip>
@@ -499,7 +501,9 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                           boxSize={6}
                           cursor={"pointer"}
                           src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
-                          onClick={() => toggleShowRecipes()}
+                          onClick={(event) =>
+                            console.log("show recipe for " + item.name)
+                          }
                         ></Image>
                       </Box>
                     </Tooltip>

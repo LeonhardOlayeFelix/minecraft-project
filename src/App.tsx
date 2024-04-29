@@ -55,7 +55,7 @@ function App() {
               items={items.slice(400, 460)}
             ></MinecraftCardGrid> */}
             <MinecraftCardGrid3
-              items={items.slice(400, 420)}
+              items={items.slice(400, 430)}
             ></MinecraftCardGrid3>
           </Flex>
         </Flex>

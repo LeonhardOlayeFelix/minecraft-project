@@ -11,7 +11,7 @@ interface Props {
 const MinecraftCardGrid3 = ({ items, className }: Props) => {
   const data = useMinecraftHook();
   return (
-    <div className="container">
+    <div className={`container ${className || ""}`}>
       {items.map((item) => (
         <div className="box">
           <MinecraftItemCard item={item} data={data}></MinecraftItemCard>
