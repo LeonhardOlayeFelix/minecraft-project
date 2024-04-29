@@ -212,12 +212,12 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   //     JSON.stringify(false)
   //   );
   // };
-  const matchingRecipes = recipes.filter(
-    (recipe) => recipe.item === item.name
-  ) as RecipeProps[];
-  const matchingIngredients = recipes?.filter((recipe) =>
-    recipe.recipe.find((ingredient) => ingredient === item.name)
-  );
+  // const matchingRecipes = recipes.filter(
+  //   (recipe) => recipe.item === item.name
+  // ) as RecipeProps[];
+  // const matchingIngredients = recipes?.filter((recipe) =>
+  //   recipe.recipe.find((ingredient) => ingredient === item.name)
+  // );
   if (!items || !item || isLoading || isGlowColorLoading) {
     return <MinecraftSkeletonCard />;
   }

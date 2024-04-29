@@ -1,21 +1,24 @@
 import { Menu, MenuButton, Button, MenuItem, MenuList } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
-  title: string;
   options: string[];
 }
 
-const CategorySelector = ({ title, options }: Props) => {
+const CategorySelector = ({ options }: Props) => {
+  const [currentCategory, setCurrentCategory] = useState("All");
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {title}
+        {"Category: " + currentCategory}
       </MenuButton>
       <MenuList zIndex={10}>
+        <MenuItem onClick={() => setCurrentCategory("All")}>All</MenuItem>
         {options.map((option) => (
-          <MenuItem>{option}</MenuItem>
+          <MenuItem onClick={() => setCurrentCategory(option)}>
+            {option}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>
