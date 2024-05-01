@@ -1,6 +1,12 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Spinner,
+} from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import debounce from "lodash/debounce";
 
 interface Props {
@@ -8,12 +14,15 @@ interface Props {
 }
 
 const SearchInput = ({ onInputChanged }: Props) => {
+  const [searchIsLoading, setSearchIsLoading] = useState(false);
+
   const handleOnChanged = useCallback(
     debounce((input: string) => {
+      setSearchIsLoading(false);
       if (onInputChanged) {
         onInputChanged(input.trim());
       }
-    }, 1000),
+    }, 800),
     []
   );
 
@@ -24,8 +33,12 @@ const SearchInput = ({ onInputChanged }: Props) => {
         borderRadius={20}
         placeholder="Search Items..."
         variant={"filled"}
-        onChange={(event) => handleOnChanged(event.target.value)}
+        onChange={(event) => {
+          setSearchIsLoading(true);
+          handleOnChanged(event.target.value);
+        }}
       />
+      <InputRightElement>{searchIsLoading && <Spinner />}</InputRightElement>
     </InputGroup>
   );
 };
