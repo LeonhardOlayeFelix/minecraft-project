@@ -1,10 +1,10 @@
 import Fuse from "fuse.js";
 
-const SimilarSearchesString = (items:string[], item:string ) => {
+const SimilarSearchesString = (items:string[], item:string, threshold: number ) => {
     const fuse = new Fuse(items, {
         includeScore: true,
         findAllMatches: true,
-        threshold: 0.5
+        threshold: threshold
     });
     const result = fuse.search(item);
     const matches = result

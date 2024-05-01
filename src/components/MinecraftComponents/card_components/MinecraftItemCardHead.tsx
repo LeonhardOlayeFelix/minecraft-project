@@ -43,7 +43,7 @@ const MinecraftItemCardHead = ({
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
 
   const similarSearches = useMemo(
-    () => SimilarSearchesString(itemsAsString, item.name),
+    () => SimilarSearchesString(itemsAsString, item.name, 0.5),
     [itemsAsString, item.name]
   );
   const matches = useMemo(

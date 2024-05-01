@@ -7,9 +7,9 @@ interface Props {
 
 const SearchInput = ({ onInputchanged }: Props) => {
   const handleOnChanged = (input: string) => {
-    console.log(input);
+    console.log(input.trim());
     if (onInputchanged) {
-      onInputchanged(input);
+      onInputchanged(input.trim());
     }
   };
   return (

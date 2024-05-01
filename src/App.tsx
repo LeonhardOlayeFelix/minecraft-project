@@ -11,11 +11,31 @@ import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
 import { wrap } from "framer-motion";
+import SimilarSearchesString from "./components/MinecraftComponents/SimilarSearchesString";
 
 function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
+  const [currentSearch, setCurrentSearch] = useState("");
+
   let filteredData = getItemsInCategory(currentCategory, data);
+
+  if (currentSearch.trim() != "") {
+    const itemsAsString = filteredData.map((item) => item.name);
+    const similarSearches = SimilarSearchesString(
+      itemsAsString,
+      currentSearch,
+      0.3
+    );
+
+    filteredData = filteredData.filter((item) => {
+      return (
+        similarSearches.find((similarSearch) => similarSearch == item.name) !=
+        undefined
+      );
+    });
+    console.log(filteredData);
+  }
 
   return (
     <Grid
@@ -27,7 +47,7 @@ function App() {
       <GridItem area={"nav"}>
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area={"main"}>
+      <GridItem marginTop={100} area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"20px"}>
             <Flex
@@ -46,7 +66,9 @@ function App() {
               gap={"10px"}
             >
               <Box width={"100%"}>
-                <SearchInput></SearchInput>
+                <SearchInput
+                  onInputchanged={(input) => setCurrentSearch(input)}
+                ></SearchInput>
               </Box>
               <Box>
                 <CategorySelector
@@ -57,7 +79,7 @@ function App() {
             </Flex>
             <Flex justifyContent={"center"}>
               <MinecraftCardGrid3
-                items={filteredData.slice(0, 50)}
+                items={filteredData.slice(0, 12)}
               ></MinecraftCardGrid3>
             </Flex>
           </Flex>
