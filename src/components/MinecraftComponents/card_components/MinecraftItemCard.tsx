@@ -258,7 +258,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           >
             {
               <Text
-                fontSize="2xl"
+                fontSize="25px"
                 color={textColor}
                 lineHeight={"15px"}
                 fontFamily="Roboto Remix"
@@ -266,8 +266,8 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
               >
                 {isExpanded
                   ? item.description
-                  : shortenString(item.description, 114).sentenceToReturn}
-                {item.description.length > 114 && (
+                  : shortenString(item.description, 100).sentenceToReturn}
+                {item.description.length > 100 && (
                   <Icon
                     cursor={"pointer"}
                     as={isExpanded ? MdExpandLess : MdExpandMore}

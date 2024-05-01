@@ -103,13 +103,16 @@ const MinecraftItemCardHead = ({
         <Text
           fontFamily="Roboto Remix"
           fontWeight="500"
-          transition="color 0.2s"
           color={textColor}
-          cursor={"pointer"}
-          _hover={{ color: textHoverColor }}
+          cursor="pointer"
+          transition="color 0.2s, text-decoration 0.2s"
+          _hover={{
+            color: textHoverColor,
+            textDecoration: "underline",
+          }}
           fontSize="35px"
           onClick={() => console.log(item.name)}
-          lineHeight={"25px"}
+          lineHeight="25px"
           mt={3}
           paddingRight={3}
         >

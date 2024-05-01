@@ -7,7 +7,14 @@ const ContactUsComponent = () => {
   return (
     <div>
       <Show above="768px">
-        <Button leftIcon={<EmailIcon />} variant="ghost">
+        <Button
+          transition="color 0.2s, text-decoration 0.2s"
+          _hover={{
+            textDecoration: "underline",
+          }}
+          leftIcon={<EmailIcon />}
+          variant="ghost"
+        >
           Contact Us
         </Button>
       </Show>

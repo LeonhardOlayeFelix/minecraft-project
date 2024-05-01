@@ -14,6 +14,10 @@ const ColorModeSwitch = () => {
     <Box onClick={toggleColorMode}>
       <Show above="768px">
         <Button
+          transition="color 0.2s, text-decoration 0.2s"
+          _hover={{
+            textDecoration: "underline",
+          }}
           flex="1"
           variant="ghost"
           leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
