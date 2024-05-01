@@ -473,7 +473,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       bg={tooltipBackground}
                       color={tooltipForeground}
                       hasArrow
-                      label="Material for..."
+                      label="Crafting Ingredient"
                     >
                       <Box borderRadius={3} overflow={"hidden"}>
                         <Image
@@ -494,14 +494,14 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
                       bg={tooltipBackground}
                       color={tooltipForeground}
                       hasArrow
-                      label="Show recipe"
+                      label="Crafting Recipe"
                     >
                       <Box>
                         <Image
                           boxSize={6}
                           cursor={"pointer"}
                           src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
-                          onClick={(event) =>
+                          onClick={() =>
                             console.log("show recipe for " + item.name)
                           }
                         ></Image>

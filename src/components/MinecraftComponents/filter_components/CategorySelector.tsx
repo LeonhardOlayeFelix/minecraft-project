@@ -4,19 +4,25 @@ import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
   options: string[];
+  onCategoryChanged: (value: string) => void;
 }
 
-const CategorySelector = ({ options }: Props) => {
+const CategorySelector = ({ options, onCategoryChanged }: Props) => {
   const [currentCategory, setCurrentCategory] = useState("All");
+
+  const handleCategoryChanged = (value: string) => {
+    setCurrentCategory(value);
+    onCategoryChanged(value);
+  };
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {"Category: " + currentCategory}
       </MenuButton>
       <MenuList zIndex={10}>
-        <MenuItem onClick={() => setCurrentCategory("All")}>All</MenuItem>
-        {options.map((option) => (
-          <MenuItem onClick={() => setCurrentCategory(option)}>
+        {options.map((option, index) => (
+          <MenuItem key={index} onClick={() => handleCategoryChanged(option)}>
             {option}
           </MenuItem>
         ))}

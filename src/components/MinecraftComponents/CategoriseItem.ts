@@ -11,12 +11,18 @@ export interface UseBlocksAndItemsResult {
     valuables: ItemsProps[]| undefined;
     musicDiscs: ItemsProps[]| undefined;
     recipes: RecipeProps[];
+    ingredients: ItemsProps[] | undefined;
   }
 
-export const categories =  ["Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
+export const categories =  ["Any","Weapons & Tools", "Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
 
 
-
+/**
+ * 
+ * @param item items to compare against each category
+ * @param data list of items 
+ * @returns a set of a lists which are either undefined, or contain that item depending on whether its in that category
+ */
 
 const categoriseItems = (item:ItemsProps, data: UseBlocksAndItemsResult) => {
     

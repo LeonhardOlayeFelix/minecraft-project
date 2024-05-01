@@ -5,7 +5,7 @@
 }
 
 .container{
-    min-height: calc(100% + 300px);
+    min-height: calc(100% + 30px);
 }
 .container .box{
     width: 100%;
