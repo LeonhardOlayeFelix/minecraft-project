@@ -1,5 +1,5 @@
 import { Menu, MenuButton, Button, MenuItem, MenuList } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
@@ -9,10 +9,19 @@ interface Props {
 
 const CategorySelector = ({ options, onCategoryChanged }: Props) => {
   const [currentCategory, setCurrentCategory] = useState("All");
+  useEffect(() => {
+    const localStorageCategoryShowing =
+      window.localStorage.getItem("currentCategory");
+    if (localStorageCategoryShowing) {
+      setCurrentCategory(JSON.parse(localStorageCategoryShowing));
+      onCategoryChanged(JSON.parse(localStorageCategoryShowing));
+    }
+  }, []);
 
   const handleCategoryChanged = (value: string) => {
     setCurrentCategory(value);
     onCategoryChanged(value);
+    window.localStorage.setItem("currentCategory", JSON.stringify(value));
   };
 
   return (
