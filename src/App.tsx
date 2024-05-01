@@ -67,7 +67,7 @@ function App() {
             >
               <Box width={"100%"}>
                 <SearchInput
-                  onInputchanged={(input) => setCurrentSearch(input)}
+                  onInputChanged={(search) => setCurrentSearch(search)}
                 ></SearchInput>
               </Box>
               <Box>

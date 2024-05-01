@@ -1,17 +1,22 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
+import { useCallback } from "react";
+import debounce from "lodash/debounce";
 
 interface Props {
-  onInputchanged?: (input: string) => void;
+  onInputChanged?: (input: string) => void;
 }
 
-const SearchInput = ({ onInputchanged }: Props) => {
-  const handleOnChanged = (input: string) => {
-    console.log(input.trim());
-    if (onInputchanged) {
-      onInputchanged(input.trim());
-    }
-  };
+const SearchInput = ({ onInputChanged }: Props) => {
+  const handleOnChanged = useCallback(
+    debounce((input: string) => {
+      if (onInputChanged) {
+        onInputChanged(input.trim());
+      }
+    }, 1000),
+    []
+  );
+
   return (
     <InputGroup>
       <InputLeftElement children={<BsSearch />} />
