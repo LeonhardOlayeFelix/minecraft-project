@@ -9,6 +9,8 @@ import categoriseItems, {
 import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
+import SearchInput from "./components/home_page_components/NavBar/SearchInput";
+import { wrap } from "framer-motion";
 
 function App() {
   const data = useBlocksAndItems();
@@ -22,11 +24,12 @@ function App() {
         lg: ` "nav" "main" "footer"`,
       }}
     >
-      <GridItem area={"nav"}></GridItem>
+      <GridItem area={"nav"}>
+        <NavBar></NavBar>
+      </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"20px"}>
-            <NavBar></NavBar>
             <Flex
               justifyContent={{
                 base: "center",
@@ -34,12 +37,23 @@ function App() {
                 md: "left",
                 lg: "left",
               }}
-              marginLeft={3}
+              wrap={{
+                base: "wrap",
+                sm: "wrap",
+                md: "nowrap",
+                lg: "nowrap",
+              }}
+              gap={"10px"}
             >
-              <CategorySelector
-                onCategoryChanged={(value) => setCurrentCategory(value)}
-                options={categories}
-              />
+              <Box width={"100%"}>
+                <SearchInput></SearchInput>
+              </Box>
+              <Box>
+                <CategorySelector
+                  onCategoryChanged={(value) => setCurrentCategory(value)}
+                  options={categories}
+                />
+              </Box>
             </Flex>
             <Flex justifyContent={"center"}>
               <MinecraftCardGrid3

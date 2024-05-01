@@ -11,7 +11,6 @@ const NavBar = ({ className }: Props) => {
   return (
     <HStack className={className} justifyContent={"space-between"}>
       <Image src={logo} boxSize={"60px"} />
-      <SearchInput />
       <RightSideOfBarComponent></RightSideOfBarComponent>
     </HStack>
   );
