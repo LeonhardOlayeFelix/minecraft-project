@@ -1,4 +1,11 @@
-import { Menu, MenuButton, Button, MenuItem, MenuList } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  Button,
+  MenuItem,
+  MenuList,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
@@ -9,6 +16,8 @@ interface Props {
 
 const CategorySelector = ({ options, onCategoryChanged }: Props) => {
   const [currentCategory, setCurrentCategory] = useState("All");
+  const textHoverColor = useColorModeValue("#797979", "#797979");
+
   useEffect(() => {
     const localStorageCategoryShowing =
       window.localStorage.getItem("currentCategory");
@@ -26,7 +35,14 @@ const CategorySelector = ({ options, onCategoryChanged }: Props) => {
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+      <MenuButton
+        transition="color 0.2s"
+        _hover={{
+          color: textHoverColor,
+        }}
+        as={Button}
+        rightIcon={<BsChevronDown />}
+      >
         {"Category: " + currentCategory}
       </MenuButton>
       <MenuList zIndex={10}>

@@ -65,7 +65,7 @@ function App() {
               }}
               gap={"10px"}
             >
-              <Box width={"100%"}>
+              <Box width={"90%"}>
                 <SearchInput
                   onInputChanged={(search) => setCurrentSearch(search)}
                 ></SearchInput>
