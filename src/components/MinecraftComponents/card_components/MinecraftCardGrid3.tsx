@@ -12,8 +12,8 @@ const MinecraftCardGrid3 = ({ items, className }: Props) => {
   const data = useMinecraftHook();
   return (
     <div className={`container ${className || ""}`}>
-      {items.map((item) => (
-        <div className="box">
+      {items.map((item, index) => (
+        <div key={index} className="box">
           <MinecraftItemCard item={item} data={data}></MinecraftItemCard>
         </div>
       ))}

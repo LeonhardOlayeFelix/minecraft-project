@@ -12,7 +12,7 @@ import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCateg
 
 function App() {
   const data = useBlocksAndItems();
-  const [currentCategory, setCurrentCategory] = useState("All");
+  const [currentCategory, setCurrentCategory] = useState("Any");
   let filteredData = getItemsInCategory(currentCategory, data);
 
   return (
@@ -35,7 +35,8 @@ function App() {
               />
             </Box>
             <MinecraftCardGrid3
-              items={filteredData.slice(0, 30)}
+              className="border"
+              items={filteredData.slice(0, 50)}
             ></MinecraftCardGrid3>
           </Flex>
         </Flex>

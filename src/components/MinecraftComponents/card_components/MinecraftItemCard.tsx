@@ -138,7 +138,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
           ctx.drawImage(img, 0, 0);
           const middleX = Math.floor(img.width / 2);
           const middleY = Math.floor(img.height / 2);
-          const radius = 5;
+          const radius = 10;
           let totalRed = 0;
           let totalGreen = 0;
           let totalBlue = 0;
