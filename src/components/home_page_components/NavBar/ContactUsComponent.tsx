@@ -6,12 +6,12 @@ const ContactUsComponent = () => {
 
   return (
     <div>
-      <Show above="md">
+      <Show above="768px">
         <Button leftIcon={<EmailIcon />} variant="ghost">
           Contact Us
         </Button>
       </Show>
-      <Show below="md">
+      <Show below="767px">
         <Box
           p="1"
           transition="background-color 0.3s"

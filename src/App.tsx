@@ -22,22 +22,30 @@ function App() {
         lg: ` "nav" "main" "footer"`,
       }}
     >
-      <GridItem area={"nav"}>
-        <NavBar></NavBar>
-      </GridItem>
+      <GridItem area={"nav"}></GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"20px"}>
-            <Box>
+            <NavBar></NavBar>
+            <Flex
+              justifyContent={{
+                base: "center",
+                sm: "center",
+                md: "left",
+                lg: "left",
+              }}
+              marginLeft={3}
+            >
               <CategorySelector
                 onCategoryChanged={(value) => setCurrentCategory(value)}
                 options={categories}
               />
-            </Box>
-            <MinecraftCardGrid3
-              className="border"
-              items={filteredData.slice(0, 50)}
-            ></MinecraftCardGrid3>
+            </Flex>
+            <Flex justifyContent={"center"}>
+              <MinecraftCardGrid3
+                items={filteredData.slice(0, 50)}
+              ></MinecraftCardGrid3>
+            </Flex>
           </Flex>
         </Flex>
       </GridItem>

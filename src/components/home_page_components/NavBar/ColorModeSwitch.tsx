@@ -12,7 +12,7 @@ const ColorModeSwitch = () => {
   const hoverBg = useColorModeValue("gray.100", "gray.600");
   return (
     <Box onClick={toggleColorMode}>
-      <Show above="md">
+      <Show above="768px">
         <Button
           flex="1"
           variant="ghost"
@@ -21,7 +21,7 @@ const ColorModeSwitch = () => {
           {(colorMode === "dark" ? "Dark" : "Light") + " Mode"}
         </Button>
       </Show>
-      <Show below="md">
+      <Show below="767px">
         <Box
           p="1"
           transition="background-color 0.3s"

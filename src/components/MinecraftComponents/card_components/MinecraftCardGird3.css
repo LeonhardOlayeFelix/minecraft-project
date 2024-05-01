@@ -4,14 +4,11 @@
     box-sizing: border-box;
 }
 .container{
-    
     min-height: calc(100% + 30px);
 }
 .container .box{
-    width: 100%;
     margin-bottom: 15px;
 }
-
 @media (min-width: 1500px) {
     .container {
         column-count: 4;
@@ -26,14 +23,14 @@
 }
 
 /* Small screens */
-@media (max-width: 1200px) and (min-width: 480px) {
+@media (max-width: 1200px) and (min-width: 768px) {
     .container {
         column-count: 2;
     }
 }
 
 /* Smallest screens */
-@media (max-width: 770px) {
+@media (max-width: 767px) {
     .container {
         column-count: 1;
     }
