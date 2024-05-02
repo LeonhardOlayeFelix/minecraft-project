@@ -41,7 +41,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
   const avatarHover = useColorModeValue("gray", "#20202050");
   const cardBodyBg = useColorModeValue("gray", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
-  const cardColor = useColorModeValue("white !important", "#111111");
+  const cardColor = useColorModeValue("white !important", "#0D0E0E");
   const iconColor = useColorModeValue("brand.200", "white");
   const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");

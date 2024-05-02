@@ -26,7 +26,7 @@ function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
-  const cardColor = useColorModeValue("white !important", "#111111");
+  const cardColor = useColorModeValue("white !important", "#0D0E0E");
 
   let filteredData = getItemsInCategory(currentCategory, data);
 

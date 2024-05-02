@@ -12,7 +12,7 @@ const ColorModeSwitch = () => {
   const hoverBg = useColorModeValue("gray.100", "gray.600");
   return (
     <Box onClick={toggleColorMode}>
-      <Show above="768px">
+      {/* <Show above="768px">
         <Button
           transition="color 0.2s, text-decoration 0.2s"
           _hover={{
@@ -40,7 +40,18 @@ const ColorModeSwitch = () => {
             <SunIcon boxSize="1.3em" onClick={toggleColorMode} />
           )}
         </Box>
-      </Show>
+      </Show> */}
+      <Button
+        transition="color 0.2s, text-decoration 0.2s"
+        _hover={{
+          textDecoration: "underline",
+        }}
+        flex="1"
+        variant="ghost"
+        leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
+      >
+        {(colorMode === "dark" ? "Dark" : "Light") + " Mode"}
+      </Button>
     </Box>
   );
 };

@@ -6,7 +6,7 @@ const ContactUsComponent = () => {
 
   return (
     <div>
-      <Show above="768px">
+      {/* <Show above="768px">
         <Button
           transition="color 0.2s, text-decoration 0.2s"
           _hover={{
@@ -29,7 +29,17 @@ const ContactUsComponent = () => {
         >
           <EmailIcon boxSize={"20px"} />
         </Box>
-      </Show>
+      </Show> */}
+      <Button
+        transition="color 0.2s, text-decoration 0.2s"
+        _hover={{
+          textDecoration: "underline",
+        }}
+        leftIcon={<EmailIcon />}
+        variant="ghost"
+      >
+        Contact Us
+      </Button>
     </div>
   );
 };
