@@ -6,7 +6,9 @@ import {
   Heading,
   useColorModeValue,
   Text,
+  Image,
 } from "@chakra-ui/react";
+import logo from "./assets/logo.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
@@ -48,14 +50,21 @@ function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main" "footer"`,
-        lg: ` "nav" "main" "footer"`,
+        base: `"header" "main" "footer"`,
+        lg: ` "header" "main" "footer"`,
       }}
     >
-      <GridItem area={"nav"}>
-        <NavBar></NavBar>
+      <GridItem area={"header"}>
+        <Flex justifyContent={"center"} background={cardColor}>
+          <Flex flexDirection={"column"} justifyContent={"center"}>
+            <Flex justifyContent={"center"}>
+              <Image src={logo} boxSize={"80px"} />
+            </Flex>
+            <NavBar></NavBar>
+          </Flex>
+        </Flex>
       </GridItem>
-      <GridItem area={"main"}>
+      <GridItem marginTop={"50px"} area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"10px"} minW={"60vw"}>
             <Flex flexDirection={"column"}>
@@ -67,6 +76,7 @@ function App() {
               padding={"2%"}
               borderTopRadius={"10px"}
               minH={"100vh"}
+              marginTop={"60px"}
             >
               <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
                 <Heading
