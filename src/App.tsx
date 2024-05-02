@@ -59,10 +59,10 @@ function App() {
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Box
+            marginTop={"20px"}
             background={cardColor}
-            paddingY={"2%"}
-            paddingX={"2%"}
-            borderTopRadius={"20px"}
+            padding={"2%"}
+            borderTopRadius={"10px"}
             minH={"100vh"}
           >
             <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
