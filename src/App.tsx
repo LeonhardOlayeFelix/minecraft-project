@@ -69,7 +69,16 @@ function App() {
               minH={"100vh"}
             >
               <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
-                <Heading as="h2" fontSize={"30px"}>
+                <Heading
+                  as="h2"
+                  fontSize={"30px"}
+                  textAlign={{
+                    base: "center",
+                    sm: "center",
+                    md: "left",
+                    lg: "left",
+                  }}
+                >
                   {"Searching in: " +
                     (currentCategory == "Any" ? "All Items" : currentCategory)}
                 </Heading>
