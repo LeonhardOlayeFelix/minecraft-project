@@ -333,6 +333,7 @@ const MinecraftItemCard = ({
                     bg={cardColor + "50"}
                     padding={"6px"}
                     borderRadius={"6px"}
+                    gap={"3px"}
                   >
                     {inWeaponsTools && (
                       <>
