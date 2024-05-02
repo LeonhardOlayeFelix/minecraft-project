@@ -78,6 +78,7 @@ const MinecraftItemCardHead = ({
           >
             <Box>
               <TiPin
+                fill="#65A33C"
                 cursor={"pointer"}
                 onClick={toggleIsPinned}
                 color={iconColor}

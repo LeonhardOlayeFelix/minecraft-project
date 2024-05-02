@@ -34,6 +34,7 @@ const ContactUsComponent = () => {
         transition="color 0.2s, text-decoration 0.2s"
         _hover={{
           textDecoration: "underline",
+          color: "rgba(101, 163, 60, 1)",
         }}
         leftIcon={<EmailIcon />}
         variant="ghost"

@@ -36,9 +36,14 @@ const CategorySelector = ({ options, onCategoryChanged }: Props) => {
   return (
     <Menu>
       <MenuButton
-        transition="color 0.2s"
+        transition="all 0.2s"
+        bg="rgba(101, 163, 60, 0.3)"
+        color="rgba(101, 163, 60, 1)"
+        border="1px solid"
+        borderColor="rgba(101, 163, 60, 1)"
         _hover={{
-          color: textHoverColor,
+          bg: "rgba(101, 163, 60, 1)",
+          color: "white",
         }}
         as={Button}
         rightIcon={<BsChevronDown />}

@@ -55,7 +55,12 @@ function App() {
       }}
     >
       <GridItem area={"header"}>
-        <Flex justifyContent={"center"} background={cardColor}>
+        <Flex
+          borderBottom={"1px solid"}
+          borderColor="rgba(101, 163, 60, 0.2)"
+          justifyContent={"center"}
+          background={cardColor}
+        >
           <Flex flexDirection={"column"} justifyContent={"center"}>
             <Flex justifyContent={"center"}>
               <Image src={logo} boxSize={"80px"} />
@@ -91,13 +96,27 @@ function App() {
               </Text>
             </Flex>
             <Box
+              borderTop={"1px solid"}
+              border="1px solid"
+              borderColor="rgba(101, 163, 60, 0.2)"
               background={cardColor}
-              padding={"2%"}
-              borderTopRadius={"10px"}
+              paddingY={"2%"}
+              paddingX={"20px"}
+              borderTopRadius={{
+                base: "0px",
+                sm: "10px",
+                md: "10px",
+                lg: "10px",
+              }}
               minH={"100vh"}
               marginTop={"60px"}
             >
-              <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
+              <Flex
+                paddingX={"3%"}
+                flexDirection={"column"}
+                gap={"20px"}
+                minW={"60vw"}
+              >
                 <Heading
                   as="h2"
                   fontSize={"30px"}
