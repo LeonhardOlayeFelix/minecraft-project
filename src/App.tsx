@@ -1,40 +1,42 @@
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, filter } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
-import { categories } from "./components/MinecraftComponents/CategoriseItem";
+import categoriseItems, {
+  categories,
+} from "./components/MinecraftComponents/CategoriseItem";
 import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
+import { wrap } from "framer-motion";
 import SimilarSearchesString from "./components/MinecraftComponents/SimilarSearchesString";
+import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearchBarItem";
 
 function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
-  const [filteredData, setFilteredData] = useState<ItemsProps[]>([]);
 
-  useEffect(() => {
-    let updatedFilteredData = getItemsInCategory(currentCategory, data);
-    if (currentSearch.trim() !== "") {
-      const itemsAsString = updatedFilteredData.map((item) => item.name);
-      const similarSearches = SimilarSearchesString(
-        itemsAsString,
-        currentSearch,
-        0.3
+  let filteredData = getItemsInCategory(currentCategory, data);
+
+  if (currentSearch.trim() != "") {
+    const itemsAsString = filteredData.map((item) => item.name);
+    // let similarSearches = SimilarSearchesString(
+    //   itemsAsString,
+    //   currentSearch,
+    //   0.5
+    // );
+    const similarSearches = SimilarSearchBarItem(itemsAsString, currentSearch);
+    filteredData = filteredData.filter((item) => {
+      return (
+        similarSearches.find((similarSearch) => similarSearch == item.name) !=
+        undefined
       );
-      updatedFilteredData = updatedFilteredData.filter((item) => {
-        return (
-          similarSearches.find(
-            (similarSearch) => similarSearch === item.name
-          ) !== undefined
-        );
-      });
-    }
-    setFilteredData(updatedFilteredData);
-  }, [currentCategory, currentSearch, data]);
+    });
+    console.log(filteredData);
+  }
 
   return (
     <Grid
@@ -78,7 +80,7 @@ function App() {
             </Flex>
             <Flex justifyContent={"center"}>
               <MinecraftCardGrid3
-                items={filteredData.slice(0, 12)}
+                items={filteredData.slice(0, 20)}
               ></MinecraftCardGrid3>
             </Flex>
           </Flex>
