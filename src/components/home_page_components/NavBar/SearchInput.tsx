@@ -43,7 +43,7 @@ const SearchInput = ({ onInputChanged }: Props) => {
     <InputGroup>
       <InputLeftElement children={<BsSearch />} />
       <Input
-        borderRadius={20}
+        borderRadius={10}
         placeholder="Search Items..."
         variant={"filled"}
         value={searchInput}

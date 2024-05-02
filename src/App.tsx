@@ -1,16 +1,13 @@
-import { Box, Flex, Grid, GridItem, filter } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
-import categoriseItems, {
-  categories,
-} from "./components/MinecraftComponents/CategoriseItem";
+import { categories } from "./components/MinecraftComponents/CategoriseItem";
 import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
-import { wrap } from "framer-motion";
 import SimilarSearchesString from "./components/MinecraftComponents/SimilarSearchesString";
 
 function App() {
@@ -21,7 +18,6 @@ function App() {
 
   useEffect(() => {
     let updatedFilteredData = getItemsInCategory(currentCategory, data);
-
     if (currentSearch.trim() !== "") {
       const itemsAsString = updatedFilteredData.map((item) => item.name);
       const similarSearches = SimilarSearchesString(
@@ -29,7 +25,6 @@ function App() {
         currentSearch,
         0.3
       );
-
       updatedFilteredData = updatedFilteredData.filter((item) => {
         return (
           similarSearches.find(
@@ -38,7 +33,6 @@ function App() {
         );
       });
     }
-
     setFilteredData(updatedFilteredData);
   }, [currentCategory, currentSearch, data]);
 
