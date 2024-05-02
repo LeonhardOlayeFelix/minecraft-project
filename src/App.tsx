@@ -48,42 +48,50 @@ function App() {
       <GridItem area={"nav"}>
         <NavBar></NavBar>
       </GridItem>
-      <GridItem marginTop={100} area={"main"}>
+      <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <Flex flexDirection={"column"} gap={"20px"}>
-            <Flex
-              justifyContent={{
-                base: "center",
-                sm: "center",
-                md: "left",
-                lg: "left",
-              }}
-              wrap={{
-                base: "wrap",
-                sm: "wrap",
-                md: "nowrap",
-                lg: "nowrap",
-              }}
-              gap={"10px"}
-            >
-              <Box width={"90%"}>
-                <SearchInput
-                  onInputChanged={(search) => setCurrentSearch(search)}
-                ></SearchInput>
-              </Box>
-              <Box>
-                <CategorySelector
-                  onCategoryChanged={(value) => setCurrentCategory(value)}
-                  options={categories}
-                />
-              </Box>
+          <Box
+            background={"#111111"}
+            paddingTop={"2%"}
+            paddingX={"2%"}
+            borderTopRadius={"20px"}
+            minH={"100vh"}
+          >
+            <Flex flexDirection={"column"} gap={"20px"}>
+              <Flex
+                justifyContent={{
+                  base: "center",
+                  sm: "center",
+                  md: "left",
+                  lg: "left",
+                }}
+                wrap={{
+                  base: "wrap",
+                  sm: "wrap",
+                  md: "nowrap",
+                  lg: "nowrap",
+                }}
+                gap={"10px"}
+              >
+                <Box width={"90%"}>
+                  <SearchInput
+                    onInputChanged={(search) => setCurrentSearch(search)}
+                  ></SearchInput>
+                </Box>
+                <Box>
+                  <CategorySelector
+                    onCategoryChanged={(value) => setCurrentCategory(value)}
+                    options={categories}
+                  />
+                </Box>
+              </Flex>
+              <Flex justifyContent={"center"}>
+                <MinecraftCardGrid3
+                  items={filteredData.slice(0, 20)}
+                ></MinecraftCardGrid3>
+              </Flex>
             </Flex>
-            <Flex justifyContent={"center"}>
-              <MinecraftCardGrid3
-                items={filteredData.slice(0, 20)}
-              ></MinecraftCardGrid3>
-            </Flex>
-          </Flex>
+          </Box>
         </Flex>
       </GridItem>
     </Grid>
