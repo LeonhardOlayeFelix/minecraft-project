@@ -22,6 +22,7 @@ const SearchInput = ({ onInputChanged }: Props) => {
       window.localStorage.getItem("currentSearch");
     if (localStorageCurrentSearch) {
       const parsedSearch = JSON.parse(localStorageCurrentSearch);
+      setSearchIsLoading(true);
       setSearchInput(parsedSearch);
       handleOnChanged(parsedSearch);
     }

@@ -20,13 +20,6 @@ function App() {
   const [filteredData, setFilteredData] = useState<ItemsProps[]>([]);
 
   useEffect(() => {
-    const storedFilteredData = localStorage.getItem("filteredData");
-    if (storedFilteredData) {
-      setFilteredData(JSON.parse(storedFilteredData));
-    }
-  }, []);
-
-  useEffect(() => {
     let updatedFilteredData = getItemsInCategory(currentCategory, data);
 
     if (currentSearch.trim() !== "") {
@@ -47,7 +40,6 @@ function App() {
     }
 
     setFilteredData(updatedFilteredData);
-    localStorage.setItem("filteredData", JSON.stringify(updatedFilteredData));
   }, [currentCategory, currentSearch, data]);
 
   return (
