@@ -17,25 +17,38 @@ function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
+  const [filteredData, setFilteredData] = useState<ItemsProps[]>([]);
 
-  let filteredData = getItemsInCategory(currentCategory, data);
+  useEffect(() => {
+    const storedFilteredData = localStorage.getItem("filteredData");
+    if (storedFilteredData) {
+      setFilteredData(JSON.parse(storedFilteredData));
+    }
+  }, []);
 
-  if (currentSearch.trim() != "") {
-    const itemsAsString = filteredData.map((item) => item.name);
-    const similarSearches = SimilarSearchesString(
-      itemsAsString,
-      currentSearch,
-      0.3
-    );
+  useEffect(() => {
+    let updatedFilteredData = getItemsInCategory(currentCategory, data);
 
-    filteredData = filteredData.filter((item) => {
-      return (
-        similarSearches.find((similarSearch) => similarSearch == item.name) !=
-        undefined
+    if (currentSearch.trim() !== "") {
+      const itemsAsString = updatedFilteredData.map((item) => item.name);
+      const similarSearches = SimilarSearchesString(
+        itemsAsString,
+        currentSearch,
+        0.3
       );
-    });
-    console.log(filteredData);
-  }
+
+      updatedFilteredData = updatedFilteredData.filter((item) => {
+        return (
+          similarSearches.find(
+            (similarSearch) => similarSearch === item.name
+          ) !== undefined
+        );
+      });
+    }
+
+    setFilteredData(updatedFilteredData);
+    localStorage.setItem("filteredData", JSON.stringify(updatedFilteredData));
+  }, [currentCategory, currentSearch, data]);
 
   return (
     <Grid
