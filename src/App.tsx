@@ -3,8 +3,9 @@ import {
   Flex,
   Grid,
   GridItem,
-  filter,
+  Heading,
   useColorModeValue,
+  Text,
 } from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
@@ -17,8 +18,6 @@ import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
-import { wrap } from "framer-motion";
-import SimilarSearchesString from "./components/MinecraftComponents/SimilarSearchesString";
 import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearchBarItem";
 
 function App() {
@@ -58,48 +57,57 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
-          <Box
-            marginTop={"20px"}
-            background={cardColor}
-            padding={"2%"}
-            borderTopRadius={"10px"}
-            minH={"100vh"}
-          >
-            <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
-              <Flex
-                justifyContent={{
-                  base: "center",
-                  sm: "center",
-                  md: "left",
-                  lg: "left",
-                }}
-                wrap={{
-                  base: "wrap",
-                  sm: "wrap",
-                  md: "nowrap",
-                  lg: "nowrap",
-                }}
-                gap={"10px"}
-              >
-                <Box width={"90%"}>
-                  <SearchInput
-                    onInputChanged={(search) => setCurrentSearch(search)}
-                  ></SearchInput>
-                </Box>
-                <Box>
-                  <CategorySelector
-                    onCategoryChanged={(value) => setCurrentCategory(value)}
-                    options={categories}
-                  />
-                </Box>
-              </Flex>
-              <Flex justifyContent={"center"}>
-                <MinecraftCardGrid3
-                  items={filteredData.slice(0, 20)}
-                ></MinecraftCardGrid3>
-              </Flex>
+          <Flex flexDirection={"column"} gap={"10px"} minW={"60vw"}>
+            <Flex flexDirection={"column"}>
+              <Heading as="h1">Heading goes here</Heading>
+              <Text>Description goes here</Text>
             </Flex>
-          </Box>
+            <Box
+              background={cardColor}
+              padding={"2%"}
+              borderTopRadius={"10px"}
+              minH={"100vh"}
+            >
+              <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
+                <Heading as="h2" fontSize={"30px"}>
+                  {"Searching in: " +
+                    (currentCategory == "Any" ? "All Items" : currentCategory)}
+                </Heading>
+                <Flex
+                  justifyContent={{
+                    base: "center",
+                    sm: "center",
+                    md: "left",
+                    lg: "left",
+                  }}
+                  wrap={{
+                    base: "wrap",
+                    sm: "wrap",
+                    md: "nowrap",
+                    lg: "nowrap",
+                  }}
+                  gap={"10px"}
+                >
+                  <Box width={"90%"}>
+                    <SearchInput
+                      onInputChanged={(search) => setCurrentSearch(search)}
+                    ></SearchInput>
+                  </Box>
+                  <Box>
+                    <CategorySelector
+                      onCategoryChanged={(value) => setCurrentCategory(value)}
+                      options={categories}
+                    />
+                  </Box>
+                </Flex>
+                <Flex justifyContent={"center"}>
+                  <MinecraftCardGrid3
+                    items={filteredData.slice(0, 20)}
+                  ></MinecraftCardGrid3>
+                </Flex>
+              </Flex>
+            </Box>
+          </Flex>
         </Flex>
       </GridItem>
     </Grid>
