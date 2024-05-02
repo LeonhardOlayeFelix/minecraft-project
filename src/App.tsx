@@ -60,7 +60,7 @@ function App() {
         <Flex display={"flex"} justifyContent={"center"}>
           <Box
             background={cardColor}
-            paddingTop={"2%"}
+            paddingY={"2%"}
             paddingX={"2%"}
             borderTopRadius={"20px"}
             minH={"100vh"}
