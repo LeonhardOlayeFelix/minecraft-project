@@ -67,9 +67,28 @@ function App() {
       <GridItem marginTop={"50px"} area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"10px"} minW={"60vw"}>
-            <Flex flexDirection={"column"}>
-              <Heading as="h1">Heading goes here</Heading>
-              <Text>Description goes here</Text>
+            <Flex margin={3} flexDirection={"column"}>
+              <Heading
+                as="h1"
+                textAlign={{
+                  base: "center",
+                  sm: "center",
+                  md: "left",
+                  lg: "left",
+                }}
+              >
+                Heading goes here
+              </Heading>
+              <Text
+                textAlign={{
+                  base: "center",
+                  sm: "center",
+                  md: "left",
+                  lg: "left",
+                }}
+              >
+                Description goes here
+              </Text>
             </Flex>
             <Box
               background={cardColor}
