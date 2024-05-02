@@ -97,7 +97,7 @@ function App() {
             </Flex>
             <Box
               borderTop={"1px solid"}
-              border="1px solid"
+              borderX="1px solid"
               borderColor="rgba(101, 163, 60, 0.2)"
               background={cardColor}
               paddingY={"2%"}
@@ -112,7 +112,7 @@ function App() {
               marginTop={"60px"}
             >
               <Flex
-                paddingX={"3%"}
+                paddingX={"2%"}
                 flexDirection={"column"}
                 gap={"20px"}
                 minW={"60vw"}
