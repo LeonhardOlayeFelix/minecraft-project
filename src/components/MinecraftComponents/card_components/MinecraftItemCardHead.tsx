@@ -25,6 +25,7 @@ interface Props {
   tooltipFg: string;
   item: ItemsProps;
   items: ItemsProps[];
+  handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
 }
 
 const MinecraftItemCardHead = ({
@@ -37,6 +38,7 @@ const MinecraftItemCardHead = ({
   tooltipFg,
   item,
   items,
+  handlePinToggle,
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
 
@@ -53,7 +55,9 @@ const MinecraftItemCardHead = ({
         .slice(0, 4),
     [similarSearches, items]
   );
+
   const toggleIsPinned = () => {
+    handlePinToggle(item, !isPinned);
     setIsPinned(!isPinned);
     window.localStorage.setItem(
       item.name + "pinned",
@@ -78,7 +82,7 @@ const MinecraftItemCardHead = ({
           >
             <Box>
               <TiPin
-                fill="#65A33C"
+                fill="rgba(101, 163, 60, 1)"
                 cursor={"pointer"}
                 onClick={toggleIsPinned}
                 color={iconColor}

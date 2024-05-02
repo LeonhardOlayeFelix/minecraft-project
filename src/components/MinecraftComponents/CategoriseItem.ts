@@ -14,7 +14,7 @@ export interface UseBlocksAndItemsResult {
     ingredients: ItemsProps[] | undefined;
   }
 
-export const categories =  ["Any","Weapons & Tools", "Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
+export const categories =  [ "Any","Pinned","Weapons & Tools", "Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
 
 
 /**

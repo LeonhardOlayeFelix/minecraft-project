@@ -29,9 +29,15 @@ interface Props {
   item: ItemsProps;
   className?: string;
   data: UseBlocksAndItemsResult;
+  handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
 }
 
-const MinecraftItemCard = ({ item, className, data }: Props) => {
+const MinecraftItemCard = ({
+  item,
+  className,
+  data,
+  handlePinToggle,
+}: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
   const [glowColor, setGlowColor] = useState("");
@@ -243,6 +249,7 @@ const MinecraftItemCard = ({ item, className, data }: Props) => {
         tooltipFg={tooltipForeground}
         item={item}
         items={items}
+        handlePinToggle={handlePinToggle}
       />
       <CardBody bg={cardBodyBg}>
         <Flex

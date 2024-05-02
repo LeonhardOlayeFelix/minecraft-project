@@ -13,9 +13,7 @@ import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
-import categoriseItems, {
-  categories,
-} from "./components/MinecraftComponents/CategoriseItem";
+import { categories } from "./components/MinecraftComponents/CategoriseItem";
 import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
@@ -26,17 +24,23 @@ function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
+  const [pinnedItems, setPinnedItems] = useState<ItemsProps[]>([]);
   const cardColor = useColorModeValue("white !important", "#0D0E0E");
+
+  useEffect(() => {
+    const localStoragePinnedItems = localStorage.getItem("pinnedItems");
+    if (localStoragePinnedItems)
+      setPinnedItems(JSON.parse(localStoragePinnedItems));
+  }, []);
 
   let filteredData = getItemsInCategory(currentCategory, data);
 
+  if (currentCategory === "Pinned") {
+    filteredData = pinnedItems;
+  }
+
   if (currentSearch.trim() != "") {
     const itemsAsString = filteredData.map((item) => item.name);
-    // let similarSearches = SimilarSearchesString(
-    //   itemsAsString,
-    //   currentSearch,
-    //   0.5
-    // );
     const similarSearches = SimilarSearchBarItem(itemsAsString, currentSearch);
     filteredData = filteredData.filter((item) => {
       return (
@@ -46,6 +50,30 @@ function App() {
     });
     console.log(filteredData);
   }
+
+  const handlePinToggle = (item: ItemsProps, isPinned: boolean) => {
+    if (isPinned) {
+      setPinnedItems([...pinnedItems, item]);
+      localStorage.setItem(
+        "pinnedItems",
+        JSON.stringify([...pinnedItems, item])
+      );
+      // console.log([...pinnedItems, item]);
+    } else {
+      setPinnedItems(
+        pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
+      );
+      localStorage.setItem(
+        "pinnedItems",
+        JSON.stringify(
+          pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
+        )
+      );
+      // console.log(
+      //   pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
+      // );
+    }
+  };
 
   return (
     <Grid
@@ -159,6 +187,7 @@ function App() {
                 </Flex>
                 <Flex justifyContent={"center"}>
                   <MinecraftCardGrid3
+                    handlePinToggle={handlePinToggle}
                     items={filteredData.slice(0, 20)}
                   ></MinecraftCardGrid3>
                 </Flex>
