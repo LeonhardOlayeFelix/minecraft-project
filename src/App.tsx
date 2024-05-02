@@ -1,4 +1,11 @@
-import { Box, Flex, Grid, GridItem, filter } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  filter,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
@@ -18,6 +25,7 @@ function App() {
   const data = useBlocksAndItems();
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
+  const cardColor = useColorModeValue("white !important", "#111111");
 
   let filteredData = getItemsInCategory(currentCategory, data);
 
@@ -51,13 +59,13 @@ function App() {
       <GridItem area={"main"}>
         <Flex display={"flex"} justifyContent={"center"}>
           <Box
-            background={"#111111"}
+            background={cardColor}
             paddingTop={"2%"}
             paddingX={"2%"}
             borderTopRadius={"20px"}
             minH={"100vh"}
           >
-            <Flex flexDirection={"column"} gap={"20px"}>
+            <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
               <Flex
                 justifyContent={{
                   base: "center",
