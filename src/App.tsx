@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
 import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearchBarItem";
+import CardPaginator from "./components/MinecraftComponents/CardPaginator";
 
 function App() {
   const data = useBlocksAndItems();
@@ -199,10 +200,11 @@ function App() {
                   </Box>
                 </Flex>
                 <Flex justifyContent={"center"}>
-                  <MinecraftCardGrid3
+                  <CardPaginator
                     handlePinToggle={handlePinToggle}
-                    items={filteredData.slice(0, 20)}
-                  ></MinecraftCardGrid3>
+                    items={filteredData}
+                    resultsPerPage={30}
+                  ></CardPaginator>
                 </Flex>
               </Flex>
             </Box>

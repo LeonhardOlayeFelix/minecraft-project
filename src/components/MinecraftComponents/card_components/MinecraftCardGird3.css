@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 .container{
-    min-height: calc(100% + 30px);
 }
 .container .box{
     margin-bottom: 15px;
