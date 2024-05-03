@@ -75,65 +75,67 @@ const CardPaginator = ({
         </Flex>
 
         <Flex justifyContent={"center"}>
-          <Box
-            bg={"rgba(101, 163, 60, 0.3)"}
-            border="1px solid"
-            borderColor="rgba(101, 163, 60, 1)"
-            padding={2}
-            borderRadius={5}
-          >
-            <HStack spacing={2} justifyContent="center">
-              {totalPages > 1 && (
-                <Button
-                  variant={"ghost"}
-                  onClick={() => paginate(Math.max(currentPage - 1, 1))}
-                >
-                  <ChevronLeftIcon />
-                </Button>
-              )}
-              {startPage > 1 && (
-                <>
+          {totalPages > 1 && (
+            <Box
+              bg={"rgba(101, 163, 60, 0.3)"}
+              border="1px solid"
+              borderColor="rgba(101, 163, 60, 1)"
+              padding={2}
+              borderRadius={5}
+            >
+              <HStack spacing={2} justifyContent="center">
+                {totalPages > 1 && (
                   <Button
-                    variant={currentPage === startPage ? "solid" : "ghost"}
-                    onClick={() => paginate(1)}
+                    variant={"ghost"}
+                    onClick={() => paginate(Math.max(currentPage - 1, 1))}
                   >
-                    1
+                    <ChevronLeftIcon />
                   </Button>
-                  {startPage > 2 && <span>...</span>}
-                </>
-              )}
-              {pageNumbers.map((number) => (
-                <Button
-                  key={number}
-                  onClick={() => paginate(number)}
-                  variant={currentPage === number ? "solid" : "ghost"}
-                >
-                  {number}
-                </Button>
-              ))}
-              {endPage < totalPages && (
-                <>
-                  {endPage < totalPages - 1 && <span>...</span>}
+                )}
+                {startPage > 1 && (
+                  <>
+                    <Button
+                      variant={currentPage === startPage ? "solid" : "ghost"}
+                      onClick={() => paginate(1)}
+                    >
+                      1
+                    </Button>
+                    {startPage > 2 && <span>...</span>}
+                  </>
+                )}
+                {pageNumbers.map((number) => (
                   <Button
-                    variant={currentPage === endPage ? "solid" : "ghost"}
-                    onClick={() => paginate(totalPages)}
+                    key={number}
+                    onClick={() => paginate(number)}
+                    variant={currentPage === number ? "solid" : "ghost"}
                   >
-                    {totalPages}
+                    {number}
                   </Button>
-                </>
-              )}
-              {totalPages > 1 && (
-                <Button
-                  variant={"ghost"}
-                  onClick={() =>
-                    paginate(Math.min(currentPage + 1, totalPages))
-                  }
-                >
-                  <ChevronRightIcon />
-                </Button>
-              )}
-            </HStack>
-          </Box>
+                ))}
+                {endPage < totalPages && (
+                  <>
+                    {endPage < totalPages - 1 && <span>...</span>}
+                    <Button
+                      variant={currentPage === endPage ? "solid" : "ghost"}
+                      onClick={() => paginate(totalPages)}
+                    >
+                      {totalPages}
+                    </Button>
+                  </>
+                )}
+                {totalPages > 1 && (
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      paginate(Math.min(currentPage + 1, totalPages))
+                    }
+                  >
+                    <ChevronRightIcon />
+                  </Button>
+                )}
+              </HStack>
+            </Box>
+          )}
         </Flex>
       </Box>
     </Flex>
