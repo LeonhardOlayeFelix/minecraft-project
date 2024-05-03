@@ -52,6 +52,10 @@ const CardPaginator = ({
     pageNumbers.push(i);
   }
 
+  if (currentPage > totalPages) {
+    setCurrentPage(1);
+  }
+
   return (
     <Flex className={className} flexDirection={"column"}>
       <Box className={`container`}>
