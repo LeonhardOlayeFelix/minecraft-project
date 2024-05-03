@@ -150,27 +150,40 @@ const MinecraftItemCard = ({
           let totalBlue = 0;
           let totalAlpha = 0;
           let pixelCount = 0;
-
           for (let x = middleX - radius; x <= middleX + radius; x++) {
             for (let y = middleY - radius; y <= middleY + radius; y++) {
               const pixelData = ctx.getImageData(x, y, 1, 1).data;
-              totalRed += pixelData[0];
-              totalGreen += pixelData[1];
-              totalBlue += pixelData[2];
-              totalAlpha += pixelData[3];
-              pixelCount++;
+              const red = pixelData[0];
+              const green = pixelData[1];
+              const blue = pixelData[2];
+              const alpha = pixelData[3];
+
+              // Check if the pixel color matches the pattern #ExExEx, to ignore the white space
+              const isExExExPattern =
+                red === green && green === blue && red % 17 === 0;
+
+              if (!isExExExPattern) {
+                totalRed += red;
+                totalGreen += green;
+                totalBlue += blue;
+                totalAlpha += alpha;
+                pixelCount++;
+              }
             }
           }
 
-          const avgRed = Math.round(totalRed / pixelCount);
-          const avgGreen = Math.round(totalGreen / pixelCount);
-          const avgBlue = Math.round(totalBlue / pixelCount);
-          const avgAlpha = Math.round(totalAlpha / pixelCount);
-
-          const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
-            100 / 255
-          })`;
-          resolve(colorValue);
+          if (pixelCount === 0) {
+            reject("No valid pixels found");
+          } else {
+            const avgRed = Math.round(totalRed / pixelCount);
+            const avgGreen = Math.round(totalGreen / pixelCount);
+            const avgBlue = Math.round(totalBlue / pixelCount);
+            const avgAlpha = Math.round(totalAlpha / pixelCount);
+            const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
+              100 / 255
+            })`;
+            resolve(colorValue);
+          }
         } else {
           reject("Failed to get canvas context");
         }

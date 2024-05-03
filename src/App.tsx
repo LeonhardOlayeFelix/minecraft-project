@@ -69,9 +69,6 @@ function App() {
           pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
         )
       );
-      // console.log(
-      //   pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
-      // );
     }
   };
 
@@ -145,19 +142,35 @@ function App() {
                 gap={"20px"}
                 minW={"60vw"}
               >
-                <Heading
-                  as="h2"
-                  fontSize={"30px"}
-                  textAlign={{
-                    base: "center",
-                    sm: "center",
-                    md: "left",
-                    lg: "left",
-                  }}
-                >
-                  {"Searching in: " +
-                    (currentCategory == "Any" ? "All Items" : currentCategory)}
-                </Heading>
+                <Box>
+                  <Heading
+                    as="h2"
+                    fontSize={"30px"}
+                    textAlign={{
+                      base: "center",
+                      sm: "center",
+                      md: "left",
+                      lg: "left",
+                    }}
+                  >
+                    {"Searching in: " +
+                      (currentCategory == "Any"
+                        ? "All Items"
+                        : currentCategory)}
+                  </Heading>
+                  <Text
+                    as="h2"
+                    fontSize={"15px"}
+                    textAlign={{
+                      base: "center",
+                      sm: "center",
+                      md: "left",
+                      lg: "left",
+                    }}
+                  >
+                    Version: 1.18
+                  </Text>
+                </Box>
                 <Flex
                   justifyContent={{
                     base: "center",
