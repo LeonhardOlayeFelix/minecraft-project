@@ -3,6 +3,7 @@ import useMinecraftHook, { ItemsProps } from "../../hooks/useMinecraftHook";
 import "./card_components/MinecraftCardGird3.css";
 import MinecraftItemCard from "./card_components/MinecraftItemCard";
 import { Box, Flex, Button, HStack, Text } from "@chakra-ui/react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 interface Props {
   items: ItemsProps[];
@@ -72,29 +73,68 @@ const CardPaginator = ({
             results
           </Text>
         </Flex>
-        <HStack spacing={2} justifyContent="center">
-          {startPage > 1 && (
-            <>
-              <Button onClick={() => paginate(1)}>1</Button>
-              {startPage > 2 && <span>...</span>}
-            </>
-          )}
-          {pageNumbers.map((number) => (
-            <Button
-              key={number}
-              onClick={() => paginate(number)}
-              variant={currentPage === number ? "solid" : "ghost"}
-            >
-              {number}
-            </Button>
-          ))}
-          {endPage < totalPages && (
-            <>
-              {endPage < totalPages - 1 && <span>...</span>}
-              <Button onClick={() => paginate(totalPages)}>{totalPages}</Button>
-            </>
-          )}
-        </HStack>
+
+        <Flex justifyContent={"center"}>
+          <Box
+            bg={"rgba(101, 163, 60, 0.3)"}
+            border="1px solid"
+            borderColor="rgba(101, 163, 60, 1)"
+            padding={2}
+            borderRadius={5}
+          >
+            <HStack spacing={2} justifyContent="center">
+              {totalPages > 1 && (
+                <Button
+                  variant={"ghost"}
+                  onClick={() => paginate(Math.max(currentPage - 1, 1))}
+                >
+                  <ChevronLeftIcon />
+                </Button>
+              )}
+              {startPage > 1 && (
+                <>
+                  <Button
+                    variant={currentPage === startPage ? "solid" : "ghost"}
+                    onClick={() => paginate(1)}
+                  >
+                    1
+                  </Button>
+                  {startPage > 2 && <span>...</span>}
+                </>
+              )}
+              {pageNumbers.map((number) => (
+                <Button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  variant={currentPage === number ? "solid" : "ghost"}
+                >
+                  {number}
+                </Button>
+              ))}
+              {endPage < totalPages && (
+                <>
+                  {endPage < totalPages - 1 && <span>...</span>}
+                  <Button
+                    variant={currentPage === endPage ? "solid" : "ghost"}
+                    onClick={() => paginate(totalPages)}
+                  >
+                    {totalPages}
+                  </Button>
+                </>
+              )}
+              {totalPages > 1 && (
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    paginate(Math.min(currentPage + 1, totalPages))
+                  }
+                >
+                  <ChevronRightIcon />
+                </Button>
+              )}
+            </HStack>
+          </Box>
+        </Flex>
       </Box>
     </Flex>
   );
