@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useMinecraftHook, { ItemsProps } from "../../hooks/useMinecraftHook";
 import "./card_components/MinecraftCardGird3.css";
 import MinecraftItemCard from "./card_components/MinecraftItemCard";
-import { Box, Flex, Button, HStack, Text } from "@chakra-ui/react";
+import { Box, Flex, Button, HStack, Text, Divider } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 interface Props {
@@ -27,7 +27,7 @@ const CardPaginator = ({
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   const pageNumbers = [];

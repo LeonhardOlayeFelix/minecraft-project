@@ -49,7 +49,6 @@ function App() {
         undefined
       );
     });
-    console.log(filteredData);
   }
 
   const handlePinToggle = (item: ItemsProps, isPinned: boolean) => {
@@ -59,7 +58,6 @@ function App() {
         "pinnedItems",
         JSON.stringify([...pinnedItems, item])
       );
-      // console.log([...pinnedItems, item]);
     } else {
       setPinnedItems(
         pinnedItems.filter((pinnedItem) => pinnedItem.name !== item.name)
