@@ -200,7 +200,7 @@ function App() {
                 <Flex justifyContent={"center"}>
                   <CardPaginator
                     handlePinToggle={handlePinToggle}
-                    items={filteredData}
+                    items={filteredData.slice(0, 90)}
                     resultsPerPage={30}
                   ></CardPaginator>
                 </Flex>
