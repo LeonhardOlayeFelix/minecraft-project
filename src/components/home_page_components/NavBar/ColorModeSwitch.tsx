@@ -47,6 +47,7 @@ const ColorModeSwitch = () => {
           textDecoration: "underline",
           color: "rgba(101, 163, 60, 1)",
         }}
+        color="white"
         flex="1"
         variant="ghost"
         leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}

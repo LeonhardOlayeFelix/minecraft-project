@@ -38,6 +38,7 @@ const ContactUsComponent = () => {
         }}
         leftIcon={<EmailIcon />}
         variant="ghost"
+        color={"white"}
       >
         Contact Us
       </Button>

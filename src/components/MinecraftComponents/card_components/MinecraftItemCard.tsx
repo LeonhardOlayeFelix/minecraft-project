@@ -45,7 +45,7 @@ const MinecraftItemCard = ({
   // const [showRecipe, setShowRecipe] = useState(false);
   // const [showUsedIn, setShowUsedIn] = useState(false);
   const avatarHover = useColorModeValue("gray", "#20202050");
-  const cardBodyBg = useColorModeValue("gray", "#202020");
+  const cardBodyBg = useColorModeValue("#E0E0E0", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
   const cardColor = useColorModeValue("white !important", "#0D0E0E");
   const iconColor = useColorModeValue("brand.200", "white");
@@ -144,7 +144,7 @@ const MinecraftItemCard = ({
           ctx.drawImage(img, 0, 0);
           const middleX = Math.floor(img.width / 2);
           const middleY = Math.floor(img.height / 2);
-          const radius = 20;
+          const radius = 10;
           let totalRed = 0;
           let totalGreen = 0;
           let totalBlue = 0;

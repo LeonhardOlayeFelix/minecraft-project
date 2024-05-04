@@ -7,6 +7,7 @@ import {
   useColorModeValue,
   Text,
   Image,
+  useColorMode,
 } from "@chakra-ui/react";
 import logo from "./assets/logo.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
@@ -14,7 +15,6 @@ import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
 import { categories } from "./components/MinecraftComponents/CategoriseItem";
-import MinecraftCardGrid3 from "./components/MinecraftComponents/card_components/MinecraftCardGrid3";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
@@ -26,7 +26,8 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
   const [pinnedItems, setPinnedItems] = useState<ItemsProps[]>([]);
-  const cardColor = useColorModeValue("white !important", "#0D0E0E");
+  const { colorMode, toggleColorMode } = useColorMode();
+  const cardColor = useColorModeValue("#181818 !important", "#0D0E0E");
 
   useEffect(() => {
     const localStoragePinnedItems = localStorage.getItem("pinnedItems");
@@ -123,7 +124,7 @@ function App() {
               borderTop={"1px solid"}
               borderX="1px solid"
               borderColor="rgba(101, 163, 60, 0.2)"
-              background={cardColor}
+              background={colorMode === "dark" ? cardColor : "#E4DEDB"}
               paddingY={"2%"}
               paddingX={"20px"}
               borderTopRadius={{
@@ -200,7 +201,7 @@ function App() {
                 <Flex justifyContent={"center"}>
                   <CardPaginator
                     handlePinToggle={handlePinToggle}
-                    items={filteredData.slice(0, 90)}
+                    items={filteredData}
                     resultsPerPage={30}
                   ></CardPaginator>
                 </Flex>
