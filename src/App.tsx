@@ -123,7 +123,9 @@ function App() {
             <Box
               borderTop={"1px solid"}
               borderX="1px solid"
-              borderColor="rgba(101, 163, 60, 0.2)"
+              borderColor={
+                colorMode === "dark" ? "rgba(101, 163, 60, 0.2)" : "black"
+              }
               background={colorMode === "dark" ? cardColor : "#E4DEDB"}
               paddingY={"2%"}
               paddingX={"20px"}
