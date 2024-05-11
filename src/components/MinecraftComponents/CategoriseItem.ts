@@ -1,18 +1,6 @@
-import { BlocksProps, ItemsProps, MinecraftDataFoodProps, RecipeProps } from "../../hooks/useMinecraftHook";
+import { ItemsProps, UseBlocksAndItemsResult } from "../../hooks/useMinecraftHook";
 
-export interface UseBlocksAndItemsResult {
-    items: ItemsProps[];
-    isLoading: boolean
-    toolsAndWeaponry: ItemsProps[];
-    blocks: BlocksProps[];
-    potions: ItemsProps[];
-    consumable: MinecraftDataFoodProps[];
-    plants: ItemsProps[];
-    valuables: ItemsProps[];
-    musicDiscs: ItemsProps[];
-    recipes: RecipeProps[];
-    ingredients: ItemsProps[];
-  }
+
 
 export const categories =  [ "Any","Pinned","Weapons & Tools", "Blocks", "Potions", "Consumable", "Plants", "Valuables", "Musical", "Recipes", "Ingredients"]
 

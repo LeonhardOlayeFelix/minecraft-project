@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ItemsProps, RecipeProps } from "../../../hooks/useMinecraftHook";
+import {
+  ItemsProps,
+  RecipeProps,
+  UseBlocksAndItemsResult,
+} from "../../../hooks/useMinecraftHook";
 import usedInImage from "../../../assets/usedin3.webp";
 import {
   Box,
@@ -21,8 +25,6 @@ import { PiPlant } from "react-icons/pi";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "../CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
-import { UseBlocksAndItemsResult } from "../CategoriseItem";
-import CraftingTableWithTitleComponent from "../crafting-components/CraftingTableWithTitleComponent";
 import MinecraftItemCardHead from "./MinecraftItemCardHead";
 
 interface Props {
@@ -49,13 +51,13 @@ const MinecraftItemCard = ({
   const textColor = useColorModeValue("gray.800", "white");
   const cardColor = useColorModeValue("white !important", "#0D0E0E");
   const iconColor = useColorModeValue("brand.200", "white");
-  const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
+  //const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textHoverColor = useColorModeValue("#797979", "#797979");
   const tooltipForeground = useColorModeValue("white", "white");
   const tooltipBackground = useColorModeValue("black", "#292D2E");
 
   const items = data.items;
-  const recipes = data.recipes;
+  //const recipes = data.recipes;
   const isLoading = data.isLoading;
   //boolean data determining whether this item is in the following categories
   const {

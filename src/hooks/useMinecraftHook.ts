@@ -4,6 +4,22 @@ import anishService, { AnishBlocksProps, AnishItemsProps } from "../services/ani
 import minecraftDataService, { HarvestToolsProps, MinecraftItemsProps, MinecraftDataBlocksProps } from "../services/minecraft-data-service";
 import { useQueries, useQuery } from "@tanstack/react-query";
 
+export interface UseBlocksAndItemsResult {
+  items: ItemsProps[];
+  blocks: BlocksProps[];
+  recipes: RecipeProps[];
+  consumable: FoodProps[];
+  
+  toolsAndWeaponry: ItemsProps[];
+  potions: ItemsProps[];
+  plants: ItemsProps[];
+  valuables: ItemsProps[];
+  musicDiscs: ItemsProps[];
+  ingredients: ItemsProps[];
+
+  isLoading: boolean
+}
+
 export interface BlocksProps extends AnishBlocksProps {
     id: number;
     hardness: number;
@@ -22,19 +38,8 @@ export interface BlocksProps extends AnishBlocksProps {
     drops: number[];
     boundingBox: string;
   }
-interface FoodProps extends ItemsProps{
+export interface FoodProps extends ItemsProps{
   id: number;
-    name: string;
-    stackSize: number;
-    displayName: string;
-    foodPoints: number;
-    saturation: number;
-    effectiveQuality: number;
-    saturationRatio: number;
-}
-  
-export interface MinecraftDataFoodProps{
-    id: number;
     name: string;
     stackSize: number;
     displayName: string;
@@ -130,7 +135,7 @@ const mergeBlockData = (
 
 const mergeFoodData = (
   //merging matching food objects together
-  minecraftFood:MinecraftDataFoodProps[],
+  minecraftFood:FoodProps[],
   anishFoods: ItemsProps[]
 ) => {
   const mergedFood = anishFoods
@@ -191,9 +196,7 @@ const useBlocksAndItems = () =>{
     const items = MinecraftDataItems && anishItems ? mergeItemData(MinecraftDataItems, anishItems) as ItemsProps[] : []
     const blocks = anishBlocks && MinecraftDataBlocks ? mergeBlockData(anishBlocks, MinecraftDataBlocks) as BlocksProps[]: []
     const recipes = anishRecipes ? [...anishRecipes.map(recipe => recipe.item === "Beacon" ? beacon : recipe), noRecipe] : [];
-    const consumable = MinecraftDataFoods && anishItems ? mergeFoodData(MinecraftDataFoods, anishItems as ItemsProps[]) as MinecraftDataFoodProps[] : [];
-
-    console.log(consumable)
+    const consumable = MinecraftDataFoods && anishItems ? mergeFoodData(MinecraftDataFoods, anishItems as ItemsProps[]) as FoodProps[] : [];
 
     const toolsAndWeaponry = items.filter(item => ["Chestplate", "Leggings", "Boots", "Helmet", "Sword", "Pickaxe", "Shovel", "Axe", "Hoe", "Shears", "Flint and Steel", "Bow", "Arrow", "Potion"].some(tool => item.name.includes(tool)));
     const potions = items.filter(item => ["Potion", "Arrow of"].some(tool => item.name.includes(tool)));
@@ -202,8 +205,8 @@ const useBlocksAndItems = () =>{
     const musicDiscs = items.filter(item => ["Music Disc", "Jukebox", "Note Block"].some(tool => item.name.includes(tool)));
     const ingredients = items.filter(item => recipes?.find((recipe) => recipe.recipe.find((ingredient) => ingredient === item.name) !== undefined));
 
-      const isLoading = anishItemsLoading || MinecraftDataItemsLoading || anishBlocksLoading || MinecraftDataBlocksLoading || anishRecipesLoading || MinecraftDataFoodsLoading;
-  const error = anishItemsError || MinecraftDataItemsError || anishBlocksError || MinecraftDataBlocksError || anishRecipesError || MinecraftDataFoodsError;
+    const isLoading = anishItemsLoading || MinecraftDataItemsLoading || anishBlocksLoading || MinecraftDataBlocksLoading || anishRecipesLoading || MinecraftDataFoodsLoading;
+    const error = anishItemsError || MinecraftDataItemsError || anishBlocksError || MinecraftDataBlocksError || anishRecipesError || MinecraftDataFoodsError;
     return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, consumable, plants, valuables, musicDiscs, error, ingredients}
 }
 

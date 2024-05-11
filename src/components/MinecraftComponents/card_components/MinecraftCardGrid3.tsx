@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useMinecraftHook, { ItemsProps } from "../../../hooks/useMinecraftHook";
 import "./MinecraftCardGird3.css";
 import MinecraftItemCard from "./MinecraftItemCard";
