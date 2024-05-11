@@ -1,7 +1,7 @@
-import axios, {CanceledError} from 'axios'
+import axios, { CanceledError } from "axios";
 
 export default axios.create({
-    baseURL: "https://minecraft-api.vercel.app/api"
-})
+  baseURL: "https://minecraft-api.vercel.app/api",
+});
 
-export {CanceledError}
+export { CanceledError };

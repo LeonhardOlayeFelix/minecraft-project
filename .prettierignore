@@ -1,0 +1,9 @@
+# inside our .prettierignore:
+
+# ignore artifacts:
+build
+coverage
+
+# ignore all HTML files(matches all the files with the .html extension)
+useMinecraftHook.ts
+# **/*.ts
