@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  ItemsProps,
-  RecipeProps,
-  UseBlocksAndItemsResult,
-} from "../../../hooks/useMinecraftHook";
+
 import usedInImage from "../../../assets/usedin3.webp";
 import {
   Box,
@@ -26,6 +22,10 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 import categoriseItems from "../CategoriseItem";
 import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import MinecraftItemCardHead from "./MinecraftItemCardHead";
+import {
+  ItemsProps,
+  UseBlocksAndItemsResult,
+} from "../../../interfaces/MinecraftInterfaces";
 
 interface Props {
   item: ItemsProps;

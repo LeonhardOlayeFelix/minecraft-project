@@ -1,64 +1,9 @@
-import axios, { CanceledError } from "axios";
-import { useState, useEffect } from "react";
-import anishService, { AnishBlocksProps, AnishItemsProps } from "../services/anish-service";
-import minecraftDataService, { HarvestToolsProps, MinecraftItemsProps, MinecraftDataBlocksProps } from "../services/minecraft-data-service";
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { AnishBlocksProps, AnishItemsProps, BlocksProps, FoodProps, ItemsProps, MinecraftDataBlocksProps, MinecraftItemsProps } from "../interfaces/MinecraftInterfaces";
+import anishService from "../services/anish-service";
+import minecraftDataService from "../services/minecraft-data-service";
 
-export interface UseBlocksAndItemsResult {
-  items: ItemsProps[];
-  blocks: BlocksProps[];
-  recipes: RecipeProps[];
-  consumable: FoodProps[];
-  
-  toolsAndWeaponry: ItemsProps[];
-  potions: ItemsProps[];
-  plants: ItemsProps[];
-  valuables: ItemsProps[];
-  musicDiscs: ItemsProps[];
-  ingredients: ItemsProps[];
 
-  isLoading: boolean
-}
-
-export interface BlocksProps extends AnishBlocksProps {
-    id: number;
-    hardness: number;
-    resistance: number;
-    stackSize: number;
-    diggable: boolean;
-    material: string;
-    transparent: boolean;
-    emitLight: number;
-    filterLight: number;
-    defaultState: number;
-    minStateId: number;
-    maxStateId: number;
-    states: any[];
-    harvestTools: HarvestToolsProps;
-    drops: number[];
-    boundingBox: string;
-  }
-export interface FoodProps extends ItemsProps{
-  id: number;
-    name: string;
-    stackSize: number;
-    displayName: string;
-    foodPoints: number;
-    saturation: number;
-    effectiveQuality: number;
-    saturationRatio: number;
-}
-
-  export interface ItemsProps extends AnishItemsProps {
-    id: number;
-  }
-
-  export interface RecipeProps {
-    item: string;
-    quantity: number;
-    recipe: (string | string[] | null)[];
-    shapeless: boolean;
-  }
   const beacon =  {
   item: "Beacon",
   quantity: 1,
@@ -155,43 +100,36 @@ const mergeFoodData = (
 return mergedFood
 }
 const useBlocksAndItems = () =>{
-    
  
     const {data: anishItems, isLoading: anishItemsLoading, error: anishItemsError} = useQuery({
       queryKey: ['AllAnishItems'],
       queryFn: anishService.getAllItems
     })
-    anishItems
 
     const {data: MinecraftDataItems, isLoading: MinecraftDataItemsLoading, error: MinecraftDataItemsError} = useQuery({
       queryKey: ['AllMinecraftDataItems'],
       queryFn: minecraftDataService.getAllItems
     })
-    MinecraftDataItems
 
     const {data: anishBlocks, isLoading: anishBlocksLoading, error: anishBlocksError} = useQuery({
       queryKey: ['AllAnishBlocks'],
       queryFn: anishService.getAllBlocks
     })
-    anishBlocks
 
     const {data: MinecraftDataBlocks, isLoading: MinecraftDataBlocksLoading, error: MinecraftDataBlocksError} = useQuery({
       queryKey: ['AllMinecraftDataBlocks'],
       queryFn: minecraftDataService.getAllBlocks
     })
-    MinecraftDataBlocks
     
     const {data: anishRecipes, isLoading: anishRecipesLoading, error: anishRecipesError} = useQuery({
       queryKey: ['AllAnishRecipes'],
       queryFn: anishService.getAllRecipes
     })
-    anishRecipes
 
     const {data: MinecraftDataFoods, isLoading: MinecraftDataFoodsLoading, error: MinecraftDataFoodsError} = useQuery({
       queryKey: ['AllMinecraftDataFoods'],
       queryFn: minecraftDataService.getAllFoods
     })
-    MinecraftDataFoods
 
     const items = MinecraftDataItems && anishItems ? mergeItemData(MinecraftDataItems, anishItems) as ItemsProps[] : []
     const blocks = anishBlocks && MinecraftDataBlocks ? mergeBlockData(anishBlocks, MinecraftDataBlocks) as BlocksProps[]: []

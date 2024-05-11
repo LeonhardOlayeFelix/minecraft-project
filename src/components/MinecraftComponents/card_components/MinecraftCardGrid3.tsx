@@ -1,4 +1,5 @@
-import useMinecraftHook, { ItemsProps } from "../../../hooks/useMinecraftHook";
+import useMinecraftHook from "../../../hooks/useMinecraftHook";
+import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
 import "./MinecraftCardGird3.css";
 import MinecraftItemCard from "./MinecraftItemCard";
 import { Box, Flex } from "@chakra-ui/react";

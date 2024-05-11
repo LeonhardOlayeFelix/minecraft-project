@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import useMinecraftHook, { ItemsProps } from "../../hooks/useMinecraftHook";
 import "./card_components/MinecraftCardGird3.css";
 import MinecraftItemCard from "./card_components/MinecraftItemCard";
 import { Box, Flex, Button, HStack, Text, Show } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ItemsProps } from "../../interfaces/MinecraftInterfaces";
+import useMinecraftHook from "../../hooks/useMinecraftHook";
 
 interface Props {
   items: ItemsProps[];

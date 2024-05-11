@@ -1,4 +1,4 @@
-import { ItemsProps, UseBlocksAndItemsResult } from "../../hooks/useMinecraftHook";
+import { ItemsProps, UseBlocksAndItemsResult } from "../../interfaces/MinecraftInterfaces";
 
 
 
