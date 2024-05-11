@@ -2,6 +2,7 @@ import axios, { CanceledError } from "axios";
 import { useState, useEffect } from "react";
 import anishService, { AnishBlocksProps, AnishItemsProps } from "../services/anish-service";
 import minecraftDataService, { HarvestToolsProps, MinecraftItemsProps, MinecraftDataBlocksProps } from "../services/minecraft-data-service";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
 export interface BlocksProps extends AnishBlocksProps {
     id: number;
@@ -53,23 +54,7 @@ export interface MinecraftDataFoodProps{
     recipe: (string | string[] | null)[];
     shapeless: boolean;
   }
-const useBlocksAndItems = () =>{
-    
-    const [blocks, setBlocks] = useState<BlocksProps[]>([]);
-    const [items, setItems] = useState<ItemsProps[]>([]);
-    const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
-    const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
-    const [potions, setPotions] = useState<ItemsProps[]>()
-    const [consumable, setConsumable] = useState<FoodProps[]>()
-    const [plants, setPlants] = useState<ItemsProps[]>()
-    const [valuables, setValuables] = useState<ItemsProps[]>()
-    const [musicDiscs, setMusicDiscs] = useState<ItemsProps[]>()
-    const [ingredients, setIngredients] = useState<ItemsProps[]>()
-    const [error, setError] = useState(false);
-
-    const [isLoading, setIsLoading] = useState(false);
-
-const beacon =  {
+  const beacon =  {
   item: "Beacon",
   quantity: 1,
   recipe: [
@@ -101,59 +86,112 @@ const noRecipe =  {
   ],
   shapeless: false
 }
+const useBlocksAndItems = () =>{
+    
+    const [blocks, setBlocks] = useState<BlocksProps[]>([]);
+    const [items, setItems] = useState<ItemsProps[]>([]);
+    const [recipes, setRecipes] = useState<RecipeProps[]>([]); 
+    const [toolsAndWeaponry, setToolsAndWeaponry] = useState<ItemsProps[]>()
+    const [potions, setPotions] = useState<ItemsProps[]>()
+    const [consumable, setConsumable] = useState<FoodProps[]>()
+    const [plants, setPlants] = useState<ItemsProps[]>()
+    const [valuables, setValuables] = useState<ItemsProps[]>()
+    const [musicDiscs, setMusicDiscs] = useState<ItemsProps[]>()
+    const [ingredients, setIngredients] = useState<ItemsProps[]>()
+    const [error, setError] = useState(false);
 
-useEffect(() => {
-  const controller = new AbortController();
-  const fetchData = async () => {
-    setIsLoading(true); // Start loading before any data fetching begins
+    const [isLoading, setIsLoading] = useState(false);
+ 
+    const {data: anishItems, isLoading: anishItemsLoading, error: anishItemsError} = useQuery({
+      queryKey: ['AllAnishItems'],
+      queryFn: anishService.getAllItems
+    })
+    console.log(anishItems)
 
-    try {
-      const [anishItemsResponse, minecraftDataItemsResponse, anishBlocksResponse, minecraftDataBlocksResponse, anishRecipeResponse, minecraftDataFoodResponse] = await Promise.all([
-        anishService.getAllItems(),
-        minecraftDataService.getAllItems(),
-        anishService.getAllBlocks(),
-        minecraftDataService.getAllBlocks(),
-        anishService.getAllRecipes(),
-        minecraftDataService.getAllFoods()
-      ]);
+    const {data: MinecraftDataItems, isLoading: MinecraftDataItemsLoading, error: MinecraftDataItemsError} = useQuery({
+      queryKey: ['AllMinecraftDataItems'],
+      queryFn: minecraftDataService.getAllItems
+    })
+    console.log(MinecraftDataItems)
 
-      // Process items data
-      if (minecraftDataItemsResponse.data && anishItemsResponse.data) {
-        mergeItemData(minecraftDataItemsResponse.data, anishItemsResponse.data);
-      }
+    const {data: anishBlocks, isLoading: anishBlocksLoading, error: anishBlocksError} = useQuery({
+      queryKey: ['AllAnishBlocks'],
+      queryFn: anishService.getAllBlocks
+    })
+    console.log(anishBlocks)
 
-      // Process blocks data
-      if (anishBlocksResponse.data && minecraftDataBlocksResponse.data) {
-        mergeBlockData(anishBlocksResponse.data, minecraftDataBlocksResponse.data);
-      }
+    const {data: MinecraftDataBlocks, isLoading: MinecraftDataBlocksLoading, error: MinecraftDataBlocksError} = useQuery({
+      queryKey: ['AllMinecraftDataBlocks'],
+      queryFn: minecraftDataService.getAllBlocks
+    })
+    console.log(MinecraftDataBlocks)
+    
+    const {data: anishRecipes, isLoading: anishRecipesLoading, error: anishRecipesError} = useQuery({
+      queryKey: ['AllAnishRecipes'],
+      queryFn: anishService.getAllRecipes
+    })
+    console.log(anishRecipes)
 
-      // Process recipes data
-      if (anishRecipeResponse.data) {
-        const correctedData = anishRecipeResponse.data.map(recipe => recipe.item === "Beacon" ? beacon : recipe);
-        correctedData.push(noRecipe);
-        setRecipes(correctedData);
-      }
+    const {data: MinecraftDataFoods, isLoading: MinecraftDataFoodsLoading, error: MinecraftDataFoodsError} = useQuery({
+      queryKey: ['AllMinecraftDataFoods'],
+      queryFn: minecraftDataService.getAllFoods
+    })
+    console.log(MinecraftDataFoods)
 
-      //Process food data
-      if (minecraftDataFoodResponse.data && anishItemsResponse.data){
-        mergeFoodData(minecraftDataFoodResponse.data, anishItemsResponse.data as ItemsProps[])
-      }
-      // Set tools and weaponry based on item names
+
+    useEffect(() => {
       
-    } catch (err) {
-      if (err instanceof CanceledError) return;
-      console.error(err);
-      setError(true);
-    } finally {
-      setIsLoading(false); // End loading after all data fetching is complete or failed
-    }
-  };
+      const controller = new AbortController();
+      const fetchData = async () => {
+        setIsLoading(true); // Start loading before any data fetching begins
 
-  fetchData();
+        try {
+          const [anishItemsResponse, minecraftDataItemsResponse, anishBlocksResponse, minecraftDataBlocksResponse, anishRecipeResponse, minecraftDataFoodResponse] = await Promise.all([
+            anishService.getAllItems(),
+            minecraftDataService.getAllItems(),
+            anishService.getAllBlocks(),
+            minecraftDataService.getAllBlocks(),
+            anishService.getAllRecipes(),
+            minecraftDataService.getAllFoods()
+          ]);
 
-  return () => controller.abort(); // Clean up on component unmount
-}, []);
-  
+          // Process items data
+          if (minecraftDataItemsResponse && anishItemsResponse) {
+            mergeItemData(minecraftDataItemsResponse, anishItemsResponse);
+          }
+
+          // Process blocks data
+          if (anishBlocksResponse&& minecraftDataBlocksResponse) {
+            mergeBlockData(anishBlocksResponse, minecraftDataBlocksResponse);
+          }
+
+          // Process recipes data
+          if (anishRecipeResponse) {
+            const correctedData = anishRecipeResponse.map(recipe => recipe.item === "Beacon" ? beacon : recipe);
+            correctedData.push(noRecipe);
+            setRecipes(correctedData);
+          }
+
+          //Process food data
+          if (minecraftDataFoodResponse && anishItemsResponse){
+            mergeFoodData(minecraftDataFoodResponse, anishItemsResponse as ItemsProps[])
+          }
+          // Set tools and weaponry based on item names
+          
+        } catch (err) {
+          if (err instanceof CanceledError) return;
+          console.error(err);
+          setError(true);
+        } finally {
+          setIsLoading(false); // End loading after all data fetching is complete or failed
+        }
+      };
+
+      fetchData();
+
+      return () => controller.abort(); // Clean up on component unmount
+    }, []);
+      
     const mergeItemData = (
       //merges matching objects from anishBlocks and Minecraft-data. Some data is lost
       minecraftItems: MinecraftItemsProps[],

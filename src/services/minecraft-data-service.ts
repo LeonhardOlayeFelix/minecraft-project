@@ -34,13 +34,13 @@ export interface MinecraftDataBlocksProps {
 
 class MinecraftDataService{
     getAllBlocks(){
-        return pjsApiClient.get<MinecraftDataBlocksProps[]>("/pc/1.20/blocks.json");
+        return pjsApiClient.get<MinecraftDataBlocksProps[]>("/pc/1.20/blocks.json").then(res => res.data);
     }
     getAllItems(){
-        return pjsApiClient.get<MinecraftItemsProps[]>("/pc/1.20/items.json");
+        return pjsApiClient.get<MinecraftItemsProps[]>("/pc/1.20/items.json").then(res => res.data);
     }
     getAllFoods(){
-      return pjsApiClient.get<MinecraftDataFoodProps[]>("/pc/1.20/foods.json");
+      return pjsApiClient.get<MinecraftDataFoodProps[]>("/pc/1.20/foods.json").then(res => res.data);
     }
 }
 
