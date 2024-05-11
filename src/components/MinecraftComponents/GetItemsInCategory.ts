@@ -48,7 +48,6 @@ const getItemsInCategory = (category: string, data: UseBlocksAndItemsResult) => 
             data.recipes?.find((recipe) => recipe.item == item.name) !== undefined)
     }
     else if(category === "Ingredients"){
-        console.log("hi")
         filteredData = data.items.filter((item) => 
             data.ingredients?.find((recipe) => recipe.name == item.name) !== undefined)
     }
