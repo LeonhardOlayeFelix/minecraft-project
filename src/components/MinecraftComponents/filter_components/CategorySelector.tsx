@@ -12,23 +12,27 @@ import { BsChevronDown } from "react-icons/bs";
 interface Props {
   options: string[];
   onCategoryChanged: (value: string) => void;
+  categoryToDisplay: string;
 }
 
-const CategorySelector = ({ options, onCategoryChanged }: Props) => {
-  const [currentCategory, setCurrentCategory] = useState("All");
+const CategorySelector = ({
+  options,
+  onCategoryChanged,
+  categoryToDisplay,
+}: Props) => {
   //const textHoverColor = useColorModeValue("#797979", "#797979");
 
   useEffect(() => {
     const localStorageCategoryShowing =
       window.localStorage.getItem("currentCategory");
     if (localStorageCategoryShowing) {
-      setCurrentCategory(JSON.parse(localStorageCategoryShowing));
+      categoryToDisplay = JSON.parse(localStorageCategoryShowing);
       onCategoryChanged(JSON.parse(localStorageCategoryShowing));
     }
   }, []);
 
   const handleCategoryChanged = (value: string) => {
-    setCurrentCategory(value);
+    categoryToDisplay = value;
     onCategoryChanged(value);
     window.localStorage.setItem("currentCategory", JSON.stringify(value));
   };
@@ -48,7 +52,7 @@ const CategorySelector = ({ options, onCategoryChanged }: Props) => {
         as={Button}
         rightIcon={<BsChevronDown />}
       >
-        {"Category: " + currentCategory}
+        {"Category: " + categoryToDisplay}
       </MenuButton>
       <MenuList zIndex={10}>
         {options.map((option, index) => (

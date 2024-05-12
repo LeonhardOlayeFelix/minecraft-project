@@ -73,6 +73,11 @@ function App() {
     }
   };
 
+  const handleCategoryChanged = (value: string) => {
+    window.localStorage.setItem("currentCategory", JSON.stringify(value));
+    setCurrentCategory(value);
+  };
+
   return (
     <Grid
       templateAreas={{
@@ -156,10 +161,12 @@ function App() {
                       lg: "left",
                     }}
                   >
-                    {"Searching in: " +
-                      (currentCategory == "Any"
+                    {"Searching in: "}
+                    <Text as="span" color="#65A33C">
+                      {currentCategory === "Any"
                         ? "All Items"
-                        : currentCategory)}
+                        : currentCategory}
+                    </Text>
                   </Heading>
                   <Text
                     as="h2"
@@ -196,6 +203,7 @@ function App() {
                   </Box>
                   <Box>
                     <CategorySelector
+                      categoryToDisplay={currentCategory}
                       onCategoryChanged={(value) => setCurrentCategory(value)}
                       options={categories}
                     />
@@ -203,9 +211,10 @@ function App() {
                 </Flex>
                 <Flex justifyContent={"center"}>
                   <CardPaginator
+                    handleCategoryChanged={handleCategoryChanged}
                     handlePinToggle={handlePinToggle}
                     items={filteredData}
-                    resultsPerPage={30}
+                    resultsPerPage={40}
                   ></CardPaginator>
                 </Flex>
               </Flex>

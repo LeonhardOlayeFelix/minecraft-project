@@ -32,6 +32,7 @@ interface Props {
   className?: string;
   data: UseBlocksAndItemsResult;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
+  handleCategoryChanged: (category: string) => void;
 }
 
 const MinecraftItemCard = ({
@@ -39,6 +40,7 @@ const MinecraftItemCard = ({
   className,
   data,
   handlePinToggle,
+  handleCategoryChanged,
 }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
@@ -377,7 +379,7 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Blocks"
                         >
-                          <div>
+                          <div onClick={() => handleCategoryChanged("Blocks")}>
                             <IoCubeOutline
                               id="Blocks"
                               cursor={"pointer"}

@@ -10,6 +10,7 @@ interface Props {
   items: ItemsProps[];
   className?: string;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
+  handleCategoryChanged: (category: string) => void;
   resultsPerPage: number;
 }
 
@@ -17,6 +18,7 @@ const CardPaginator = ({
   items,
   className,
   handlePinToggle,
+  handleCategoryChanged,
   resultsPerPage,
 }: Props) => {
   const data = useMinecraftHook();
@@ -65,6 +67,7 @@ const CardPaginator = ({
         {currentResults.map((item, index) => (
           <div key={index} className="box">
             <MinecraftItemCard
+              handleCategoryChanged={handleCategoryChanged}
               handlePinToggle={handlePinToggle}
               item={item}
               data={data}
