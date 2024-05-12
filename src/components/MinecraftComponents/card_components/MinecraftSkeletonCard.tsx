@@ -1,23 +1,19 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   Flex,
-  Icon,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { IoEllipsisHorizontalSharp } from "react-icons/io5";
-import { TiPinOutline } from "react-icons/ti";
 
 const MinecraftSkeletonCard = () => {
   const cardBodybg = useColorModeValue("gray", "#202020");
   const cardColor = useColorModeValue("white !important", "#111111");
-  const iconColor = useColorModeValue("brand.200", "white");
-  const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
+  //const iconColor = useColorModeValue("brand.200", "white");
+  //const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
   const textStartColor = useColorModeValue("black", "white");
   const textEndColor = useColorModeValue("white", "black");
   const iconEndColor = useColorModeValue("white", "black");

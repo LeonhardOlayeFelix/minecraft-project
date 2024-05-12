@@ -1,5 +1,5 @@
 import { Box, Image } from "@chakra-ui/react";
-import { ItemsProps } from "../../../hooks/useMinecraftHook";
+import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
 
 interface Props {
   item: ItemsProps;

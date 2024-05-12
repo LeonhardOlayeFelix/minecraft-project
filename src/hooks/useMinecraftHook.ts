@@ -6,11 +6,7 @@ import { beacon, noRecipe } from "../interfaces/Instances";
 
 
   
-const mergeItemData = (
-  //merges matching objects from anishBlocks and Minecraft-data. Some data is lost
-  minecraftItems: MinecraftItemsProps[],
-  anishItems: AnishItemsProps[]
-) => {
+const mergeItemData = (minecraftItems: MinecraftItemsProps[], anishItems: AnishItemsProps[]) => {
   const mergedItems = anishItems.map((anishItem) => {
     const matchingItem = minecraftItems.find(
       (mItem) => mItem.displayName === anishItem.name
@@ -26,13 +22,8 @@ const mergeItemData = (
   return mergedItems;
 };
 
-const mergeBlockData = (
-  //merges matching objects from anishBlocks and Minecraft-data. Some data is lost, where matches werent found (33 objects to be precise)
-  anishBlocks: AnishBlocksProps[],
-  minecraftBlocks: MinecraftDataBlocksProps[]
-) => {
-  const mergedBlocks = anishBlocks
-    .map((anishBlock) => {
+const mergeBlockData = (anishBlocks: AnishBlocksProps[], minecraftBlocks: MinecraftDataBlocksProps[]) => {
+  const mergedBlocks = anishBlocks.map((anishBlock) => {
       const matchingBlock = minecraftBlocks.find(
         (mBlock) => mBlock.displayName === anishBlock.name
       );
@@ -43,18 +34,12 @@ const mergeBlockData = (
         };
       }
       return null;
-    })
-    .filter((block) => block !== null); // Ensure only matched blocks are included
+    }).filter((block) => block !== null);
   return mergedBlocks;
 };
 
-const mergeFoodData = (
-  //merging matching food objects together
-  minecraftFood:FoodProps[],
-  anishFoods: ItemsProps[]
-) => {
-  const mergedFood = anishFoods
-  .map((anishFood) => {
+const mergeFoodData = (minecraftFood:FoodProps[], anishFoods: ItemsProps[]) => {
+  const mergedFood = anishFoods.map((anishFood) => {
     const matchingBlock = minecraftFood.find(
       (mFood) => mFood.displayName === anishFood.name
     );
@@ -65,8 +50,7 @@ const mergeFoodData = (
       };
     }
     return null;
-  })
-  .filter((block) => block !== null); // Ensure only matched blocks are included
+  }).filter((block) => block !== null);
 return mergedFood;
 }
 const useBlocksAndItems = () =>{

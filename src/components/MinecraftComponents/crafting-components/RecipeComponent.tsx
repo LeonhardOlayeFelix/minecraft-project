@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ItemsProps, RecipeProps } from "../../../hooks/useMinecraftHook";
 import CraftingTableComponent from "./CraftingTableComponent";
 import "./RecipeComponent.css";
 import {
@@ -10,6 +9,10 @@ import {
   useColorModeValue,
   Flex,
 } from "@chakra-ui/react";
+import {
+  ItemsProps,
+  RecipeProps,
+} from "../../../interfaces/MinecraftInterfaces";
 interface Props {
   recipe: RecipeProps;
   display?: string;

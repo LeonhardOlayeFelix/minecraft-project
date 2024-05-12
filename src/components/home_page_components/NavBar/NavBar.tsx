@@ -1,7 +1,5 @@
-import { Box, HStack, Image, Text, useColorModeValue } from "@chakra-ui/react";
-import logo from "../../../assets/logo.webp";
+import { HStack } from "@chakra-ui/react";
 import RightSideOfBarComponent from "./RightSideOfBarComponent";
-import SearchInput from "./SearchInput";
 
 interface Props {
   className?: string;

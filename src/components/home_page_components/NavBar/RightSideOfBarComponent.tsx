@@ -1,10 +1,9 @@
-import { EmailIcon } from "@chakra-ui/icons";
 import ColorModeSwitch from "./ColorModeSwitch";
-import { Box, Button, Show, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ContactUsComponent from "./ContactUsComponent";
 
 const RightSideOfBarComponent = () => {
-  const hoverBg = useColorModeValue("gray.200", "gray.700");
+  // const hoverBg = useColorModeValue("gray.200", "gray.700");
 
   return (
     <Box

@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import logo from "./assets/logo.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
-import useBlocksAndItems, { ItemsProps } from "./hooks/useMinecraftHook";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
 import { categories } from "./components/MinecraftComponents/CategoriseItem";
@@ -20,6 +19,8 @@ import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCateg
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
 import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearchBarItem";
 import CardPaginator from "./components/MinecraftComponents/CardPaginator";
+import useBlocksAndItems from "./hooks/useMinecraftHook";
+import { ItemsProps } from "./interfaces/MinecraftInterfaces";
 
 function App() {
   const data = useBlocksAndItems();

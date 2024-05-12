@@ -94,12 +94,12 @@ const MinecraftItemCard = ({
   }, [item.image]);
 
   useEffect(() => {
-    const localStorageUsedInShowing = window.localStorage.getItem(
-      item.name + "usedInShowing"
-    );
-    const localStorageRecipeShowing = window.localStorage.getItem(
-      item.name + "recipeShowing"
-    );
+    // const localStorageUsedInShowing = window.localStorage.getItem(
+    //   item.name + "usedInShowing"
+    // );
+    // const localStorageRecipeShowing = window.localStorage.getItem(
+    //   item.name + "recipeShowing"
+    // );
     const localStorageCategoryShowing = window.localStorage.getItem(
       item.name + "categoryShowing"
     );
@@ -180,7 +180,7 @@ const MinecraftItemCard = ({
             const avgRed = Math.round(totalRed / pixelCount);
             const avgGreen = Math.round(totalGreen / pixelCount);
             const avgBlue = Math.round(totalBlue / pixelCount);
-            const avgAlpha = Math.round(totalAlpha / pixelCount);
+            //const avgAlpha = Math.round(totalAlpha / pixelCount);
             const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
               100 / 255
             })`;

@@ -1,5 +1,5 @@
+import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
 import "./CraftingTableGridElementComponent.css";
-import { ItemsProps } from "../../../hooks/useMinecraftHook";
 import { Image, Tooltip, useColorModeValue } from "@chakra-ui/react";
 interface Props {
   item: ItemsProps;

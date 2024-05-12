@@ -1,15 +1,9 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  Show,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Button, useColorMode } from "@chakra-ui/react";
 
 const ColorModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const hoverBg = useColorModeValue("gray.100", "gray.600");
+  //const hoverBg = useColorModeValue("gray.100", "gray.600");
   return (
     <Box onClick={toggleColorMode}>
       {/* <Show above="768px">

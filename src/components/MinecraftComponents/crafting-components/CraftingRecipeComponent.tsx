@@ -1,8 +1,11 @@
 import { useId } from "react";
-import { RecipeProps, ItemsProps } from "../../../hooks/useMinecraftHook";
 import "./CraftingRecipeComponent.css";
 import RecipeComponent from "./RecipeComponent";
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import {
+  RecipeProps,
+  ItemsProps,
+} from "../../../interfaces/MinecraftInterfaces";
 
 interface Props {
   recipes: RecipeProps[]; //there might be multiple recipes, for example swords have 2 recipes: sword + sword or stick + diamond + diamond

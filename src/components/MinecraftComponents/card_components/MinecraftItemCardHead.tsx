@@ -1,7 +1,5 @@
 import {
   Flex,
-  Button,
-  Icon,
   AvatarGroup,
   Tooltip,
   Avatar,
@@ -10,10 +8,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
-import { IoEllipsisHorizontalSharp } from "react-icons/io5";
-import { ItemsProps } from "../../../hooks/useMinecraftHook";
 import SimilarSearchesString from "../SimilarSearchesString";
 import { TiPin, TiPinOutline } from "react-icons/ti";
+import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
 
 interface Props {
   bodyBg: string;
