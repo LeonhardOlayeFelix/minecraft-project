@@ -3,6 +3,7 @@ import { AnishBlocksProps, AnishItemsProps, BlocksProps, FoodProps, ItemsProps, 
 import anishService from "../services/anish-service";
 import minecraftDataService from "../services/minecraft-data-service";
 import { beacon, noRecipe } from "../interfaces/Instances";
+import { useEffect } from "react";
 
 
   
@@ -99,6 +100,11 @@ const useBlocksAndItems = () =>{
 
     const isLoading = anishItemsLoading || MinecraftDataItemsLoading || anishBlocksLoading || MinecraftDataBlocksLoading || anishRecipesLoading || MinecraftDataFoodsLoading;
     const error = anishItemsError || MinecraftDataItemsError || anishBlocksError || MinecraftDataBlocksError || anishRecipesError || MinecraftDataFoodsError;
+
+    useEffect(() => {if (error) {
+      console.log("There was an error: " +  error.message)
+    }}, [error])
+    
     return {items, blocks, potions, recipes, isLoading, toolsAndWeaponry, consumable, plants, valuables, musicDiscs, ingredients, error};
 }
 
