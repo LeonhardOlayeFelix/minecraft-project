@@ -358,9 +358,13 @@ const MinecraftItemCard = ({
                           bg={tooltipBackground}
                           color={tooltipForeground}
                           hasArrow
-                          label="Tools & Weapons"
+                          label="Weapons & Tools"
                         >
-                          <div>
+                          <div
+                            onClick={() =>
+                              handleCategoryChanged("Weapons & Tools")
+                            }
+                          >
                             <LuSwords
                               id="Tools & Weapons"
                               cursor={"pointer"}
@@ -398,7 +402,7 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Potions & Effects"
                         >
-                          <div>
+                          <div onClick={() => handleCategoryChanged("Potions")}>
                             <GiCauldron
                               id="Potions & Effects"
                               cursor={"pointer"}
@@ -417,7 +421,9 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Consumable"
                         >
-                          <div>
+                          <div
+                            onClick={() => handleCategoryChanged("Consumable")}
+                          >
                             <LuBeef
                               id="Consumable"
                               cursor={"pointer"}
@@ -436,7 +442,7 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Plants"
                         >
-                          <div>
+                          <div onClick={() => handleCategoryChanged("Plants")}>
                             <PiPlant
                               id="Plants"
                               cursor={"pointer"}
@@ -455,7 +461,9 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Valuables"
                         >
-                          <div>
+                          <div
+                            onClick={() => handleCategoryChanged("Valuables")}
+                          >
                             <MdAttachMoney
                               id="Valuables"
                               cursor={"pointer"}
@@ -474,7 +482,7 @@ const MinecraftItemCard = ({
                           hasArrow
                           label="Musical"
                         >
-                          <div>
+                          <div onClick={() => handleCategoryChanged("Musical")}>
                             <IoMusicalNoteOutline
                               id="Musical"
                               cursor={"pointer"}
