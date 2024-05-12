@@ -1,5 +1,4 @@
 import {
-  Button,
   Input,
   InputGroup,
   InputLeftElement,
@@ -61,18 +60,15 @@ const SearchInput = ({ onInputChanged }: Props) => {
         </InputRightElement>
       )}
       <InputRightElement>
-        <Button
-          variant="ghost"
-          size="auto"
-          padding={1}
+        <MdClear
+          cursor={"pointer"}
           onClick={() => {
             setSearchIsLoading(true);
             setSearchInput("");
             handleOnChanged("");
           }}
-        >
-          <MdClear size={25} />
-        </Button>
+          size={25}
+        />
       </InputRightElement>
     </InputGroup>
   );
