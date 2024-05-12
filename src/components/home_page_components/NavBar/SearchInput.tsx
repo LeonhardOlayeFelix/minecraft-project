@@ -1,4 +1,5 @@
 import {
+  Button,
   Input,
   InputGroup,
   InputLeftElement,
@@ -8,6 +9,7 @@ import {
 import { BsSearch } from "react-icons/bs";
 import { useCallback, useEffect, useState } from "react";
 import debounce from "lodash/debounce";
+import { MdClear } from "react-icons/md";
 
 interface Props {
   onInputChanged?: (input: string) => void;
@@ -53,7 +55,25 @@ const SearchInput = ({ onInputChanged }: Props) => {
           handleOnChanged(event.target.value);
         }}
       />
-      <InputRightElement>{searchIsLoading && <Spinner />}</InputRightElement>
+      {searchIsLoading && (
+        <InputRightElement mr={8}>
+          <Spinner />
+        </InputRightElement>
+      )}
+      <InputRightElement>
+        <Button
+          variant="ghost"
+          size="auto"
+          padding={1}
+          onClick={() => {
+            setSearchIsLoading(true);
+            setSearchInput("");
+            handleOnChanged("");
+          }}
+        >
+          <MdClear size={25} />
+        </Button>
+      </InputRightElement>
     </InputGroup>
   );
 };
