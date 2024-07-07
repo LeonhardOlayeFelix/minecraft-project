@@ -24,8 +24,10 @@ import MinecraftSkeletonCard from "./MinecraftSkeletonCard";
 import MinecraftItemCardHead from "./MinecraftItemCardHead";
 import {
   ItemsProps,
+  RecipeProps,
   UseBlocksAndItemsResult,
 } from "../../../interfaces/MinecraftInterfaces";
+import CraftingTableWithTitleComponent from "../crafting-components/CraftingTableWithTitleComponent";
 
 interface Props {
   item: ItemsProps;
@@ -46,8 +48,8 @@ const MinecraftItemCard = ({
   const [showCategories, setShowCategories] = useState(false);
   const [glowColor, setGlowColor] = useState("");
   const [isGlowColorLoading, setIsGlowColorLoading] = useState(false);
-  // const [showRecipe, setShowRecipe] = useState(false);
-  // const [showUsedIn, setShowUsedIn] = useState(false);
+  const [showRecipe, setShowRecipe] = useState(false);
+  const [showUsedIn, setShowUsedIn] = useState(false);
   const avatarHover = useColorModeValue("gray", "#20202050");
   const cardBodyBg = useColorModeValue("#E0E0E0", "#202020");
   const textColor = useColorModeValue("gray.800", "white");
@@ -59,8 +61,9 @@ const MinecraftItemCard = ({
   const tooltipBackground = useColorModeValue("black", "#292D2E");
 
   const items = data.items;
-  //const recipes = data.recipes;
+  const recipes = data.recipes;
   const isLoading = data.isLoading;
+
   //boolean data determining whether this item is in the following categories
   const {
     inWeaponsTools,
@@ -75,7 +78,6 @@ const MinecraftItemCard = ({
     inIngredientsOrRecipes,
     inCategoryExcludingRecipesAndIngredients,
   } = categoriseItems(item, data);
-
   // Calculate matches using SimilarSearchesString
 
   useEffect(() => {
@@ -96,19 +98,19 @@ const MinecraftItemCard = ({
   }, [item.image]);
 
   useEffect(() => {
-    // const localStorageUsedInShowing = window.localStorage.getItem(
-    //   item.name + "usedInShowing"
-    // );
-    // const localStorageRecipeShowing = window.localStorage.getItem(
-    //   item.name + "recipeShowing"
-    // );
+    const localStorageUsedInShowing = window.localStorage.getItem(
+      item.name + "usedInShowing"
+    );
+    const localStorageRecipeShowing = window.localStorage.getItem(
+      item.name + "recipeShowing"
+    );
     const localStorageCategoryShowing = window.localStorage.getItem(
       item.name + "categoryShowing"
     );
-    // if (localStorageUsedInShowing)
-    //   setShowUsedIn(JSON.parse(localStorageUsedInShowing));
-    // if (localStorageRecipeShowing)
-    //   setShowRecipe(JSON.parse(localStorageRecipeShowing));
+    if (localStorageUsedInShowing)
+      setShowUsedIn(JSON.parse(localStorageUsedInShowing));
+    if (localStorageRecipeShowing)
+      setShowRecipe(JSON.parse(localStorageRecipeShowing));
     if (localStorageCategoryShowing)
       setShowCategories(JSON.parse(localStorageCategoryShowing));
   }, []);
@@ -211,36 +213,36 @@ const MinecraftItemCard = ({
     console.log((event.target as HTMLElement).id);
   };
 
-  // const toggleShowRecipes = () => {
-  //   setShowUsedIn(false);
-  //   setShowRecipe(!showRecipe);
-  //   window.localStorage.setItem(
-  //     item.name + "recipeShowing",
-  //     JSON.stringify(!showRecipe)
-  //   );
-  //   window.localStorage.setItem(
-  //     item.name + "usedInShowing",
-  //     JSON.stringify(false)
-  //   );
-  // };
-  // const toggleShowUsedIn = () => {
-  //   setShowRecipe(false);
-  //   setShowUsedIn(!showUsedIn);
-  //   window.localStorage.setItem(
-  //     item.name + "usedInShowing",
-  //     JSON.stringify(!showUsedIn)
-  //   );
-  //   window.localStorage.setItem(
-  //     item.name + "recipeShowing",
-  //     JSON.stringify(false)
-  //   );
-  // };
-  // const matchingRecipes = recipes.filter(
-  //   (recipe) => recipe.item === item.name
-  // ) as RecipeProps[];
-  // const matchingIngredients = recipes?.filter((recipe) =>
-  //   recipe.recipe.find((ingredient) => ingredient === item.name)
-  // );
+  const toggleShowRecipes = () => {
+    setShowUsedIn(false);
+    setShowRecipe(!showRecipe);
+    window.localStorage.setItem(
+      item.name + "recipeShowing",
+      JSON.stringify(!showRecipe)
+    );
+    window.localStorage.setItem(
+      item.name + "usedInShowing",
+      JSON.stringify(false)
+    );
+  };
+  const toggleShowUsedIn = () => {
+    setShowRecipe(false);
+    setShowUsedIn(!showUsedIn);
+    window.localStorage.setItem(
+      item.name + "usedInShowing",
+      JSON.stringify(!showUsedIn)
+    );
+    window.localStorage.setItem(
+      item.name + "recipeShowing",
+      JSON.stringify(false)
+    );
+  };
+  const matchingRecipes = recipes.filter(
+    (recipe) => recipe.item === item.name
+  ) as RecipeProps[];
+  const matchingIngredients = recipes?.filter((recipe) =>
+    recipe.recipe.find((ingredient) => ingredient === item.name)
+  );
   if (!items || !item || isLoading || isGlowColorLoading) {
     return <MinecraftSkeletonCard />;
   }
@@ -302,7 +304,7 @@ const MinecraftItemCard = ({
                 )}
               </Text>
             }
-            {/* {showRecipe && inRecipes && !showUsedIn && (
+            {showRecipe && inRecipes && !showUsedIn && (
               <CraftingTableWithTitleComponent
                 recipes={matchingRecipes}
                 items={items}
@@ -312,7 +314,6 @@ const MinecraftItemCard = ({
                     : "Recipes (" + matchingRecipes.length + "):"
                 }
                 bg={cardColor + "50"}
-                className="grow-1"
               />
             )}
             {showUsedIn && inIngredients && !showRecipe && (
@@ -321,9 +322,8 @@ const MinecraftItemCard = ({
                 items={items}
                 title="Material for:"
                 bg={cardColor + "50"}
-                className="grow-1"
               />
-            )} */}
+            )}
           </Flex>
 
           <Flex justifyContent="space-between">
@@ -513,9 +513,10 @@ const MinecraftItemCard = ({
                           boxSize={5}
                           cursor={"pointer"}
                           src={usedInImage}
-                          onClick={(event) =>
-                            console.log("show ingredients for " + item.name)
-                          }
+                          onClick={(event) => {
+                            toggleShowUsedIn();
+                            console.log(matchingIngredients);
+                          }}
                         ></Image>
                       </Box>
                     </Tooltip>
@@ -534,9 +535,9 @@ const MinecraftItemCard = ({
                           boxSize={6}
                           cursor={"pointer"}
                           src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
-                          onClick={() =>
-                            console.log("show recipe for " + item.name)
-                          }
+                          onClick={() => {
+                            toggleShowRecipes();
+                          }}
                         ></Image>
                       </Box>
                     </Tooltip>

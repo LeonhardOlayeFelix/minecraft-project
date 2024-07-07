@@ -13,7 +13,9 @@ import logo from "./assets/logo.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
-import { categories } from "./components/MinecraftComponents/CategoriseItem";
+import categoriseItems, {
+  categories,
+} from "./components/MinecraftComponents/CategoriseItem";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
@@ -21,6 +23,7 @@ import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearch
 import CardPaginator from "./components/MinecraftComponents/CardPaginator";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import { ItemsProps } from "./interfaces/MinecraftInterfaces";
+import { beacon } from "./interfaces/Instances";
 
 function App() {
   const data = useBlocksAndItems();
@@ -72,6 +75,9 @@ function App() {
       );
     }
   };
+  const diamond_sword = data.items.find(
+    (item) => item.name === "Diamond Sword"
+  );
 
   const handleCategoryChanged = (value: string) => {
     window.localStorage.setItem("currentCategory", JSON.stringify(value));
