@@ -1,26 +1,31 @@
-import useMinecraftHook from "../../../hooks/useMinecraftHook";
-import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
+import {
+  ItemsProps,
+  UseBlocksAndItemsResult,
+} from "../../../interfaces/MinecraftInterfaces";
 import "./MinecraftCardGird3.css";
 import MinecraftItemCard from "./MinecraftItemCard";
 import { Box, Flex } from "@chakra-ui/react";
 
 interface Props {
   items: ItemsProps[];
-  className?: string;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
+  data: UseBlocksAndItemsResult;
 }
-
 const MinecraftCardGrid3 = ({
   items,
-  className,
   handlePinToggle,
   handleCategoryChanged,
+  data,
 }: Props) => {
-  const data = useMinecraftHook();
   return (
-    <Flex className={className}>
-      <Box className={`container`}>
+    <Flex className={"container"} justifyContent={"center"}>
+      <Flex
+        justifyContent={"center"}
+        wrap={"wrap"}
+        direction={"row"} // Change direction to row
+        gap={"15px"}
+      >
         {items.map((item, index) => (
           <div key={index} className="box">
             <MinecraftItemCard
@@ -28,10 +33,10 @@ const MinecraftCardGrid3 = ({
               handleCategoryChanged={handleCategoryChanged}
               item={item}
               data={data}
-            ></MinecraftItemCard>
+            />
           </div>
         ))}
-      </Box>
+      </Flex>
     </Flex>
   );
 };

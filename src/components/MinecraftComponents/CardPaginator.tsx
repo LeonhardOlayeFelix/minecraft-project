@@ -65,18 +65,18 @@ const CardPaginator = ({
 
   return (
     <Flex className={className} flexDirection={"column"}>
-      <MinecraftCardGrid
+      {/* <MinecraftCardGrid
         handleCategoryChanged={handleCategoryChanged}
         handlePinToggle={handlePinToggle}
         items={currentResults}
         data={data}
-      ></MinecraftCardGrid>
-      {/* <MinecraftCardGrid3
-      items={currentResults}
-      handleCategoryChanged={handleCategoryChanged}
-      handlePinToggle={handlePinToggle}>
-
-      </MinecraftCardGrid3> */}
+      ></MinecraftCardGrid> */}
+      <MinecraftCardGrid3
+        items={currentResults}
+        handleCategoryChanged={handleCategoryChanged}
+        handlePinToggle={handlePinToggle}
+        data={data}
+      ></MinecraftCardGrid3>
       {items.length != 0 && (
         <Box mt={4}>
           <Flex justifyContent={"center"}>
