@@ -41,7 +41,7 @@ function App() {
 
   let filteredData = getItemsInCategory(currentCategory, data);
 
-  if (currentCategory === "Pinned") {
+  if (currentCategory === "Bookmarks") {
     filteredData = pinnedItems;
   }
 

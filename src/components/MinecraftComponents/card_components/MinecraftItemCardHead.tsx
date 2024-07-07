@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import SimilarSearchesString from "../SimilarSearchesString";
 import { TiPin, TiPinOutline } from "react-icons/ti";
 import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
-
+import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
 interface Props {
   bodyBg: string;
   iconColor: string;
@@ -78,8 +78,8 @@ const MinecraftItemCardHead = ({
             color={tooltipFg}
           >
             <Box>
-              <TiPin
-                fill="rgba(101, 163, 60, 1)"
+              <FaBookmark
+                fill={textColor}
                 cursor={"pointer"}
                 onClick={toggleIsPinned}
                 color={iconColor}
@@ -89,9 +89,14 @@ const MinecraftItemCardHead = ({
           </Tooltip>
         )}
         {!isPinned && (
-          <Tooltip label="Add to pins" background={tooltipBg} color={tooltipFg}>
+          <Tooltip
+            label="Add to bookmarks"
+            background={tooltipBg}
+            color={tooltipFg}
+          >
             <Box>
-              <TiPinOutline
+              <FaRegBookmark
+                fill={textColor}
                 cursor={"pointer"}
                 onClick={toggleIsPinned}
                 color={iconColor}

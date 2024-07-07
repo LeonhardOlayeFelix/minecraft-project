@@ -5,7 +5,7 @@ import {
 
 export const categories = [
   "Any",
-  "Pinned",
+  "Bookmarks",
   "Weapons & Tools",
   "Blocks",
   "Potions",
