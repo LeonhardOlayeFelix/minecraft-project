@@ -32,7 +32,7 @@ function App() {
   const [pinnedItems, setPinnedItems] = useState<ItemsProps[]>([]);
   const { colorMode, toggleColorMode } = useColorMode();
   const cardColor = useColorModeValue("#181818 !important", "#0D0E0E");
-
+  const textColor = useColorModeValue("gray.800", "white");
   useEffect(() => {
     const localStoragePinnedItems = localStorage.getItem("pinnedItems");
     if (localStoragePinnedItems)
@@ -92,12 +92,7 @@ function App() {
       }}
     >
       <GridItem area={"header"}>
-        <Flex
-          borderBottom={"1px solid"}
-          borderColor="rgba(101, 163, 60, 0.2)"
-          justifyContent={"center"}
-          background={cardColor}
-        >
+        <Flex justifyContent={"center"} background={cardColor}>
           <Flex flexDirection={"column"} justifyContent={"center"}>
             <Flex justifyContent={"center"}>
               <Image src={logo} boxSize={"80px"} />
@@ -133,11 +128,6 @@ function App() {
               </Text>
             </Flex>
             <Box
-              borderTop={"1px solid"}
-              borderX="1px solid"
-              borderColor={
-                colorMode === "dark" ? "rgba(101, 163, 60, 0.2)" : "black"
-              }
               background={colorMode === "dark" ? cardColor : "#E4DEDB"}
               paddingY={"2%"}
               paddingX={"20px"}
