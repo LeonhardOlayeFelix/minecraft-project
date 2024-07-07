@@ -8,9 +8,15 @@ interface Props {
   items: ItemsProps[];
   className?: string;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
+  handleCategoryChanged: (category: string) => void;
 }
 
-const MinecraftCardGrid3 = ({ items, className, handlePinToggle }: Props) => {
+const MinecraftCardGrid3 = ({
+  items,
+  className,
+  handlePinToggle,
+  handleCategoryChanged,
+}: Props) => {
   const data = useMinecraftHook();
   return (
     <Flex className={className}>
@@ -19,6 +25,7 @@ const MinecraftCardGrid3 = ({ items, className, handlePinToggle }: Props) => {
           <div key={index} className="box">
             <MinecraftItemCard
               handlePinToggle={handlePinToggle}
+              handleCategoryChanged={handleCategoryChanged}
               item={item}
               data={data}
             ></MinecraftItemCard>

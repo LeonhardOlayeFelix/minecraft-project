@@ -5,6 +5,8 @@ import { Box, Flex, Button, HStack, Text, Show } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { ItemsProps } from "../../interfaces/MinecraftInterfaces";
 import useMinecraftHook from "../../hooks/useMinecraftHook";
+import MinecraftCardGrid3 from "./card_components/MinecraftCardGrid3";
+import MinecraftCardGrid from "./card_components/MinecraftCardGrid";
 
 interface Props {
   items: ItemsProps[];
@@ -63,18 +65,18 @@ const CardPaginator = ({
 
   return (
     <Flex className={className} flexDirection={"column"}>
-      <Box className={`container`}>
-        {currentResults.map((item, index) => (
-          <div key={index} className="box">
-            <MinecraftItemCard
-              handleCategoryChanged={handleCategoryChanged}
-              handlePinToggle={handlePinToggle}
-              item={item}
-              data={data}
-            ></MinecraftItemCard>
-          </div>
-        ))}
-      </Box>
+      <MinecraftCardGrid
+        handleCategoryChanged={handleCategoryChanged}
+        handlePinToggle={handlePinToggle}
+        items={currentResults}
+        data={data}
+      ></MinecraftCardGrid>
+      {/* <MinecraftCardGrid3
+      items={currentResults}
+      handleCategoryChanged={handleCategoryChanged}
+      handlePinToggle={handlePinToggle}>
+
+      </MinecraftCardGrid3> */}
       {items.length != 0 && (
         <Box mt={4}>
           <Flex justifyContent={"center"}>
