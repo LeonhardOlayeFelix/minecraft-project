@@ -75,12 +75,8 @@ function App() {
       );
     }
   };
-  const diamond_sword = data.items.find(
-    (item) => item.name === "Diamond Sword"
-  );
 
   const handleCategoryChanged = (value: string) => {
-    window.localStorage.setItem("currentCategory", JSON.stringify(value));
     setCurrentCategory(value);
   };
 

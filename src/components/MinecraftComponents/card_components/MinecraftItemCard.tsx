@@ -103,23 +103,23 @@ const MinecraftItemCard = ({
     fetchMiddlePixelColor();
   }, [item.image]);
 
-  useEffect(() => {
-    const localStorageUsedInShowing = window.localStorage.getItem(
-      item.name + "usedInShowing"
-    );
-    const localStorageRecipeShowing = window.localStorage.getItem(
-      item.name + "recipeShowing"
-    );
-    const localStorageCategoryShowing = window.localStorage.getItem(
-      item.name + "categoryShowing"
-    );
-    if (localStorageUsedInShowing)
-      setShowUsedIn(JSON.parse(localStorageUsedInShowing));
-    if (localStorageRecipeShowing)
-      setShowRecipe(JSON.parse(localStorageRecipeShowing));
-    if (localStorageCategoryShowing)
-      setShowCategories(JSON.parse(localStorageCategoryShowing));
-  }, []);
+  // useEffect(() => {
+  //   const localStorageUsedInShowing = window.localStorage.getItem(
+  //     item.name + "usedInShowing"
+  //   );
+  //   const localStorageRecipeShowing = window.localStorage.getItem(
+  //     item.name + "recipeShowing"
+  //   );
+  //   const localStorageCategoryShowing = window.localStorage.getItem(
+  //     item.name + "categoryShowing"
+  //   );
+  //   if (localStorageUsedInShowing)
+  //     setShowUsedIn(JSON.parse(localStorageUsedInShowing));
+  //   if (localStorageRecipeShowing)
+  //     setShowRecipe(JSON.parse(localStorageRecipeShowing));
+  //   if (localStorageCategoryShowing)
+  //     setShowCategories(JSON.parse(localStorageCategoryShowing));
+  // }, []);
 
   const shortenString = (value: string, length: number) => {
     if (value.length <= length)
