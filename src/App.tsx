@@ -222,7 +222,8 @@ function App() {
                       lg: "left",
                     }}
                   >
-                    Version: 1.18
+                    <u>Version:</u>
+                    <strong> 1.18</strong>
                   </Text>
                 </Box>
                 <Flex
