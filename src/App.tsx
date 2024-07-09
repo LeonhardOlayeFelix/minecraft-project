@@ -8,8 +8,10 @@ import {
   Text,
   Image,
   useColorMode,
+  Show,
 } from "@chakra-ui/react";
 import logo from "./assets/logo.webp";
+import recipebook from "./assets/recipebook.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
@@ -112,27 +114,51 @@ function App() {
         <Flex display={"flex"} justifyContent={"center"}>
           <Flex flexDirection={"column"} gap={"10px"} minW={"60vw"}>
             <Flex margin={3} flexDirection={"column"}>
-              <Heading
-                as="h1"
-                textAlign={{
-                  base: "center",
-                  sm: "center",
-                  md: "left",
-                  lg: "left",
-                }}
+              <Flex
+                direction={"row"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+                gap={10}
+                px={10}
               >
-                Heading goes here
-              </Heading>
-              <Text
-                textAlign={{
-                  base: "center",
-                  sm: "center",
-                  md: "left",
-                  lg: "left",
-                }}
-              >
-                Description goes here
-              </Text>
+                <Box>
+                  <Heading
+                    as="h1"
+                    textAlign={{
+                      base: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "left",
+                    }}
+                    fontSize={60}
+                  >
+                    Minecraft Item Index
+                  </Heading>
+                  <Text
+                    textAlign={{
+                      base: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "left",
+                    }}
+                  >
+                    Minecraft Item Index is a searchable database of all
+                    Minecraft (1.18) blocks and items. <br />
+                    <br />
+                    On this website, you can find each item's recipe, or the
+                    recipes that it is an ingredient in. Clicking on an items
+                    name will reveal it's ID which can be used <br />
+                    in expressions in command blocks. You can also bookmark
+                    items, and filter by those bookmarks or other categories
+                    including Plants or Valuables
+                  </Text>
+                </Box>
+                <Show above="lg">
+                  <Box>
+                    <Image boxSize={200} src={recipebook}></Image>
+                  </Box>
+                </Show>
+              </Flex>
             </Flex>
             <Box
               background={colorMode === "dark" ? cardColor : "#E4DEDB"}
@@ -234,7 +260,7 @@ function App() {
                   {filteredData.length === 0 &&
                     currentCategory === "Bookmarks" && (
                       <Text mt={3} textAlign={"center"}>
-                        You have no Bookmarks! <br /> Please click the bookmark
+                        You have no bookmarks! <br /> Please click the bookmark
                         icon on any cards to add them to your bookmarks.
                       </Text>
                     )}
