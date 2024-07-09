@@ -11,6 +11,7 @@ interface Props {
   title: string;
   bg: string;
   className?: string;
+  handleResultClicked?: (resultName: string) => void;
 }
 
 const CraftingTableWithTitleComponent = ({
@@ -19,6 +20,7 @@ const CraftingTableWithTitleComponent = ({
   bg,
   title,
   className,
+  handleResultClicked,
 }: Props) => {
   return (
     <Flex
@@ -46,12 +48,14 @@ const CraftingTableWithTitleComponent = ({
             items={items}
             recipes={recipes}
             craftingTableCellWidthHeight={"2.1em"}
+            handleResultClicked={handleResultClicked}
           />
         </Box>
       </Show>
       <Show below="lg">
         <Box>
           <CraftingRecipeComponent
+            handleResultClicked={handleResultClicked}
             items={items}
             recipes={recipes}
             craftingTableCellWidthHeight={"1.9em"}

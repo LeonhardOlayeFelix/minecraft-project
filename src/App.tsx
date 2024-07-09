@@ -86,7 +86,10 @@ function App() {
 
   const handleIconClicked = (iconName: string) => {
     setCurrentSearch(iconName);
-    console.log(iconName);
+  };
+
+  const handleResultClicked = (resultName: string) => {
+    setCurrentSearch(resultName);
   };
 
   return (
@@ -216,6 +219,7 @@ function App() {
                     handleCategoryChanged={handleCategoryChanged}
                     handlePinToggle={handlePinToggle}
                     handleIconClicked={handleIconClicked}
+                    handleResultClicked={handleResultClicked}
                     items={filteredData}
                     resultsPerPage={40}
                   ></CardPaginator>

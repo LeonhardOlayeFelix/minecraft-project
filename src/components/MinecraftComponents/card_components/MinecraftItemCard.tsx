@@ -36,6 +36,7 @@ interface Props {
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
   handleIconClicked: (iconName: string) => void;
+  handleResultClicked?: (resultName: string) => void;
 }
 
 const MinecraftItemCard = ({
@@ -45,6 +46,7 @@ const MinecraftItemCard = ({
   handlePinToggle,
   handleCategoryChanged,
   handleIconClicked,
+  handleResultClicked,
 }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
@@ -213,7 +215,6 @@ const MinecraftItemCard = ({
     event: React.MouseEvent<SVGElement, MouseEvent>
   ) => {
     handleCategoryChanged((event.target as HTMLElement).id);
-    console.log((event.target as HTMLElement).id);
   };
 
   const toggleShowRecipes = () => {
@@ -310,6 +311,7 @@ const MinecraftItemCard = ({
             }
             {showRecipe && inRecipes && !showUsedIn && (
               <CraftingTableWithTitleComponent
+                handleResultClicked={handleResultClicked}
                 recipes={matchingRecipes}
                 items={items}
                 title={
@@ -323,6 +325,7 @@ const MinecraftItemCard = ({
             )}
             {showUsedIn && inIngredients && !showRecipe && (
               <CraftingTableWithTitleComponent
+                handleResultClicked={handleResultClicked}
                 recipes={matchingIngredients}
                 items={items}
                 title="Material for:"

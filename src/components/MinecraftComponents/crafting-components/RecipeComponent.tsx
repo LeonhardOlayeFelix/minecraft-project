@@ -21,6 +21,7 @@ interface Props {
   gridElementAnimation?: string;
   gridResultAnimation?: string;
   craftingTableCellWidthHeight?: string;
+  handleResultClicked?: (resultName: string) => void;
 }
 
 const RecipeComponent = ({
@@ -31,6 +32,7 @@ const RecipeComponent = ({
   gridResultAnimation,
   craftingTableCellWidthHeight,
   display,
+  handleResultClicked,
 }: Props) => {
   const [recipeIsLoading, setRecipeIsLoading] = useState(true);
   const nameColor = useColorModeValue("#545454", "#545454");
@@ -43,7 +45,11 @@ const RecipeComponent = ({
   if (recipe) {
     foundItem = items.find((item) => item.name === recipe.item);
   }
-
+  const handleOnResultClicked = (resultName: string) => {
+    if (handleResultClicked) {
+      handleResultClicked(resultName);
+    }
+  };
   return (
     <div id="outer" className={className}>
       <Flex className={"screen"}>
@@ -141,6 +147,7 @@ const RecipeComponent = ({
                       style={{ cursor: "pointer" }}
                       key={recipe.item}
                       paddingBottom={2}
+                      onClick={() => handleOnResultClicked(recipe.item)}
                     />
                   </Tooltip>
                   <p
