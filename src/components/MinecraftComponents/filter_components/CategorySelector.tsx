@@ -4,6 +4,8 @@ import {
   Button,
   MenuItem,
   MenuList,
+  Box,
+  useColorMode,
   //useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -21,6 +23,7 @@ const CategorySelector = ({
   categoryToDisplay,
 }: Props) => {
   //const textHoverColor = useColorModeValue("#797979", "#797979");
+  const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
     const localStorageCategoryShowing =
@@ -42,7 +45,7 @@ const CategorySelector = ({
       <MenuButton
         transition="all 0.2s"
         bg="rgba(101, 163, 60, 0.3)"
-        color="rgba(101, 163, 60, 1)"
+        color={colorMode === "dark" ? "white" : "black"}
         border="1px solid"
         borderColor="rgba(101, 163, 60, 1)"
         _hover={{
@@ -52,7 +55,10 @@ const CategorySelector = ({
         as={Button}
         rightIcon={<BsChevronDown />}
       >
-        {"Category: " + categoryToDisplay}
+        Category:{" "}
+        <Box as="span" fontWeight="bold">
+          {categoryToDisplay}
+        </Box>
       </MenuButton>
       <MenuList zIndex={10}>
         {options.map((option, index) => (

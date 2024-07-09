@@ -9,6 +9,7 @@ import {
   Image,
   useColorMode,
   Show,
+  Link,
 } from "@chakra-ui/react";
 import logo from "./assets/logo.webp";
 import recipebook from "./assets/recipebook.webp";
@@ -145,12 +146,26 @@ function App() {
                     Minecraft Item Index is a searchable database of all
                     Minecraft (1.18) blocks and items. <br />
                     <br />
-                    On this website, you can find each item's recipe, or the
-                    recipes that it is an ingredient in. Clicking on an items
-                    name will reveal it's ID which can be used <br />
-                    in expressions in command blocks. You can also bookmark
-                    items, and filter by those bookmarks or other categories
-                    including Plants or Valuables
+                    On this website, you can find each item's recipe or the
+                    recipes that it is an ingredient in. Clicking on an item's
+                    name will reveal it's ID, which can be used <br />
+                    in expressions involving command blocks. You can also
+                    bookmark items, and filter by those bookmarks or other
+                    categories including{" "}
+                    <Link
+                      color="#65A33C"
+                      onClick={() => setCurrentCategory("Plants")}
+                    >
+                      Plants
+                    </Link>{" "}
+                    or{" "}
+                    <Link
+                      color="#65A33C"
+                      onClick={() => setCurrentCategory("Valuables")}
+                    >
+                      Valuables
+                    </Link>
+                    !
                   </Text>
                 </Box>
                 <Show above="lg">
@@ -253,15 +268,16 @@ function App() {
                     currentCategory !== "Bookmarks" && (
                       <Text mt={3} textAlign={"center"}>
                         There were no matches found! <br /> Please check the
-                        selected category and ensure your search is correct,
-                        then try again.
+                        <strong> selected category</strong> and ensure your
+                        search is correct, then try again.
                       </Text>
                     )}
                   {filteredData.length === 0 &&
                     currentCategory === "Bookmarks" && (
                       <Text mt={3} textAlign={"center"}>
-                        You have no bookmarks! <br /> Please click the bookmark
-                        icon on any cards to add them to your bookmarks.
+                        You have no bookmarks! <br /> Please{" "}
+                        <strong>click the bookmark icon</strong> on any cards to
+                        add them to your bookmarks.
                       </Text>
                     )}
                 </Flex>
