@@ -85,7 +85,24 @@ const MinecraftItemCard = ({
     inCategoryExcludingRecipesAndIngredients,
   } = categoriseItems(item, data);
   // Calculate matches using SimilarSearchesString
-
+  const onMaterialClicked = (materialName: string) => {
+    if (handleMaterialClicked) {
+      handleMaterialClicked(materialName);
+      if (item.name !== materialName) {
+        setShowRecipe(false);
+        setShowUsedIn(false);
+      }
+    }
+  };
+  const onResultClicked = (materialName: string) => {
+    if (handleResultClicked) {
+      handleResultClicked(materialName);
+      if (item.name !== materialName) {
+        setShowRecipe(false);
+        setShowUsedIn(false);
+      }
+    }
+  };
   useEffect(() => {
     const fetchMiddlePixelColor = async () => {
       if (item.image) {
@@ -313,8 +330,8 @@ const MinecraftItemCard = ({
             }
             {showRecipe && inRecipes && !showUsedIn && (
               <CraftingTableWithTitleComponent
-                handleResultClicked={handleResultClicked}
-                handleMaterialClicked={handleMaterialClicked}
+                handleResultClicked={onResultClicked}
+                handleMaterialClicked={onMaterialClicked}
                 recipes={matchingRecipes}
                 items={items}
                 title={
@@ -328,8 +345,8 @@ const MinecraftItemCard = ({
             )}
             {showUsedIn && inIngredients && !showRecipe && (
               <CraftingTableWithTitleComponent
-                handleResultClicked={handleResultClicked}
-                handleMaterialClicked={handleMaterialClicked}
+                handleResultClicked={onResultClicked}
+                handleMaterialClicked={onMaterialClicked}
                 recipes={matchingIngredients}
                 items={items}
                 title="Material for:"
