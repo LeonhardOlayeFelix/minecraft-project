@@ -10,6 +10,7 @@ interface Props {
   items: ItemsProps[];
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
+  handleIconClicked: (iconName: string) => void;
   data: UseBlocksAndItemsResult;
 }
 const MinecraftCardGrid3 = ({
@@ -17,6 +18,7 @@ const MinecraftCardGrid3 = ({
   handlePinToggle,
   handleCategoryChanged,
   data,
+  handleIconClicked,
 }: Props) => {
   return (
     <Flex className={"container"} justifyContent={"center"}>
@@ -31,6 +33,7 @@ const MinecraftCardGrid3 = ({
             <MinecraftItemCard
               handlePinToggle={handlePinToggle}
               handleCategoryChanged={handleCategoryChanged}
+              handleIconClicked={handleIconClicked}
               item={item}
               data={data}
             />

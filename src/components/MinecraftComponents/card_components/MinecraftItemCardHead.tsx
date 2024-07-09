@@ -23,6 +23,7 @@ interface Props {
   item: ItemsProps;
   items: ItemsProps[];
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
+  handleIconClicked: (iconName: string) => void;
 }
 
 const MinecraftItemCardHead = ({
@@ -36,6 +37,7 @@ const MinecraftItemCardHead = ({
   item,
   items,
   handlePinToggle,
+  handleIconClicked,
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
 
@@ -139,7 +141,7 @@ const MinecraftItemCardHead = ({
               <Avatar
                 className="grow-1 p-1"
                 boxSize={8}
-                onClick={() => console.log(match?.name)}
+                onClick={() => handleIconClicked(match?.name ? match.name : "")}
                 cursor="pointer"
                 transition="background-color 0.2s"
                 src={match?.image}

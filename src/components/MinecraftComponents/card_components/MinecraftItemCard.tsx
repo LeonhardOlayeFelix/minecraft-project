@@ -35,6 +35,7 @@ interface Props {
   data: UseBlocksAndItemsResult;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
+  handleIconClicked: (iconName: string) => void;
 }
 
 const MinecraftItemCard = ({
@@ -43,6 +44,7 @@ const MinecraftItemCard = ({
   data,
   handlePinToggle,
   handleCategoryChanged,
+  handleIconClicked,
 }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
@@ -214,7 +216,6 @@ const MinecraftItemCard = ({
   };
 
   const toggleShowRecipes = () => {
-    setShowUsedIn(false);
     setShowRecipe(!showRecipe);
     window.localStorage.setItem(
       item.name + "recipeShowing",
@@ -224,9 +225,9 @@ const MinecraftItemCard = ({
       item.name + "usedInShowing",
       JSON.stringify(false)
     );
+    setShowUsedIn(false);
   };
   const toggleShowUsedIn = () => {
-    setShowRecipe(false);
     setShowUsedIn(!showUsedIn);
     window.localStorage.setItem(
       item.name + "usedInShowing",
@@ -236,6 +237,7 @@ const MinecraftItemCard = ({
       item.name + "recipeShowing",
       JSON.stringify(false)
     );
+    setShowRecipe(false);
   };
   const matchingRecipes = recipes.filter(
     (recipe) => recipe.item === item.name
@@ -269,6 +271,7 @@ const MinecraftItemCard = ({
         item={item}
         items={items}
         handlePinToggle={handlePinToggle}
+        handleIconClicked={handleIconClicked}
       />
       <CardBody bg={cardBodyBg}>
         <Flex
@@ -314,6 +317,7 @@ const MinecraftItemCard = ({
                     : "Recipes (" + matchingRecipes.length + "):"
                 }
                 bg={cardColor + "50"}
+                className="grow-1"
               />
             )}
             {showUsedIn && inIngredients && !showRecipe && (
@@ -322,6 +326,7 @@ const MinecraftItemCard = ({
                 items={items}
                 title="Material for:"
                 bg={cardColor + "50"}
+                className="grow-1"
               />
             )}
           </Flex>

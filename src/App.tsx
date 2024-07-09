@@ -84,6 +84,11 @@ function App() {
     setCurrentCategory(value);
   };
 
+  const handleIconClicked = (iconName: string) => {
+    setCurrentSearch(iconName);
+    console.log(iconName);
+  };
+
   return (
     <Grid
       templateAreas={{
@@ -195,6 +200,7 @@ function App() {
                   <Box width={"90%"}>
                     <SearchInput
                       onInputChanged={(search) => setCurrentSearch(search)}
+                      value={currentSearch}
                     ></SearchInput>
                   </Box>
                   <Box>
@@ -209,6 +215,7 @@ function App() {
                   <CardPaginator
                     handleCategoryChanged={handleCategoryChanged}
                     handlePinToggle={handlePinToggle}
+                    handleIconClicked={handleIconClicked}
                     items={filteredData}
                     resultsPerPage={40}
                   ></CardPaginator>

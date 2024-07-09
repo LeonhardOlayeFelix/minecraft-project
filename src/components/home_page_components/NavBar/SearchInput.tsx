@@ -12,11 +12,12 @@ import { MdClear } from "react-icons/md";
 
 interface Props {
   onInputChanged?: (input: string) => void;
+  value?: string;
 }
 
-const SearchInput = ({ onInputChanged }: Props) => {
+const SearchInput = ({ onInputChanged, value = "" }: Props) => {
   const [searchIsLoading, setSearchIsLoading] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState(value);
 
   useEffect(() => {
     const localStorageCurrentSearch =
@@ -28,6 +29,10 @@ const SearchInput = ({ onInputChanged }: Props) => {
       handleOnChanged(parsedSearch);
     }
   }, []);
+
+  useEffect(() => {
+    setSearchInput(value);
+  }, [value]);
 
   const handleOnChanged = useCallback(
     debounce((input: string) => {

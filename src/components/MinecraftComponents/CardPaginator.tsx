@@ -13,6 +13,7 @@ interface Props {
   className?: string;
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
+  handleIconClicked: (iconName: string) => void;
   resultsPerPage: number;
 }
 
@@ -21,6 +22,7 @@ const CardPaginator = ({
   className,
   handlePinToggle,
   handleCategoryChanged,
+  handleIconClicked,
   resultsPerPage,
 }: Props) => {
   const data = useMinecraftHook();
@@ -75,6 +77,7 @@ const CardPaginator = ({
         items={currentResults}
         handleCategoryChanged={handleCategoryChanged}
         handlePinToggle={handlePinToggle}
+        handleIconClicked={handleIconClicked}
         data={data}
       ></MinecraftCardGrid3>
       {items.length != 0 && (
