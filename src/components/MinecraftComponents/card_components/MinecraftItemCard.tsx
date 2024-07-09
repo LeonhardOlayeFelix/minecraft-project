@@ -37,6 +37,7 @@ interface Props {
   handleCategoryChanged: (category: string) => void;
   handleIconClicked: (iconName: string) => void;
   handleResultClicked?: (resultName: string) => void;
+  handleMaterialClicked?: (materialName: string) => void;
 }
 
 const MinecraftItemCard = ({
@@ -47,6 +48,7 @@ const MinecraftItemCard = ({
   handleCategoryChanged,
   handleIconClicked,
   handleResultClicked,
+  handleMaterialClicked,
 }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
@@ -312,6 +314,7 @@ const MinecraftItemCard = ({
             {showRecipe && inRecipes && !showUsedIn && (
               <CraftingTableWithTitleComponent
                 handleResultClicked={handleResultClicked}
+                handleMaterialClicked={handleMaterialClicked}
                 recipes={matchingRecipes}
                 items={items}
                 title={
@@ -326,6 +329,7 @@ const MinecraftItemCard = ({
             {showUsedIn && inIngredients && !showRecipe && (
               <CraftingTableWithTitleComponent
                 handleResultClicked={handleResultClicked}
+                handleMaterialClicked={handleMaterialClicked}
                 recipes={matchingIngredients}
                 items={items}
                 title="Material for:"

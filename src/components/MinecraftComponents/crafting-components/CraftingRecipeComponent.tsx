@@ -15,6 +15,7 @@ interface Props {
   gridResultAnimation?: string;
   craftingTableCellWidthHeight?: string;
   handleResultClicked?: (resultName: string) => void;
+  handleMaterialClicked?: (materialName: string) => void;
 }
 //will show a list of recipe in a slide show format
 const CraftingRecipeComponent = ({
@@ -25,6 +26,7 @@ const CraftingRecipeComponent = ({
   gridResultAnimation,
   craftingTableCellWidthHeight,
   handleResultClicked,
+  handleMaterialClicked,
 }: Props) => {
   const carouselId = useId();
   const carouselArrowBg = useColorModeValue("black", "white");
@@ -68,6 +70,7 @@ const CraftingRecipeComponent = ({
                 >
                   <RecipeComponent
                     handleResultClicked={handleResultClicked}
+                    handleMaterialClicked={handleMaterialClicked}
                     recipe={recipe}
                     gridElementAnimation={gridElementAnimation}
                     gridResultAnimation={gridResultAnimation}

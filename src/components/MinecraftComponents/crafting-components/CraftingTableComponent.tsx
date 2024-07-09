@@ -11,6 +11,7 @@ interface Props {
   className?: string;
   gridElementAnimation?: string;
   craftingTableCellWidthHeight?: string;
+  handleMaterialClicked?: (materialName: string) => void;
   onLoad: () => void;
 }
 
@@ -20,6 +21,7 @@ const CraftingTableComponent = ({
   className,
   gridElementAnimation,
   craftingTableCellWidthHeight,
+  handleMaterialClicked,
   onLoad,
 }: Props) => {
   const [processedRecipe, setProcessedRecipe] = useState<string[]>([]);
@@ -57,6 +59,7 @@ const CraftingTableComponent = ({
           processedRecipe.map((name, index) => (
             <div key={index}>
               <CraftingTableGridElementComponent
+                handleMaterialClicked={handleMaterialClicked}
                 gridElementAnimation={gridElementAnimation}
                 item={items.find((item) => item.name === name) as ItemsProps}
                 craftingTableCellWidthHeight={craftingTableCellWidthHeight}

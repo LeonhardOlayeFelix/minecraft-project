@@ -92,6 +92,9 @@ function App() {
     setCurrentSearch(resultName);
   };
 
+  const handleMaterialClicked = (materialName: string) => {
+    setCurrentSearch(materialName);
+  };
   return (
     <Grid
       templateAreas={{
@@ -220,6 +223,7 @@ function App() {
                     handlePinToggle={handlePinToggle}
                     handleIconClicked={handleIconClicked}
                     handleResultClicked={handleResultClicked}
+                    handleMaterialClicked={handleMaterialClicked}
                     items={filteredData}
                     resultsPerPage={40}
                   ></CardPaginator>

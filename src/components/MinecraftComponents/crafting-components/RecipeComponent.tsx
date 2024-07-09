@@ -21,6 +21,7 @@ interface Props {
   gridElementAnimation?: string;
   gridResultAnimation?: string;
   craftingTableCellWidthHeight?: string;
+  handleMaterialClicked?: (materialName: string) => void;
   handleResultClicked?: (resultName: string) => void;
 }
 
@@ -33,6 +34,7 @@ const RecipeComponent = ({
   craftingTableCellWidthHeight,
   display,
   handleResultClicked,
+  handleMaterialClicked,
 }: Props) => {
   const [recipeIsLoading, setRecipeIsLoading] = useState(true);
   const nameColor = useColorModeValue("#545454", "#545454");
@@ -83,6 +85,7 @@ const RecipeComponent = ({
         <div className="crafting-area">
           <div>
             <CraftingTableComponent
+              handleMaterialClicked={handleMaterialClicked}
               gridElementAnimation={gridElementAnimation}
               recipe={recipe}
               items={items}

@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   gridElementAnimation?: string;
   craftingTableCellWidthHeight?: string;
+  handleMaterialClicked?: (materialName: string) => void;
 }
 
 const CraftingTableGridElementComponent = ({
@@ -13,9 +14,15 @@ const CraftingTableGridElementComponent = ({
   className,
   gridElementAnimation,
   craftingTableCellWidthHeight,
+  handleMaterialClicked,
 }: Props) => {
   const tooltipForeground = useColorModeValue("white", "white");
   const tooltipBackground = useColorModeValue("black", "#292D2E");
+  const handleOnMaterialClicked = (materialName: string) => {
+    if (handleMaterialClicked) {
+      handleMaterialClicked(materialName);
+    }
+  };
   return (
     <div
       style={{
@@ -42,6 +49,7 @@ const CraftingTableGridElementComponent = ({
             data-bs-placement="top"
             data-bs-delay={100}
             style={{ cursor: "pointer" }}
+            onClick={() => handleOnMaterialClicked(item.name)}
           />
         </Tooltip>
       )}

@@ -11,6 +11,8 @@ interface Props {
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleCategoryChanged: (category: string) => void;
   handleIconClicked: (iconName: string) => void;
+  handleMaterialClicked?: (materialName: string) => void;
+  handleResultClicked?: (resultName: string) => void;
   data: UseBlocksAndItemsResult;
 }
 
@@ -19,6 +21,8 @@ const MinecraftCardGrid = ({
   handlePinToggle,
   handleCategoryChanged,
   handleIconClicked,
+  handleMaterialClicked,
+  handleResultClicked,
   data,
 }: Props) => {
   return (
@@ -29,6 +33,8 @@ const MinecraftCardGrid = ({
             handleCategoryChanged={handleCategoryChanged}
             handlePinToggle={handlePinToggle}
             handleIconClicked={handleIconClicked}
+            handleMaterialClicked={handleMaterialClicked}
+            handleResultClicked={handleResultClicked}
             item={item}
             data={data}
           ></MinecraftItemCard>
