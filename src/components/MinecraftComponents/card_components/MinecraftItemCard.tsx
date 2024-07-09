@@ -545,7 +545,6 @@ const MinecraftItemCard = ({
                           src={usedInImage}
                           onClick={(event) => {
                             toggleShowUsedIn();
-                            console.log(matchingIngredients);
                           }}
                         ></Image>
                       </Box>

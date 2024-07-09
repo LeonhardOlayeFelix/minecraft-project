@@ -223,6 +223,21 @@ function App() {
                     items={filteredData}
                     resultsPerPage={40}
                   ></CardPaginator>
+                  {filteredData.length === 0 &&
+                    currentCategory !== "Bookmarks" && (
+                      <Text mt={3} textAlign={"center"}>
+                        There were no matches found! <br /> Please check the
+                        selected category and ensure your search is correct,
+                        then try again.
+                      </Text>
+                    )}
+                  {filteredData.length === 0 &&
+                    currentCategory === "Bookmarks" && (
+                      <Text mt={3} textAlign={"center"}>
+                        You have no Bookmarks! <br /> Please click the bookmark
+                        icon on any cards to add them to your bookmarks.
+                      </Text>
+                    )}
                 </Flex>
               </Flex>
             </Box>
