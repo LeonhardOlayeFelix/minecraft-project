@@ -212,6 +212,7 @@ const MinecraftItemCard = ({
   const handleTooltipClicked = (
     event: React.MouseEvent<SVGElement, MouseEvent>
   ) => {
+    handleCategoryChanged((event.target as HTMLElement).id);
     console.log((event.target as HTMLElement).id);
   };
 
