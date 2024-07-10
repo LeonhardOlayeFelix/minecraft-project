@@ -48,7 +48,7 @@ function App() {
     const similarSearches = SimilarSearchesString(
       itemsAsString,
       currentSearch,
-      0.5
+      0.4
     );
     filteredData = similarSearches
       .map((itemName) => filteredData.find((item) => item.name === itemName))
@@ -261,7 +261,8 @@ function App() {
                     resultsPerPage={40}
                   ></CardPaginator>
                   {filteredData.length === 0 &&
-                    currentCategory !== "Bookmarks" && (
+                    currentCategory !== "Bookmarks" &&
+                    !data.isLoading && (
                       <Text mt={3} textAlign={"center"}>
                         There were no matches found! <br /> Please check the
                         <strong> selected category</strong> and ensure your
@@ -269,6 +270,7 @@ function App() {
                       </Text>
                     )}
                   {filteredData.length === 0 &&
+                    !data.isLoading &&
                     currentCategory === "Bookmarks" && (
                       <Text mt={3} textAlign={"center"}>
                         You have no bookmarks! <br /> Please{" "}

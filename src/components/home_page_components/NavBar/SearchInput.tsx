@@ -42,7 +42,7 @@ const SearchInput = ({ onInputChanged, value = "" }: Props) => {
       if (onInputChanged) {
         onInputChanged(input.trim());
       }
-    }, 800),
+    }, 500),
     []
   );
 

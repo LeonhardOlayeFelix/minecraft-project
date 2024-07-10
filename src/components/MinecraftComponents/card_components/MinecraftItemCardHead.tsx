@@ -130,7 +130,7 @@ const MinecraftItemCardHead = ({
               size={20}
               style={{
                 position: "absolute",
-                transition: "opacity 1s ease-in-out",
+                transition: "opacity 0.3s ease-in-out",
                 opacity: isPinned ? 1 : 0,
               }}
             />
@@ -138,25 +138,32 @@ const MinecraftItemCardHead = ({
         </Tooltip>
       </Flex>
       <Flex>
-        <Text
-          fontFamily="Roboto Remix"
-          fontWeight="500"
-          color={textColor}
-          overflow={"hidden"}
-          cursor="pointer"
-          transition="color 0.2s, text-decoration 0.2s"
-          _hover={{
-            color: textHoverColor,
-            textDecoration: "underline",
-          }}
-          fontSize="35px"
-          onClick={() => setShowNamespaceID(!showNamespaceID)}
-          lineHeight="25px"
-          mt={3}
-          paddingRight={3}
+        <Tooltip
+          bg={tooltipBg}
+          color={tooltipFg}
+          hasArrow
+          label={"Toggle namespace ID"}
         >
-          {showNamespaceID ? item.namespacedId : item.name}
-        </Text>
+          <Text
+            fontFamily="Roboto Remix"
+            fontWeight="500"
+            color={textColor}
+            overflow={"hidden"}
+            cursor="pointer"
+            transition="color 0.2s, text-decoration 0.2s"
+            _hover={{
+              color: textHoverColor,
+              textDecoration: "underline",
+            }}
+            fontSize="35px"
+            onClick={() => setShowNamespaceID(!showNamespaceID)}
+            lineHeight="25px"
+            mt={3}
+            paddingRight={3}
+          >
+            {showNamespaceID ? item.namespacedId : item.name}
+          </Text>
+        </Tooltip>
       </Flex>
       <Flex justifyContent="left">
         <AvatarGroup size="sm" max={4} fontSize="9px" fontWeight="700">

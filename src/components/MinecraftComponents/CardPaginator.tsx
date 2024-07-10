@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import "./card_components/MinecraftCardGird3.css";
-import MinecraftItemCard from "./card_components/MinecraftItemCard";
-import { Box, Flex, Button, HStack, Text, Show } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Button,
+  HStack,
+  Text,
+  Show,
+  Spinner,
+} from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { ItemsProps } from "../../interfaces/MinecraftInterfaces";
 import useMinecraftHook from "../../hooks/useMinecraftHook";
 import MinecraftCardGrid3 from "./card_components/MinecraftCardGrid3";
-import MinecraftCardGrid from "./card_components/MinecraftCardGrid";
 
 interface Props {
   items: ItemsProps[];
@@ -31,7 +37,6 @@ const CardPaginator = ({
 }: Props) => {
   const data = useMinecraftHook();
   const [currentPage, setCurrentPage] = useState(1);
-
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
   const currentResults = items.slice(indexOfFirstResult, indexOfLastResult);
@@ -68,7 +73,9 @@ const CardPaginator = ({
       setCurrentPage(1);
     }
   }, [totalPages]);
-
+  if (data.isLoading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <Flex className={className} flexDirection={"column"}>
       {/* <MinecraftCardGrid

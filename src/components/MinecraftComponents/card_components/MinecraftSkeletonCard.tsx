@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 const MinecraftSkeletonCard = () => {
-  const cardBodybg = useColorModeValue("gray", "#202020");
+  const cardBodybg = useColorModeValue("#D6D6D777", "#202020");
   const cardColor = useColorModeValue("white !important", "#111111");
   //const iconColor = useColorModeValue("brand.200", "white");
   //const buttonColor = useColorModeValue("gray.100", "whiteAlpha.200");
@@ -20,13 +20,15 @@ const MinecraftSkeletonCard = () => {
 
   return (
     <Card
-      borderRadius="20px"
+      borderRadius="5px"
+      borderWidth={"2px"}
+      borderColor={cardBodybg}
       boxShadow="lg"
       bg={cardColor}
       overflow="hidden"
       w={{ base: "260px", md: "280px" }}
       transition="transform 0.2s"
-      _hover={{ transform: "scale(1.02)" }}
+      _hover={{ transform: "scale(1.01)" }}
       height={"320px"}
     >
       <Box h={"155"} mb={4} pt="20px" pl="20px">
@@ -44,8 +46,8 @@ const MinecraftSkeletonCard = () => {
           <Skeleton
             width={"50%"}
             height={"20px"}
-            startColor={textStartColor}
-            endColor={textEndColor}
+            startColor={cardBodybg}
+            endColor={iconEndColor}
             borderRadius={"6px"}
           />
         </Flex>
