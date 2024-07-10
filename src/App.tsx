@@ -53,7 +53,7 @@ function App() {
     const similarSearches = SimilarSearchesString(
       itemsAsString,
       currentSearch,
-      0.3
+      0.5
     );
     filteredData = similarSearches
       .map((itemName) => filteredData.find((item) => item.name === itemName))

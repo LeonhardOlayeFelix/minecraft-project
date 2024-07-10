@@ -9,7 +9,7 @@ const RightSideOfBarComponent = () => {
     <Box
       display="flex"
       justifyContent={"left"}
-      gap={"5px"}
+      gap={"20px"}
       p="1.5"
       borderRadius="md"
       // _hover={{ bg: hoverBg }} include this for a hover effect on the whole component

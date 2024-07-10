@@ -248,6 +248,25 @@ const MinecraftItemCard = ({
     );
     setShowUsedIn(false);
   };
+  function changeAlpha(rgbaString: string, newAlpha: number): string {
+    // Parse the existing RGBA string
+    const match = rgbaString.match(
+      /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/
+    );
+    if (!match) {
+      return "rgba(255, 255, 255, 1)";
+    }
+
+    // Extract RGB values and existing alpha
+    const [, r, g, b, currentAlpha = "1"] = match;
+    const alpha = parseFloat(currentAlpha);
+
+    // Ensure the new alpha value is within bounds (0 to 1)
+    const clampedAlpha = Math.max(0, Math.min(newAlpha, 1));
+
+    // Create and return the modified RGBA string
+    return `rgba(${r}, ${g}, ${b}, ${clampedAlpha.toFixed(2)})`;
+  }
   const toggleShowUsedIn = () => {
     setShowUsedIn(!showUsedIn);
     window.localStorage.setItem(
@@ -272,9 +291,11 @@ const MinecraftItemCard = ({
   return (
     <Card
       className={className}
-      borderRadius="20px"
-      bg={cardColor}
-      boxShadow={!isGlowColorLoading ? `0 0 0.5em 0.001em ${glowColor}` : ""}
+      borderRadius="5px"
+      borderWidth={"3px"}
+      borderColor={changeAlpha(glowColor, 100 / 255)}
+      bg={changeAlpha(glowColor, 50 / 255)}
+      //boxShadow={!isGlowColorLoading ? `0 0 0.5em 0.001em ${glowColor}` : ""}
       overflow="hidden"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.02)" }}
@@ -294,7 +315,7 @@ const MinecraftItemCard = ({
         handlePinToggle={handlePinToggle}
         handleIconClicked={handleIconClicked}
       />
-      <CardBody bg={cardBodyBg}>
+      <CardBody bg={changeAlpha(glowColor, 25 / 255)}>
         <Flex
           direction={"column"}
           justifyContent={"space-between"}

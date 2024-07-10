@@ -32,12 +32,13 @@ const ContactUsComponent = () => {
       </Show> */}
       <Button
         transition="color 0.2s, text-decoration 0.2s"
+        variant={"unstyled"}
+        bg={"transparent"}
         _hover={{
           textDecoration: "underline",
           color: "rgba(101, 163, 60, 1)",
         }}
         leftIcon={<EmailIcon />}
-        variant="ghost"
         color={"white"}
       >
         Contact Us

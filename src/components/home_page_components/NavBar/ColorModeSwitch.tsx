@@ -36,14 +36,15 @@ const ColorModeSwitch = () => {
         </Box>
       </Show> */}
       <Button
-        transition="color 0.2s, text-decoration 0.2s"
+        variant={"unstyled"}
+        bg={"transparent"}
+        transition="none" // Disable all transitions
         _hover={{
           textDecoration: "underline",
           color: "rgba(101, 163, 60, 1)",
         }}
-        color="white"
+        color={"white"}
         flex="1"
-        variant="ghost"
         leftIcon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
       >
         {(colorMode === "dark" ? "Dark" : "Light") + " Mode"}
