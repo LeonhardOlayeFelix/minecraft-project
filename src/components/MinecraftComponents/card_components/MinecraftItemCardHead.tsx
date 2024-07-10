@@ -40,6 +40,7 @@ const MinecraftItemCardHead = ({
   handleIconClicked,
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
+  const [showNamespaceID, setShowNamespaceID] = useState(false);
 
   const itemsAsString = useMemo(() => items.map((item) => item.name), [items]);
 
@@ -113,6 +114,7 @@ const MinecraftItemCardHead = ({
           fontFamily="Roboto Remix"
           fontWeight="500"
           color={textColor}
+          overflow={"hidden"}
           cursor="pointer"
           transition="color 0.2s, text-decoration 0.2s"
           _hover={{
@@ -120,12 +122,12 @@ const MinecraftItemCardHead = ({
             textDecoration: "underline",
           }}
           fontSize="35px"
-          onClick={() => console.log(item.name)}
+          onClick={() => setShowNamespaceID(!showNamespaceID)}
           lineHeight="25px"
           mt={3}
           paddingRight={3}
         >
-          {item.name}
+          {showNamespaceID ? item.namespacedId : item.name}
         </Text>
       </Flex>
       <Flex justifyContent="left">

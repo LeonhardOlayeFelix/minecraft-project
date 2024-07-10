@@ -26,7 +26,6 @@ import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearch
 import CardPaginator from "./components/MinecraftComponents/CardPaginator";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import { ItemsProps } from "./interfaces/MinecraftInterfaces";
-import { beacon } from "./interfaces/Instances";
 
 function App() {
   const data = useBlocksAndItems();
@@ -105,7 +104,7 @@ function App() {
         <Flex justifyContent={"center"} background={cardColor}>
           <Flex flexDirection={"column"} justifyContent={"center"}>
             <Flex justifyContent={"center"}>
-              <Image src={logo} boxSize={"80px"} />
+              <Image src={recipebook} boxSize={"80px"} />
             </Flex>
             <NavBar></NavBar>
           </Flex>
@@ -146,9 +145,9 @@ function App() {
                     Minecraft Item Index is a searchable database of all
                     Minecraft (1.18) blocks and items. <br />
                     <br />
-                    On this website, you can find each item's recipe or the
-                    recipes that it is an ingredient in. Clicking on an item's
-                    name will reveal it's ID, which can be used <br />
+                    On this website, you can find each item's recipe or each
+                    recipe that it is an ingredient for. Clicking on an item's
+                    name will toggle it's ID, which can be used <br />
                     in expressions involving command blocks. You can also
                     bookmark items, and filter by those bookmarks or other
                     categories including{" "}
