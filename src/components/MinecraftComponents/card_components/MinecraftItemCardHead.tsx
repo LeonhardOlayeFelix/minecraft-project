@@ -9,9 +9,9 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import SimilarSearchesString from "../SimilarSearchesString";
-import { TiPin, TiPinOutline } from "react-icons/ti";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
 import { ItemsProps } from "../../../interfaces/MinecraftInterfaces";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
+
 interface Props {
   bodyBg: string;
   iconColor: string;
@@ -64,50 +64,53 @@ const MinecraftItemCardHead = ({
       JSON.stringify(!isPinned)
     );
   };
+
   useEffect(() => {
     const localStoragePin = window.localStorage.getItem(item.name + "pinned");
     if (localStoragePin) setIsPinned(JSON.parse(localStoragePin));
   }, []);
+
   return (
     <Box h={"auto"} mb={1} mt="20px" ml="20px" mr={"20px"} marginBottom={"5px"}>
       <Flex w="100%" alignItems={"center"}>
         <Box me="auto" bg={bodyBg} borderRadius="12px" padding={1}>
           {item.image && <Image src={item.image} />}
         </Box>
-        {isPinned && (
-          <Tooltip
-            label="Remove from pins"
-            background={tooltipBg}
-            color={tooltipFg}
+        <Tooltip
+          label={isPinned ? "Remove from pins" : "Add to bookmarks"}
+          background={tooltipBg}
+          color={tooltipFg}
+        >
+          <Box
+            position="relative"
+            cursor="pointer"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            width="20px"
+            height="20px"
+            onClick={toggleIsPinned}
           >
-            <Box>
-              <FaBookmark
-                fill={textColor}
-                cursor={"pointer"}
-                onClick={toggleIsPinned}
-                color={iconColor}
-                size={20}
-              />
-            </Box>
-          </Tooltip>
-        )}
-        {!isPinned && (
-          <Tooltip
-            label="Add to bookmarks"
-            background={tooltipBg}
-            color={tooltipFg}
-          >
-            <Box>
-              <FaRegBookmark
-                fill={textColor}
-                cursor={"pointer"}
-                onClick={toggleIsPinned}
-                color={iconColor}
-                size={20}
-              />
-            </Box>
-          </Tooltip>
-        )}
+            <FaRegBookmark
+              fill={textColor}
+              color={iconColor}
+              size={20}
+              style={{
+                position: "absolute",
+              }}
+            />
+            <FaBookmark
+              fill={textColor}
+              color={iconColor}
+              size={20}
+              style={{
+                position: "absolute",
+                transition: "opacity 0.9s ease-in-out",
+                opacity: isPinned ? 1 : 0,
+              }}
+            />
+          </Box>
+        </Tooltip>
       </Flex>
       <Flex>
         <Text
@@ -141,7 +144,7 @@ const MinecraftItemCardHead = ({
               key={index}
             >
               <Avatar
-                className="grow-1 p-1"
+                className="p-1"
                 boxSize={8}
                 onClick={() => handleIconClicked(match?.name ? match.name : "")}
                 cursor="pointer"
