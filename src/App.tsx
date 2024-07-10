@@ -28,9 +28,11 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
   const [pinnedItems, setPinnedItems] = useState<ItemsProps[]>([]);
-  //const { colorMode, toggleColorMode } = useColorMode();
+  const [recipeBookBorderColor, setRecipeBookBorderColor] = useState(
+    "rgb(255, 255, 255, 1)"
+  );
   const cardColor = useColorModeValue("#181818 !important", "#0D0E0E");
-  //const textColor = useColorModeValue("gray.800", "white");
+  const recipeBookBgColor = useColorModeValue("#FFFFFF", "#0D0E0E");
   useEffect(() => {
     const localStoragePinnedItems = localStorage.getItem("pinnedItems");
     if (localStoragePinnedItems)
@@ -74,7 +76,99 @@ function App() {
       );
     }
   };
+  function changeAlpha(rgbaString: string, newAlpha: number): string {
+    // Parse the existing RGBA string
+    const match = rgbaString.match(
+      /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/
+    );
+    if (!match) {
+      return "rgba(255, 255, 255, 1)";
+    }
 
+    // Extract RGB values and existing alpha
+    const [, r, g, b, currentAlpha = "1"] = match;
+    const alpha = parseFloat(currentAlpha);
+
+    // Ensure the new alpha value is within bounds (0 to 1)
+    const clampedAlpha = Math.max(0, Math.min(newAlpha, 1));
+
+    // Create and return the modified RGBA string
+    return `rgba(${r}, ${g}, ${b}, ${clampedAlpha.toFixed(2)})`;
+  }
+  const getMiddlePixelColor = (imageUrl: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const img = new window.Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+          const middleX = Math.floor(img.width / 2);
+          const middleY = Math.floor(img.height / 2);
+          const radius = 10;
+          let totalRed = 0;
+          let totalGreen = 0;
+          let totalBlue = 0;
+          let totalAlpha = 0;
+          let pixelCount = 0;
+          for (let x = middleX - radius; x <= middleX + radius; x++) {
+            for (let y = middleY - radius; y <= middleY + radius; y++) {
+              const pixelData = ctx.getImageData(x, y, 1, 1).data;
+              const red = pixelData[0];
+              const green = pixelData[1];
+              const blue = pixelData[2];
+              const alpha = pixelData[3];
+
+              // Check if the pixel color matches the pattern #ExExEx, to ignore the white space
+              const isExExExPattern =
+                red === green && green === blue && red % 17 === 0;
+
+              if (!isExExExPattern) {
+                totalRed += red;
+                totalGreen += green;
+                totalBlue += blue;
+                totalAlpha += alpha;
+                pixelCount++;
+              }
+            }
+          }
+
+          if (pixelCount === 0) {
+            reject("No valid pixels found");
+          } else {
+            const avgRed = Math.round(totalRed / pixelCount);
+            const avgGreen = Math.round(totalGreen / pixelCount);
+            const avgBlue = Math.round(totalBlue / pixelCount);
+            //const avgAlpha = Math.round(totalAlpha / pixelCount);
+            const colorValue = `rgba(${avgRed}, ${avgGreen}, ${avgBlue}, ${
+              100 / 255
+            })`;
+            resolve(colorValue);
+          }
+        } else {
+          reject("Failed to get canvas context");
+        }
+      };
+      img.onerror = reject;
+      img.src = imageUrl;
+    });
+  };
+  useEffect(() => {
+    const fetchMiddlePixelColor = async () => {
+      if (recipebook) {
+        try {
+          const color = await getMiddlePixelColor(recipebook);
+          setRecipeBookBorderColor(color);
+        } catch (error) {
+          console.error("Error fetching middle pixel color:", error);
+        }
+      }
+    };
+    fetchMiddlePixelColor();
+  }, [recipebook]);
   const handleCategoryChanged = (value: string) => {
     setCurrentCategory(value);
   };
@@ -172,8 +266,17 @@ function App() {
                   </Text>
                 </Box>
                 <Show above="lg">
-                  <Box>
-                    <Image boxSize={200} src={recipebook}></Image>
+                  <Box
+                    padding={7}
+                    borderRadius={30}
+                    borderWidth="2px"
+                    borderColor={changeAlpha(recipeBookBorderColor, 150 / 255)}
+                    bg={recipeBookBgColor}
+                  >
+                    <Image
+                      src={recipebook}
+                      borderRadius="inherit" // Match the border radius of the box
+                    />
                   </Box>
                 </Show>
               </Flex>
