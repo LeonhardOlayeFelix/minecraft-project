@@ -112,9 +112,16 @@ function App() {
           </Flex>
         </Flex>
       </GridItem>
-      <GridItem marginTop={"50px"} area={"main"}>
+      <GridItem
+        marginTop={{ base: "20px", sm: "20px", md: "50px", lg: "50px" }}
+        area={"main"}
+      >
         <Flex display={"flex"} justifyContent={"center"}>
-          <Flex flexDirection={"column"} gap={"10px"} minW={"60vw"}>
+          <Flex
+            flexDirection={"column"}
+            gap={{ base: "20px", sm: "20px", md: "50px", lg: "50px" }}
+            minW={"60vw"}
+          >
             <Flex margin={3} flexDirection={"column"}>
               <Flex
                 direction={"row"}
@@ -145,28 +152,31 @@ function App() {
                     }}
                   >
                     Minecraft Item Index is a searchable database of all
-                    Minecraft (1.18) blocks and items. <br />
-                    <br />
-                    On this website, you can find each item's recipe or each
-                    recipe that it is an ingredient for. Clicking on an item's
-                    name will toggle it's ID, which can be used <br />
-                    in expressions involving command blocks. You can also
-                    bookmark items, and filter by those bookmarks or other
-                    categories including{" "}
-                    <Link
-                      color="#65A33C"
-                      onClick={() => setCurrentCategory("Plants")}
-                    >
-                      Plants
-                    </Link>{" "}
-                    or{" "}
-                    <Link
-                      color="#65A33C"
-                      onClick={() => setCurrentCategory("Valuables")}
-                    >
-                      Valuables
-                    </Link>
-                    !
+                    Minecraft (1.18) blocks and items.{" "}
+                    <Show above="sm">
+                      <br />
+                      <br />
+                      On this website, you can find each item's recipe or each
+                      recipe that it is an ingredient for. Clicking on an item's
+                      name will toggle it's ID, which can be used <br />
+                      in expressions involving command blocks. You can also
+                      bookmark items, and filter by those bookmarks or other
+                      categories including{" "}
+                      <Link
+                        color="#65A33C"
+                        onClick={() => setCurrentCategory("Plants")}
+                      >
+                        Plants
+                      </Link>{" "}
+                      or{" "}
+                      <Link
+                        color="#65A33C"
+                        onClick={() => setCurrentCategory("Valuables")}
+                      >
+                        Valuables
+                      </Link>
+                      !
+                    </Show>
                   </Text>
                 </Box>
                 <Show above="lg">
@@ -187,7 +197,6 @@ function App() {
                 lg: "10px",
               }}
               minH={"100vh"}
-              marginTop={"60px"}
             >
               <Flex
                 paddingX={"2%"}
