@@ -26,6 +26,7 @@ import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearch
 import CardPaginator from "./components/MinecraftComponents/CardPaginator";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import { ItemsProps } from "./interfaces/MinecraftInterfaces";
+import SimilarSearchesString from "./components/MinecraftComponents/SimilarSearchesString";
 
 function App() {
   const data = useBlocksAndItems();
@@ -49,7 +50,11 @@ function App() {
 
   if (currentSearch.trim() != "") {
     const itemsAsString = filteredData.map((item) => item.name);
-    const similarSearches = SimilarSearchBarItem(itemsAsString, currentSearch);
+    const similarSearches = SimilarSearchesString(
+      itemsAsString,
+      currentSearch,
+      0.5
+    );
     filteredData = filteredData.filter((item) => {
       return (
         similarSearches.find((similarSearch) => similarSearch == item.name) !=
