@@ -26,10 +26,6 @@ const SimilarSearchesString = (
   });
   const matches = result.map((match) => match.item);
 
-  if (item === "Diamond Sword") {
-    console.log(matches);
-  }
-
   return matches;
 };
 

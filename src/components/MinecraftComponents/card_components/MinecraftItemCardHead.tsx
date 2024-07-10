@@ -52,7 +52,7 @@ const MinecraftItemCardHead = ({
     () =>
       similarSearches
         .map((result) => items.find((itemFound) => itemFound.name === result))
-        .slice(0, 4),
+        .slice(1, 5),
     [similarSearches, items]
   );
 
