@@ -7,22 +7,17 @@ import {
   useColorModeValue,
   Text,
   Image,
-  useColorMode,
   Show,
   Link,
 } from "@chakra-ui/react";
-import logo from "./assets/logo.webp";
 import recipebook from "./assets/recipebook.webp";
 import NavBar from "./components/home_page_components/NavBar/NavBar";
 import "./assets/fonts/custom-font.css";
 import CategorySelector from "./components/MinecraftComponents/filter_components/CategorySelector";
-import categoriseItems, {
-  categories,
-} from "./components/MinecraftComponents/CategoriseItem";
+import { categories } from "./components/MinecraftComponents/CategoriseItem";
 import { useEffect, useState } from "react";
 import getItemsInCategory from "./components/MinecraftComponents/GetItemsInCategory";
 import SearchInput from "./components/home_page_components/NavBar/SearchInput";
-import SimilarSearchBarItem from "./components/MinecraftComponents/SimilarSearchBarItem";
 import CardPaginator from "./components/MinecraftComponents/CardPaginator";
 import useBlocksAndItems from "./hooks/useMinecraftHook";
 import { ItemsProps } from "./interfaces/MinecraftInterfaces";
@@ -33,9 +28,9 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState("Any");
   const [currentSearch, setCurrentSearch] = useState("");
   const [pinnedItems, setPinnedItems] = useState<ItemsProps[]>([]);
-  const { colorMode, toggleColorMode } = useColorMode();
+  //const { colorMode, toggleColorMode } = useColorMode();
   const cardColor = useColorModeValue("#181818 !important", "#0D0E0E");
-  const textColor = useColorModeValue("gray.800", "white");
+  //const textColor = useColorModeValue("gray.800", "white");
   useEffect(() => {
     const localStoragePinnedItems = localStorage.getItem("pinnedItems");
     if (localStoragePinnedItems)
@@ -112,16 +107,13 @@ function App() {
           </Flex>
         </Flex>
       </GridItem>
-      <GridItem
-        marginTop={{ base: "20px", sm: "20px", md: "50px", lg: "50px" }}
-        area={"main"}
-      >
-        <Flex display={"flex"} justifyContent={"center"}>
-          <Flex
-            flexDirection={"column"}
-            gap={{ base: "20px", sm: "20px", md: "50px", lg: "50px" }}
-            minW={"60vw"}
-          >
+      <GridItem area={"main"}>
+        <Flex
+          paddingTop={{ base: "20px", sm: "20px", md: "50px", lg: "50px" }}
+          display={"flex"}
+          justifyContent={"center"}
+        >
+          <Flex flexDirection={"column"} gap={"20px"} minW={"60vw"}>
             <Flex margin={3} flexDirection={"column"}>
               <Flex
                 direction={"row"}
@@ -187,15 +179,8 @@ function App() {
               </Flex>
             </Flex>
             <Box
-              background={colorMode === "dark" ? cardColor : "#E4DEDB"}
-              paddingY={"2%"}
-              paddingX={"20px"}
-              borderTopRadius={{
-                base: "0px",
-                sm: "10px",
-                md: "10px",
-                lg: "10px",
-              }}
+              //background={colorMode === "dark" ? cardColor : "#E4DEDB88"}
+              margin={3}
               minH={"100vh"}
             >
               <Flex

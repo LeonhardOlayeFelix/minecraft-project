@@ -176,7 +176,7 @@ const MinecraftItemCardHead = ({
                 transition="background-color 0.2s"
                 src={match?.image}
                 _hover={{
-                  bg: changeAlpha(rgba, 50 / 255),
+                  bg: changeAlpha(rgba, 25 / 255),
                 }}
               />
             </Tooltip>

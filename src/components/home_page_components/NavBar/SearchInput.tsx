@@ -4,6 +4,7 @@ import {
   InputLeftElement,
   InputRightElement,
   Spinner,
+  useColorMode,
 } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
 import { useCallback, useEffect, useState } from "react";
@@ -18,7 +19,7 @@ interface Props {
 const SearchInput = ({ onInputChanged, value = "" }: Props) => {
   const [searchIsLoading, setSearchIsLoading] = useState(false);
   const [searchInput, setSearchInput] = useState(value);
-
+  const { colorMode, toggleColorMode } = useColorMode();
   useEffect(() => {
     const localStorageCurrentSearch =
       window.localStorage.getItem("currentSearch");
@@ -50,6 +51,7 @@ const SearchInput = ({ onInputChanged, value = "" }: Props) => {
       <InputLeftElement children={<BsSearch />} />
       <Input
         borderRadius={10}
+        bg={colorMode === "dark" ? "#191A1B" : "#191A1B22"}
         placeholder="Search Items..."
         variant={"filled"}
         value={searchInput}
