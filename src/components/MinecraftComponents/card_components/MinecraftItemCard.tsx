@@ -303,6 +303,7 @@ const MinecraftItemCard = ({
       minH="auto"
     >
       <MinecraftItemCardHead
+        rgba={glowColor}
         bodyBg={cardBodyBg}
         iconColor={iconColor}
         textColor={textColor}

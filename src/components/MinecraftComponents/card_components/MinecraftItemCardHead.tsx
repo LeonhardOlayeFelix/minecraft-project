@@ -24,6 +24,7 @@ interface Props {
   items: ItemsProps[];
   handlePinToggle: (item: ItemsProps, isPinned: boolean) => void;
   handleIconClicked: (iconName: string) => void;
+  rgba: string;
 }
 
 const MinecraftItemCardHead = ({
@@ -38,6 +39,7 @@ const MinecraftItemCardHead = ({
   items,
   handlePinToggle,
   handleIconClicked,
+  rgba,
 }: Props) => {
   const [isPinned, setIsPinned] = useState(false);
   const [showNamespaceID, setShowNamespaceID] = useState(false);
@@ -55,7 +57,25 @@ const MinecraftItemCardHead = ({
         .slice(1, 5),
     [similarSearches, items]
   );
+  function changeAlpha(rgbaString: string, newAlpha: number): string {
+    // Parse the existing RGBA string
+    const match = rgbaString.match(
+      /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/
+    );
+    if (!match) {
+      return "rgba(255, 255, 255, 1)";
+    }
 
+    // Extract RGB values and existing alpha
+    const [, r, g, b, currentAlpha = "1"] = match;
+    const alpha = parseFloat(currentAlpha);
+
+    // Ensure the new alpha value is within bounds (0 to 1)
+    const clampedAlpha = Math.max(0, Math.min(newAlpha, 1));
+
+    // Create and return the modified RGBA string
+    return `rgba(${r}, ${g}, ${b}, ${clampedAlpha.toFixed(2)})`;
+  }
   const toggleIsPinned = () => {
     handlePinToggle(item, !isPinned);
     setIsPinned(!isPinned);
@@ -73,7 +93,12 @@ const MinecraftItemCardHead = ({
   return (
     <Box h={"auto"} mb={1} mt="20px" ml="20px" mr={"20px"} marginBottom={"5px"}>
       <Flex w="100%" alignItems={"center"}>
-        <Box me="auto" bg={bodyBg} borderRadius="12px" padding={1}>
+        <Box
+          me="auto"
+          bg={changeAlpha(rgba, 50 / 255)}
+          borderRadius="12px"
+          padding={1}
+        >
           {item.image && <Image src={item.image} />}
         </Box>
         <Tooltip
@@ -92,7 +117,7 @@ const MinecraftItemCardHead = ({
             onClick={toggleIsPinned}
           >
             <FaRegBookmark
-              fill={textColor}
+              fill={changeAlpha(rgba, 1)}
               color={iconColor}
               size={20}
               style={{
@@ -105,7 +130,7 @@ const MinecraftItemCardHead = ({
               size={20}
               style={{
                 position: "absolute",
-                transition: "opacity 0.9s ease-in-out",
+                transition: "opacity 1s ease-in-out",
                 opacity: isPinned ? 1 : 0,
               }}
             />
@@ -151,7 +176,7 @@ const MinecraftItemCardHead = ({
                 transition="background-color 0.2s"
                 src={match?.image}
                 _hover={{
-                  bg: avatarHoverBg,
+                  bg: changeAlpha(rgba, 50 / 255),
                 }}
               />
             </Tooltip>
