@@ -53,14 +53,11 @@ function App() {
     const similarSearches = SimilarSearchesString(
       itemsAsString,
       currentSearch,
-      0.5
+      0.3
     );
-    filteredData = filteredData.filter((item) => {
-      return (
-        similarSearches.find((similarSearch) => similarSearch == item.name) !=
-        undefined
-      );
-    });
+    filteredData = similarSearches
+      .map((itemName) => filteredData.find((item) => item.name === itemName))
+      .filter((item) => item !== undefined);
   }
 
   const handlePinToggle = (item: ItemsProps, isPinned: boolean) => {

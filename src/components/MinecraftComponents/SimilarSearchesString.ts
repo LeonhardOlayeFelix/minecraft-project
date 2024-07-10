@@ -1,5 +1,10 @@
 import Fuse from "fuse.js";
 
+interface FuseResult {
+  item: string;
+  score?: number;
+}
+
 const SimilarSearchesString = (
   items: string[],
   item: string,
@@ -7,13 +12,24 @@ const SimilarSearchesString = (
 ) => {
   const fuse = new Fuse(items, {
     includeScore: true,
+    includeMatches: true,
     findAllMatches: true,
     threshold: threshold,
   });
-  const result = fuse.search(item);
-  const matches = result
-    .map((match) => match.item)
-    .filter((match) => match !== item);
+
+  const result: FuseResult[] = fuse.search(item);
+
+  result.sort((a, b) => {
+    const scoreA = a.score ?? Number.MAX_SAFE_INTEGER;
+    const scoreB = b.score ?? Number.MAX_SAFE_INTEGER;
+    return scoreA - scoreB;
+  });
+  const matches = result.map((match) => match.item);
+
+  if (item === "Diamond Sword") {
+    console.log(matches);
+  }
+
   return matches;
 };
 
