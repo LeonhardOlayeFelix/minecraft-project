@@ -38,6 +38,7 @@ interface Props {
   handleIconClicked: (iconName: string) => void;
   handleResultClicked?: (resultName: string) => void;
   handleMaterialClicked?: (materialName: string) => void;
+  handleCardHover?: (color: string) => void;
 }
 
 const MinecraftItemCard = ({
@@ -49,6 +50,7 @@ const MinecraftItemCard = ({
   handleIconClicked,
   handleResultClicked,
   handleMaterialClicked,
+  handleCardHover,
 }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to toggle description
   const [showCategories, setShowCategories] = useState(false);
@@ -301,6 +303,11 @@ const MinecraftItemCard = ({
       _hover={{ transform: "scale(1.02)" }}
       w={{ base: "260px", md: "280px" }}
       minH="auto"
+      onMouseEnter={() => {
+        if (handleCardHover) {
+          handleCardHover(changeAlpha(glowColor, 50 / 255));
+        }
+      }}
     >
       <MinecraftItemCardHead
         rgba={glowColor}

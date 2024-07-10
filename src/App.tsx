@@ -184,6 +184,7 @@ function App() {
   const handleMaterialClicked = (materialName: string) => {
     setCurrentSearch(materialName);
   };
+  const handleOnMouseEnter = (color: string) => {};
   return (
     <Grid
       templateAreas={{
@@ -267,14 +268,14 @@ function App() {
                 </Box>
                 <Show above="lg">
                   <Box
-                    padding={7}
+                    padding={5}
                     borderRadius={30}
-                    borderWidth="2px"
                     borderColor={changeAlpha(recipeBookBorderColor, 150 / 255)}
                     bg={recipeBookBgColor}
                   >
                     <Image
-                      src={recipebook}
+                      //src={recipebook}
+                      src="https://minecraft-api.vercel.app/images/blocks/crafting_table.png"
                       borderRadius="inherit" // Match the border radius of the box
                     />
                   </Box>
