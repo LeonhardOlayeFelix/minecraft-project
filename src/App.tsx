@@ -33,6 +33,7 @@ function App() {
   );
   const cardColor = useColorModeValue("#181818 !important", "#0D0E0E");
   const recipeBookBgColor = useColorModeValue("#FFFFFF", "#0D0E0E");
+  const pageColor = useColorModeValue("#F3F3F3", "#101112");
   useEffect(() => {
     const localStoragePinnedItems = localStorage.getItem("pinnedItems");
     if (localStoragePinnedItems)
@@ -326,6 +327,12 @@ function App() {
                   </Text>
                 </Box>
                 <Flex
+                  position={"sticky"}
+                  top={0}
+                  zIndex={1}
+                  background={pageColor}
+                  paddingX={2}
+                  paddingY={3}
                   justifyContent={{
                     base: "center",
                     sm: "center",
