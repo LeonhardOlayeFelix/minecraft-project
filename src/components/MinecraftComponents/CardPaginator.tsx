@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./card_components/MinecraftCardGird3.css";
+
 import {
   Box,
   Flex,
@@ -13,6 +14,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { ItemsProps } from "../../interfaces/MinecraftInterfaces";
 import useMinecraftHook from "../../hooks/useMinecraftHook";
 import MinecraftCardGrid3 from "./card_components/MinecraftCardGrid3";
+import MinecraftCardGrid from "./card_components/MinecraftCardGrid";
 
 interface Props {
   items: ItemsProps[];

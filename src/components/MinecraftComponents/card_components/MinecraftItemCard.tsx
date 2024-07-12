@@ -301,7 +301,7 @@ const MinecraftItemCard = ({
       overflow="hidden"
       transition="transform 0.1s"
       _hover={{ transform: "scale(1.02)" }}
-      w={{ base: "260px", md: "280px" }}
+      width={{ base: "260px", md: "280px" }}
       minH="auto"
       onMouseEnter={() => {
         if (handleCardHover) {
@@ -384,7 +384,6 @@ const MinecraftItemCard = ({
               />
             )}
           </Flex>
-
           <Flex justifyContent="space-between">
             <Flex gap={"1px"} alignItems={"center"}>
               {inCategoryExcludingRecipesAndIngredients && (
