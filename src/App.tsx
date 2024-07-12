@@ -57,7 +57,6 @@ function App() {
       .map((itemName) => filteredData.find((item) => item.name === itemName))
       .filter((item) => item !== undefined);
   }
-
   const handlePinToggle = (item: ItemsProps, isPinned: boolean) => {
     if (isPinned) {
       setPinnedItems([...pinnedItems, item]);
@@ -176,14 +175,30 @@ function App() {
 
   const handleIconClicked = (iconName: string) => {
     setCurrentSearch(iconName);
+    window.scrollTo(0, 0);
   };
-
+  const shuffleArray = (array: any[]): any[] => {
+    let shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  };
+  if (currentCategory === "Any" && currentSearch.trim() === "") {
+    filteredData = shuffleArray(filteredData);
+  }
   const handleResultClicked = (resultName: string) => {
     setCurrentSearch(resultName);
+    window.scrollTo(0, 0);
   };
 
   const handleMaterialClicked = (materialName: string) => {
     setCurrentSearch(materialName);
+    window.scrollTo(0, 0);
   };
   const handleOnMouseEnter = (color: string) => {};
   return (
@@ -369,7 +384,7 @@ function App() {
                     handleResultClicked={handleResultClicked}
                     handleMaterialClicked={handleMaterialClicked}
                     items={filteredData}
-                    resultsPerPage={40}
+                    resultsPerPage={20}
                   ></CardPaginator>
                   {filteredData.length === 0 &&
                     currentCategory !== "Bookmarks" &&

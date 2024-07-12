@@ -45,7 +45,7 @@ const CardPaginator = ({
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0 });
+    window.scrollTo(0, 0);
   };
 
   const pageNumbers = [];

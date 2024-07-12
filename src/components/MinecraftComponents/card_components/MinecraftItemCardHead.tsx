@@ -96,7 +96,9 @@ const MinecraftItemCardHead = ({
         <Box
           me="auto"
           bg={changeAlpha(rgba, 50 / 255)}
-          borderRadius="12px"
+          borderRadius="5px"
+          borderWidth={"3px"}
+          borderColor={changeAlpha(rgba, 50 / 255)}
           padding={1}
         >
           {item.image && <Image src={item.image} />}
