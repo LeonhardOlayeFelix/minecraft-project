@@ -1,30 +1,14 @@
-# React + TypeScript + Vite
+A project that lets users search through a minecraft database, displaying useful information.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Light Mode
+![ImageLightMode](https://github.com/user-attachments/assets/23d983db-205d-4a05-8f19-923d27bbe0a7)
 
-Currently, two official plugins are available:
+Dark Mode
+![ImageDarkMode](https://github.com/user-attachments/assets/ee053c1d-0faf-40f8-a591-b62f057801c0)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Recipies
+![RecipiesAndIngredients](https://github.com/user-attachments/assets/2e15cdf4-74bd-403d-aa8d-9a72b5c07c23)
 
-## Expanding the ESLint configuration
+Video Use
+https://github.com/user-attachments/assets/9a9867cd-29de-4be7-9111-ce58fc9e1d64
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
